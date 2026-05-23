@@ -1433,10 +1433,8 @@
   }
 
   // ─── n8n webhook integration ────────────────────────────────────────
-  // 1. Spin up an n8n workflow with a "Webhook" trigger (Method: POST).
-  // 2. Activate the workflow → copy the Production webhook URL.
-  // 3. Paste it below between the quotes. Leave empty to skip posting (dev mode).
-  const N8N_WEBHOOK_URL = '';
+  // Cuban Tank lead capture: POSTs to n8n which fires SMS to client + owner.
+  const N8N_WEBHOOK_URL = 'https://empirevortex.app.n8n.cloud/webhook/apply';
 
   form.addEventListener('submit', async e => {
     e.preventDefault();
