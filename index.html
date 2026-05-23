@@ -1432,7 +1432,13 @@
     if (el) el.classList.toggle('hidden', !on);
   }
 
-  form.addEventListener('submit', e => {
+  // ─── n8n webhook integration ────────────────────────────────────────
+  // 1. Spin up an n8n workflow with a "Webhook" trigger (Method: POST).
+  // 2. Activate the workflow → copy the Production webhook URL.
+  // 3. Paste it below between the quotes. Leave empty to skip posting (dev mode).
+  const N8N_WEBHOOK_URL = '';
+
+  form.addEventListener('submit', async e => {
     e.preventDefault();
     const data = {
       first: form.first.value.trim(),
@@ -1448,7 +1454,6 @@
     };
     Object.entries(errs).forEach(([k, v]) => showErr(k, v));
     if (Object.values(errs).some(Boolean)) {
-      // focus first invalid
       const firstBad = Object.keys(errs).find(k => errs[k]);
       const el = form.querySelector(`[name="${firstBad}"]`);
       if (el) el.focus();
@@ -1458,19 +1463,60 @@
     submitBtn.disabled = true;
     submitLabel.textContent = 'Sending…';
 
-    setTimeout(() => {
-      if (refEl) {
-        refEl.textContent = 'CT-2026-' + String(140 + Math.floor(Math.random() * 9)).padStart(4, '0');
-      }
+    // Generate a reference id used by both n8n payload and success UI
+    const reference = 'CT-2026-' + String(140 + Math.floor(Math.random() * 9)).padStart(4, '0');
+
+    const payload = {
+      firstName: data.first,
+      lastName:  data.last,
+      fullName:  `${data.first} ${data.last}`.trim(),
+      email:     data.email,
+      phone:     data.phone,
+      reference,
+      source:    'cubantank.coach',
+      submittedAt: new Date().toISOString(),
+      userAgent:   navigator.userAgent,
+    };
+
+    function showSuccess() {
+      if (refEl) refEl.textContent = reference;
       formPanel.classList.add('hidden');
       successPanel.classList.remove('hidden');
-      // move focus to success heading for screen readers
       const successHeading = successPanel.querySelector('h2');
       if (successHeading) {
         successHeading.setAttribute('tabindex', '-1');
         successHeading.focus({ preventScroll: true });
       }
-    }, 720);
+    }
+
+    function showError(detail) {
+      submitBtn.disabled = false;
+      submitLabel.textContent = 'Try again';
+      console.error('[Apply form] Submission failed:', detail);
+      const phoneErr = root.querySelector('[data-err="phone"]');
+      if (phoneErr) {
+        phoneErr.textContent = 'Something went wrong. Please try again, or text Cris directly.';
+        phoneErr.classList.remove('hidden');
+      }
+    }
+
+    // Dev mode — no webhook yet, just simulate success
+    if (!N8N_WEBHOOK_URL) {
+      setTimeout(showSuccess, 720);
+      return;
+    }
+
+    try {
+      const res = await fetch(N8N_WEBHOOK_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload),
+      });
+      if (!res.ok) throw new Error('Webhook returned ' + res.status);
+      showSuccess();
+    } catch (err) {
+      showError(err && err.message ? err.message : String(err));
+    }
   });
 
   // clear individual errors as user types
