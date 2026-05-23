@@ -53,8 +53,27 @@
 
 <style>
   :root { color-scheme: light; }
-  html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
-  body { font-family: 'Geist', system-ui, sans-serif; background: #0B0B0C; color: #FFFFFF; }
+  html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 88px;             /* keeps anchor jumps clear of the fixed nav */
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    -webkit-text-size-adjust: 100%;       /* stop iOS Safari from inflating text on rotation */
+    text-size-adjust: 100%;
+  }
+  body {
+    font-family: 'Geist', system-ui, sans-serif;
+    background: #0B0B0C;
+    color: #FFFFFF;
+    overscroll-behavior-y: contain;       /* kill the iOS rubber-band bounce at page ends */
+    -webkit-tap-highlight-color: transparent;
+    text-rendering: optimizeLegibility;
+  }
+  /* Promote frequently-animated surfaces to their own GPU layer */
+  .bento, .apply-card, .tpanel, .loopvid { transform: translate3d(0, 0, 0); backface-visibility: hidden; }
+  /* Touch behavior: prevent double-tap zoom on tappables */
+  a, button { touch-action: manipulation; }
+  img, video { display: block; max-width: 100%; }
 
   /* Grain - fixed, pointer-events-none, never on scrolling container */
   .grain { position: fixed; inset: 0; z-index: 60; pointer-events: none; opacity: .06; mix-blend-mode: overlay;
@@ -187,6 +206,24 @@
     .marquee-track, .scrollx, .lane-1, .lane-2, .lane-3, .breathe, .float-y, .shimmer, .ring-pulse::after { animation: none !important; }
   }
 
+  /* ============== Mobile smoothness optimizations ============== */
+  @media (max-width: 768px) {
+    /* Lighter noise overlay - SVG grain at high opacity is GPU-expensive on phones */
+    .grain { opacity: .035; }
+    /* Smaller blur radii on glass chips/cards - backdrop-filter is the #1 mobile-scroll jank source */
+    .chip, .chip-dark { backdrop-filter: blur(6px); }
+    /* Hero asset shouldn't push the eyebrow off-screen on short phones */
+    #heroVideoStack { transform: translateZ(0); }
+  }
+
+  /* Data-saver users (Android Chrome "Lite mode" etc) get a static hero - no 30MB of video */
+  @media (prefers-reduced-data: reduce) {
+    #heroVideoStack video:nth-child(n+2) { display: none; }
+  }
+
+  /* Smoother scroll on touch surfaces */
+  .no-scrollbar, [class*="overflow-x-auto"] { -webkit-overflow-scrolling: touch; scroll-behavior: smooth; }
+
   /* Crossfade loop video */
   .loopvid { transition: opacity 1.1s cubic-bezier(.4,0,.2,1); }
 
@@ -236,7 +273,8 @@
       </ul>
 
       <a href="#apply" data-magnet data-open-apply
-         class="magnet inline-flex items-center gap-2 rounded-full bg-lime text-white pl-4 pr-2 py-1.5 text-[12.5px] tracking-tight
+         class="magnet inline-flex items-center gap-2 rounded-full bg-lime text-white pl-4 pr-2 py-2 md:py-1.5 text-[12.5px] tracking-tight
+                min-h-[40px] md:min-h-0
                 shadow-[inset_0_1px_0_rgba(255,255,255,0.18),0_8px_18px_-8px_rgba(229,40,61,0.55)] hover:shadow-[inset_0_1px_0_rgba(255,255,255,0.25),0_10px_24px_-8px_rgba(229,40,61,0.75)] transition-shadow">
         Apply for Coaching
         <span class="inline-flex h-6 w-6 items-center justify-center rounded-full bg-ink text-white">
@@ -433,6 +471,7 @@
             <div class="aspect-[4/5] rounded-[24px] overflow-hidden ring-1 ring-white/10 bg-ink2">
               <img src="CrisHeroPage.jpg"
                    alt="Cristhian Valera, personal trainer at Paradise Gym Miami"
+                   loading="lazy" decoding="async"
                    class="absolute inset-0 h-full w-full object-cover" />
             </div>
 
@@ -1130,7 +1169,7 @@
 
       <!-- brand logo -->
       <div class="flex items-center">
-        <img src="cubanktanklogo.jpg" alt="Cuban Tank" class="h-24 md:h-40 lg:h-48 w-auto object-contain select-none" draggable="false" />
+        <img src="cubanktanklogo.jpg" alt="Cuban Tank" loading="lazy" decoding="async" class="h-24 md:h-40 lg:h-48 w-auto object-contain select-none" draggable="false" />
       </div>
 
       <div class="mt-10 grid grid-cols-2 md:grid-cols-12 gap-8 border-t border-paper/10 pt-10">
