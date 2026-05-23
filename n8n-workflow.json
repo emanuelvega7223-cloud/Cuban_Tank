@@ -27,8 +27,14 @@
             },
             {
               "id": "a2",
-              "name": "smsBody",
+              "name": "smsToClient",
               "value": "=Hi {{ $json.firstName }}! This is Cris from Cuban Tank. Got your application - I'll reach out personally within 24h to go over the next steps. Reference: {{ $json.reference }}",
+              "type": "string"
+            },
+            {
+              "id": "a3",
+              "name": "smsToOwner",
+              "value": "=NEW LEAD - {{ $json.firstName }} {{ $json.lastName }} | {{ $json.phone }} | {{ $json.email }} | ref {{ $json.reference }}",
               "type": "string"
             }
           ]
@@ -48,11 +54,11 @@
         "from": "REPLACE_WITH_TWILIO_NUMBER",
         "to": "={{ $json.phoneE164 }}",
         "toWhatsapp": false,
-        "message": "={{ $json.smsBody }}",
+        "message": "={{ $json.smsToClient }}",
         "options": {}
       },
       "id": "3",
-      "name": "Send SMS",
+      "name": "SMS to Client",
       "type": "n8n-nodes-base.twilio",
       "typeVersion": 1,
       "position": [80, -120],
@@ -60,16 +66,16 @@
     },
     {
       "parameters": {
-        "operation": "create",
-        "application": "REPLACE_WITH_AIRTABLE_BASE_ID",
-        "table": "Leads",
-        "addAllFields": false,
-        "fields": "First Name,Last Name,Email,Phone,Reference,Submitted At",
+        "operation": "send",
+        "from": "REPLACE_WITH_TWILIO_NUMBER",
+        "to": "REPLACE_WITH_CRIS_PHONE",
+        "toWhatsapp": false,
+        "message": "={{ $json.smsToOwner }}",
         "options": {}
       },
       "id": "4",
-      "name": "Save to Airtable",
-      "type": "n8n-nodes-base.airtable",
+      "name": "SMS to Owner",
+      "type": "n8n-nodes-base.twilio",
       "typeVersion": 1,
       "position": [80, 120],
       "continueOnFail": true
@@ -98,19 +104,19 @@
     "Prepare": {
       "main": [
         [
-          { "node": "Send SMS", "type": "main", "index": 0 },
-          { "node": "Save to Airtable", "type": "main", "index": 0 }
+          { "node": "SMS to Client", "type": "main", "index": 0 },
+          { "node": "SMS to Owner", "type": "main", "index": 0 }
         ]
       ]
     },
-    "Send SMS": {
+    "SMS to Client": {
       "main": [
         [
           { "node": "Respond", "type": "main", "index": 0 }
         ]
       ]
     },
-    "Save to Airtable": {
+    "SMS to Owner": {
       "main": [
         [
           { "node": "Respond", "type": "main", "index": 0 }
