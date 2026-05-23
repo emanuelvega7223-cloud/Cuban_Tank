@@ -1,166 +1,119 @@
 {
-  "name": "Cuban Tank — Apply for Coaching",
+  "name": "Cuban Tank - Apply for Coaching",
   "nodes": [
     {
       "parameters": {
         "httpMethod": "POST",
         "path": "apply",
         "responseMode": "responseNode",
-        "options": {
-          "responseHeaders": {
-            "entries": [
-              {
-                "name": "Access-Control-Allow-Origin",
-                "value": "*"
-              },
-              {
-                "name": "Access-Control-Allow-Methods",
-                "value": "POST, OPTIONS"
-              },
-              {
-                "name": "Access-Control-Allow-Headers",
-                "value": "Content-Type"
-              }
-            ]
-          }
-        }
+        "options": {}
       },
-      "id": "wh-apply",
-      "name": "Webhook — /apply",
+      "id": "1",
+      "name": "Webhook",
       "type": "n8n-nodes-base.webhook",
-      "typeVersion": 1.1,
-      "position": [-260, 0],
+      "typeVersion": 2,
+      "position": [-400, 0],
       "webhookId": "cubantank-apply"
     },
     {
       "parameters": {
-        "fields": {
-          "values": [
+        "assignments": {
+          "assignments": [
             {
+              "id": "a1",
               "name": "phoneE164",
-              "type": "string",
-              "stringValue": "={{ '+' + $json.phone.replace(/[^0-9]/g, '') }}"
+              "value": "={{ '+' + $json.phone.replace(/[^0-9]/g, '') }}",
+              "type": "string"
             },
             {
+              "id": "a2",
               "name": "smsBody",
-              "type": "string",
-              "stringValue": "=Hi {{ $json.firstName }}! This is Cris from Cuban Tank — I got your application. I'll reach out personally within 24h to go over the next steps. Reference: {{ $json.reference }}"
+              "value": "=Hi {{ $json.firstName }}! This is Cris from Cuban Tank. Got your application - I'll reach out personally within 24h to go over the next steps. Reference: {{ $json.reference }}",
+              "type": "string"
             }
           ]
         },
+        "includeOtherFields": true,
         "options": {}
       },
-      "id": "prep",
-      "name": "Prepare SMS body",
+      "id": "2",
+      "name": "Prepare",
       "type": "n8n-nodes-base.set",
       "typeVersion": 3.4,
-      "position": [-40, 0]
+      "position": [-160, 0]
     },
     {
       "parameters": {
         "operation": "send",
-        "from": "={{ $vars.TWILIO_FROM_NUMBER }}",
+        "from": "REPLACE_WITH_TWILIO_NUMBER",
         "to": "={{ $json.phoneE164 }}",
         "toWhatsapp": false,
         "message": "={{ $json.smsBody }}",
         "options": {}
       },
-      "id": "sms",
-      "name": "Twilio — SMS to client",
+      "id": "3",
+      "name": "Send SMS",
       "type": "n8n-nodes-base.twilio",
       "typeVersion": 1,
-      "position": [200, -120],
-      "credentials": {
-        "twilioApi": {
-          "id": "REPLACE_WITH_YOUR_TWILIO_CRED_ID",
-          "name": "Twilio account"
-        }
-      },
+      "position": [80, -120],
       "continueOnFail": true
     },
     {
       "parameters": {
-        "operation": "append",
-        "application": {
-          "__rl": true,
-          "value": "REPLACE_WITH_AIRTABLE_BASE_ID",
-          "mode": "list",
-          "cachedResultName": "Cuban Tank Leads"
-        },
-        "table": {
-          "__rl": true,
-          "value": "REPLACE_WITH_AIRTABLE_TABLE_ID",
-          "mode": "list",
-          "cachedResultName": "Leads"
-        },
-        "fields": {
-          "values": [
-            { "fieldId": "First Name", "fieldValue": "={{ $('Webhook — /apply').item.json.firstName }}" },
-            { "fieldId": "Last Name",  "fieldValue": "={{ $('Webhook — /apply').item.json.lastName }}" },
-            { "fieldId": "Email",       "fieldValue": "={{ $('Webhook — /apply').item.json.email }}" },
-            { "fieldId": "Phone",       "fieldValue": "={{ $('Webhook — /apply').item.json.phone }}" },
-            { "fieldId": "Reference",   "fieldValue": "={{ $('Webhook — /apply').item.json.reference }}" },
-            { "fieldId": "Submitted At","fieldValue": "={{ $('Webhook — /apply').item.json.submittedAt }}" },
-            { "fieldId": "Status",      "fieldValue": "New" }
-          ]
-        },
+        "operation": "create",
+        "application": "REPLACE_WITH_AIRTABLE_BASE_ID",
+        "table": "Leads",
+        "addAllFields": false,
+        "fields": "First Name,Last Name,Email,Phone,Reference,Submitted At",
         "options": {}
       },
-      "id": "db",
-      "name": "Airtable — Append lead",
+      "id": "4",
+      "name": "Save to Airtable",
       "type": "n8n-nodes-base.airtable",
-      "typeVersion": 2.1,
-      "position": [200, 120],
-      "credentials": {
-        "airtableTokenApi": {
-          "id": "REPLACE_WITH_YOUR_AIRTABLE_CRED_ID",
-          "name": "Airtable token"
-        }
-      },
+      "typeVersion": 1,
+      "position": [80, 120],
       "continueOnFail": true
     },
     {
       "parameters": {
         "respondWith": "json",
-        "responseBody": "={ \"ok\": true, \"reference\": $('Webhook — /apply').item.json.reference }",
-        "options": {
-          "responseCode": 200
-        }
+        "responseBody": "={\"ok\":true}",
+        "options": {}
       },
-      "id": "respond",
-      "name": "Respond 200",
+      "id": "5",
+      "name": "Respond",
       "type": "n8n-nodes-base.respondToWebhook",
-      "typeVersion": 1.1,
-      "position": [460, 0]
+      "typeVersion": 1,
+      "position": [320, 0]
     }
   ],
   "connections": {
-    "Webhook — /apply": {
+    "Webhook": {
       "main": [
         [
-          { "node": "Prepare SMS body", "type": "main", "index": 0 }
+          { "node": "Prepare", "type": "main", "index": 0 }
         ]
       ]
     },
-    "Prepare SMS body": {
+    "Prepare": {
       "main": [
         [
-          { "node": "Twilio — SMS to client", "type": "main", "index": 0 },
-          { "node": "Airtable — Append lead", "type": "main", "index": 0 }
+          { "node": "Send SMS", "type": "main", "index": 0 },
+          { "node": "Save to Airtable", "type": "main", "index": 0 }
         ]
       ]
     },
-    "Twilio — SMS to client": {
+    "Send SMS": {
       "main": [
         [
-          { "node": "Respond 200", "type": "main", "index": 0 }
+          { "node": "Respond", "type": "main", "index": 0 }
         ]
       ]
     },
-    "Airtable — Append lead": {
+    "Save to Airtable": {
       "main": [
         [
-          { "node": "Respond 200", "type": "main", "index": 0 }
+          { "node": "Respond", "type": "main", "index": 0 }
         ]
       ]
     }
