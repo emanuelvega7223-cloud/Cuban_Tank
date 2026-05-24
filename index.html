@@ -394,10 +394,8 @@
           <div class="relative aspect-[3/4] lg:aspect-[3/4.4] w-full">
             <div class="absolute inset-0 rounded-[28px] overflow-hidden vignette ring-1 ring-paper/10 bg-ink2" id="heroVideoStack">
               <video class="loopvid absolute inset-0 h-full w-full object-cover scale-[1.04]"
-                     src="cris_training2.mov" autoplay muted playsinline preload="auto"
+                     src="cris1.mov" autoplay muted playsinline preload="auto"
                      aria-label="Cristhian Valera training"></video>
-              <video class="loopvid absolute inset-0 h-full w-full object-cover scale-[1.04] opacity-0"
-                     src="cris1.mov" muted playsinline preload="metadata" aria-hidden="true"></video>
               <video class="loopvid absolute inset-0 h-full w-full object-cover scale-[1.04] opacity-0"
                      src="cris2.mov" muted playsinline preload="metadata" aria-hidden="true"></video>
               <video class="loopvid absolute inset-0 h-full w-full object-cover scale-[1.04] opacity-0"
@@ -1587,15 +1585,17 @@
   });
 })();
 
-/* ============================== HERO VIDEO - 6-CLIP CROSSFADE ROTATION ============================== */
+/* ============================== HERO VIDEO - 5-CLIP CROSSFADE ROTATION ============================== */
 (function () {
   const stack = document.getElementById('heroVideoStack');
   if (!stack) return;
   const vids = Array.from(stack.querySelectorAll('video.loopvid'));
   if (vids.length < 2) return;
 
-  const RATE = 0.85;   // slight slowdown for cinematic feel without dragging
-  const FADE = 1.1;    // must match .loopvid CSS transition duration
+  const RATE = 1.0;                 // natural-speed playback (snappier with 3s clips)
+  const FADE = 1.1;                 // must match .loopvid CSS transition duration
+  const MAX_CLIP_MS = 3000;         // wall-clock cap per clip
+  const FADE_TRIGGER_MS = MAX_CLIP_MS - (FADE * 1000); // start crossfade so next is fully in by 3s
 
   vids.forEach(v => {
     v.muted = true;
@@ -1612,10 +1612,10 @@
 
   let active = 0;
   let handing = false;
+  let clipStartedAt = performance.now();
   vids[0].classList.add('hero-active');
 
   function upgradePreload(v) {
-    // Promote metadata-only preload to full preload right before we need it
     if (v.preload !== 'auto') v.preload = 'auto';
     try { v.load && v.readyState < 2 && v.load(); } catch (e) {}
   }
@@ -1623,6 +1623,7 @@
   function startPlay(v) {
     upgradePreload(v);
     v.currentTime = 0;
+    v.playbackRate = RATE;
     const p = v.play();
     if (p && p.catch) p.catch(() => {});
   }
@@ -1631,8 +1632,14 @@
     requestAnimationFrame(step);
     if (handing) return;
     const cur = vids[active];
-    if (!cur.duration || isNaN(cur.duration)) return;
-    if ((cur.duration - cur.currentTime) > FADE) return;
+
+    // Two reasons to start the crossfade:
+    //   1. Wall-clock elapsed reached the 3s cap (minus fade duration)
+    //   2. Source clip is approaching its natural end (for clips < 3s)
+    const elapsed = performance.now() - clipStartedAt;
+    const nearNaturalEnd = cur.duration && !isNaN(cur.duration) &&
+                           (cur.duration - cur.currentTime) <= FADE;
+    if (elapsed < FADE_TRIGGER_MS && !nearNaturalEnd) return;
 
     handing = true;
     const nextIdx = (active + 1) % vids.length;
@@ -1644,21 +1651,23 @@
     next.classList.add('hero-active');
     cur.classList.remove('hero-active');
 
-    // Pre-warm the clip AFTER next so the chain stays seamless
+    // Pre-warm the clip after next so the chain stays seamless
     const warmIdx = (nextIdx + 1) % vids.length;
     upgradePreload(vids[warmIdx]);
 
     setTimeout(() => {
       try { cur.pause(); } catch (e) {}
       active = nextIdx;
+      clipStartedAt = performance.now();
       handing = false;
     }, FADE * 1000 + 80);
   }
 
   // Kick the first one off (autoplay attribute should already do this, but be safe)
+  vids[0].playbackRate = RATE;
   const p = vids[0].play();
   if (p && p.catch) p.catch(() => {});
-  upgradePreload(vids[1]); // warm the next clip immediately
+  upgradePreload(vids[1]);
   requestAnimationFrame(step);
 
   // Resume rotation if the tab was backgrounded
