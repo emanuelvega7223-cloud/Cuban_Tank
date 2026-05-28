@@ -274,9 +274,23 @@
   .tcarousel-stack > .tpanel { grid-column: 1 / 1; grid-row: 1 / 1; }
   .tpanel { opacity: 0; pointer-events: none; transition: opacity .8s cubic-bezier(.4,0,.2,1); will-change: opacity; }
   .tpanel.active { opacity: 1; pointer-events: auto; }
-  .tdot { height: 4px; width: 22px; border-radius: 2px; background: rgba(255,255,255,0.18); border: 0; padding: 0; cursor: pointer; transition: background .35s cubic-bezier(.4,0,.2,1), width .35s cubic-bezier(.4,0,.2,1); }
-  .tdot:hover { background: rgba(255,255,255,0.32); }
-  .tdot.active { background: #E5283D; width: 38px; }
+  /* Story-style segment bars - past segments full, active fills over 4s, future empty */
+  .tdot {
+    position: relative; overflow: hidden;
+    height: 3px; width: 28px; border-radius: 2px;
+    background: rgba(255,255,255,0.16); border: 0; padding: 0; cursor: pointer;
+    transition: width .35s cubic-bezier(.4,0,.2,1), background .35s cubic-bezier(.4,0,.2,1);
+  }
+  .tdot::after {
+    content: ''; position: absolute; inset: 0;
+    background: #E5283D;
+    transform: scaleX(0); transform-origin: left;
+  }
+  .tdot:hover { background: rgba(255,255,255,0.30); }
+  .tdot.done::after { transform: scaleX(1); }
+  .tdot.active { width: 56px; background: rgba(255,255,255,0.10); }
+  .tdot.active::after { animation: tdotFill 4s linear forwards; }
+  @keyframes tdotFill { from { transform: scaleX(0); } to { transform: scaleX(1); } }
   @media (prefers-reduced-motion: reduce) {
     .tpanel { transition: none; }
   }
@@ -875,15 +889,22 @@
           <div class="grid tcarousel-stack">
 
             <!-- ===== PANEL 01 ===== -->
-            <article class="tpanel active mx-auto max-w-[640px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="0">
+            <article class="tpanel active relative mx-auto max-w-[680px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="0">
 
-              <!-- Portrait photo container - matches phone-photo aspect so faces stay in frame -->
+              <!-- Red gradient hairline along the top edge -->
+              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-10"></div>
+
+              <!-- Portrait photo container -->
               <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
                 <img src="transformation1.jpg"
                      alt="Client Transformation 01"
                      loading="lazy" decoding="async"
                      class="absolute inset-0 h-full w-full object-cover"
                      style="object-position: 50% 28%;" />
+
+                <!-- subtle top gradient so the chips above always have contrast -->
+                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-24 pointer-events-none"
+                     style="background: linear-gradient(to bottom, rgba(0,0,0,0.45), transparent);"></div>
 
                 <!-- Top-left identifier -->
                 <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
@@ -897,30 +918,37 @@
                 </div>
               </div>
 
-              <!-- Caption strip - lives BELOW the photo, doesn't crop it -->
-              <div class="p-5 md:p-6 border-t border-white/10 flex items-center justify-between gap-4">
+              <!-- Caption strip below the photo -->
+              <div class="p-6 md:p-7 border-t border-white/10 flex items-end justify-between gap-5">
                 <div class="min-w-0">
                   <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
-                  <h3 class="mt-1.5 font-display text-[20px] md:text-[22px] tracking-tight leading-[1.1]">
+                  <h3 class="mt-2 font-display text-[22px] md:text-[26px] tracking-tight leading-[1.05]">
                     Transformation <span class="italic font-serif font-normal">01</span>.
                   </h3>
                 </div>
-                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14px] text-white/70 max-w-[16ch] text-right leading-snug">
+                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14.5px] text-white/65 max-w-[16ch] text-right leading-snug">
                   "Coming soon."
                 </p>
               </div>
             </article>
 
             <!-- ===== PANEL 02 ===== -->
-            <article class="tpanel mx-auto max-w-[640px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="1">
+            <article class="tpanel relative mx-auto max-w-[680px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="1">
 
-              <!-- Portrait photo container - matches phone-photo aspect so faces stay in frame -->
+              <!-- Red gradient hairline along the top edge -->
+              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-10"></div>
+
+              <!-- Portrait photo container -->
               <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
                 <img src="transformation2.jpg"
                      alt="Client Transformation 02"
                      loading="lazy" decoding="async"
                      class="absolute inset-0 h-full w-full object-cover"
                      style="object-position: 50% 28%;" />
+
+                <!-- subtle top gradient so the chips above always have contrast -->
+                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-24 pointer-events-none"
+                     style="background: linear-gradient(to bottom, rgba(0,0,0,0.45), transparent);"></div>
 
                 <!-- Top-left identifier -->
                 <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
@@ -934,30 +962,37 @@
                 </div>
               </div>
 
-              <!-- Caption strip - lives BELOW the photo, doesn't crop it -->
-              <div class="p-5 md:p-6 border-t border-white/10 flex items-center justify-between gap-4">
+              <!-- Caption strip below the photo -->
+              <div class="p-6 md:p-7 border-t border-white/10 flex items-end justify-between gap-5">
                 <div class="min-w-0">
                   <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
-                  <h3 class="mt-1.5 font-display text-[20px] md:text-[22px] tracking-tight leading-[1.1]">
+                  <h3 class="mt-2 font-display text-[22px] md:text-[26px] tracking-tight leading-[1.05]">
                     Transformation <span class="italic font-serif font-normal">02</span>.
                   </h3>
                 </div>
-                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14px] text-white/70 max-w-[16ch] text-right leading-snug">
+                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14.5px] text-white/65 max-w-[16ch] text-right leading-snug">
                   "Coming soon."
                 </p>
               </div>
             </article>
 
             <!-- ===== PANEL 03 ===== -->
-            <article class="tpanel mx-auto max-w-[640px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="2">
+            <article class="tpanel relative mx-auto max-w-[680px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="2">
 
-              <!-- Portrait photo container - matches phone-photo aspect so faces stay in frame -->
+              <!-- Red gradient hairline along the top edge -->
+              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-10"></div>
+
+              <!-- Portrait photo container -->
               <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
                 <img src="transformation3.jpg"
                      alt="Client Transformation 03"
                      loading="lazy" decoding="async"
                      class="absolute inset-0 h-full w-full object-cover"
                      style="object-position: 50% 28%;" />
+
+                <!-- subtle top gradient so the chips above always have contrast -->
+                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-24 pointer-events-none"
+                     style="background: linear-gradient(to bottom, rgba(0,0,0,0.45), transparent);"></div>
 
                 <!-- Top-left identifier -->
                 <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
@@ -971,30 +1006,37 @@
                 </div>
               </div>
 
-              <!-- Caption strip - lives BELOW the photo, doesn't crop it -->
-              <div class="p-5 md:p-6 border-t border-white/10 flex items-center justify-between gap-4">
+              <!-- Caption strip below the photo -->
+              <div class="p-6 md:p-7 border-t border-white/10 flex items-end justify-between gap-5">
                 <div class="min-w-0">
                   <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
-                  <h3 class="mt-1.5 font-display text-[20px] md:text-[22px] tracking-tight leading-[1.1]">
+                  <h3 class="mt-2 font-display text-[22px] md:text-[26px] tracking-tight leading-[1.05]">
                     Transformation <span class="italic font-serif font-normal">03</span>.
                   </h3>
                 </div>
-                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14px] text-white/70 max-w-[16ch] text-right leading-snug">
+                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14.5px] text-white/65 max-w-[16ch] text-right leading-snug">
                   "Coming soon."
                 </p>
               </div>
             </article>
 
             <!-- ===== PANEL 04 ===== -->
-            <article class="tpanel mx-auto max-w-[640px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="3">
+            <article class="tpanel relative mx-auto max-w-[680px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="3">
 
-              <!-- Portrait photo container - matches phone-photo aspect so faces stay in frame -->
+              <!-- Red gradient hairline along the top edge -->
+              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-10"></div>
+
+              <!-- Portrait photo container -->
               <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
                 <img src="transformation4.jpg"
                      alt="Client Transformation 04"
                      loading="lazy" decoding="async"
                      class="absolute inset-0 h-full w-full object-cover"
                      style="object-position: 50% 28%;" />
+
+                <!-- subtle top gradient so the chips above always have contrast -->
+                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-24 pointer-events-none"
+                     style="background: linear-gradient(to bottom, rgba(0,0,0,0.45), transparent);"></div>
 
                 <!-- Top-left identifier -->
                 <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
@@ -1008,30 +1050,37 @@
                 </div>
               </div>
 
-              <!-- Caption strip - lives BELOW the photo, doesn't crop it -->
-              <div class="p-5 md:p-6 border-t border-white/10 flex items-center justify-between gap-4">
+              <!-- Caption strip below the photo -->
+              <div class="p-6 md:p-7 border-t border-white/10 flex items-end justify-between gap-5">
                 <div class="min-w-0">
                   <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
-                  <h3 class="mt-1.5 font-display text-[20px] md:text-[22px] tracking-tight leading-[1.1]">
+                  <h3 class="mt-2 font-display text-[22px] md:text-[26px] tracking-tight leading-[1.05]">
                     Transformation <span class="italic font-serif font-normal">04</span>.
                   </h3>
                 </div>
-                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14px] text-white/70 max-w-[16ch] text-right leading-snug">
+                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14.5px] text-white/65 max-w-[16ch] text-right leading-snug">
                   "Coming soon."
                 </p>
               </div>
             </article>
 
             <!-- ===== PANEL 05 ===== -->
-            <article class="tpanel mx-auto max-w-[640px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="4">
+            <article class="tpanel relative mx-auto max-w-[680px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="4">
 
-              <!-- Portrait photo container - matches phone-photo aspect so faces stay in frame -->
+              <!-- Red gradient hairline along the top edge -->
+              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-10"></div>
+
+              <!-- Portrait photo container -->
               <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
                 <img src="transformation5.jpg"
                      alt="Client Transformation 05"
                      loading="lazy" decoding="async"
                      class="absolute inset-0 h-full w-full object-cover"
                      style="object-position: 50% 28%;" />
+
+                <!-- subtle top gradient so the chips above always have contrast -->
+                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-24 pointer-events-none"
+                     style="background: linear-gradient(to bottom, rgba(0,0,0,0.45), transparent);"></div>
 
                 <!-- Top-left identifier -->
                 <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
@@ -1045,30 +1094,37 @@
                 </div>
               </div>
 
-              <!-- Caption strip - lives BELOW the photo, doesn't crop it -->
-              <div class="p-5 md:p-6 border-t border-white/10 flex items-center justify-between gap-4">
+              <!-- Caption strip below the photo -->
+              <div class="p-6 md:p-7 border-t border-white/10 flex items-end justify-between gap-5">
                 <div class="min-w-0">
                   <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
-                  <h3 class="mt-1.5 font-display text-[20px] md:text-[22px] tracking-tight leading-[1.1]">
+                  <h3 class="mt-2 font-display text-[22px] md:text-[26px] tracking-tight leading-[1.05]">
                     Transformation <span class="italic font-serif font-normal">05</span>.
                   </h3>
                 </div>
-                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14px] text-white/70 max-w-[16ch] text-right leading-snug">
+                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14.5px] text-white/65 max-w-[16ch] text-right leading-snug">
                   "Coming soon."
                 </p>
               </div>
             </article>
 
             <!-- ===== PANEL 06 ===== -->
-            <article class="tpanel mx-auto max-w-[640px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="5">
+            <article class="tpanel relative mx-auto max-w-[680px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="5">
 
-              <!-- Portrait photo container - matches phone-photo aspect so faces stay in frame -->
+              <!-- Red gradient hairline along the top edge -->
+              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-10"></div>
+
+              <!-- Portrait photo container -->
               <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
                 <img src="transformation6.jpg"
                      alt="Client Transformation 06"
                      loading="lazy" decoding="async"
                      class="absolute inset-0 h-full w-full object-cover"
                      style="object-position: 50% 28%;" />
+
+                <!-- subtle top gradient so the chips above always have contrast -->
+                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-24 pointer-events-none"
+                     style="background: linear-gradient(to bottom, rgba(0,0,0,0.45), transparent);"></div>
 
                 <!-- Top-left identifier -->
                 <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
@@ -1082,30 +1138,37 @@
                 </div>
               </div>
 
-              <!-- Caption strip - lives BELOW the photo, doesn't crop it -->
-              <div class="p-5 md:p-6 border-t border-white/10 flex items-center justify-between gap-4">
+              <!-- Caption strip below the photo -->
+              <div class="p-6 md:p-7 border-t border-white/10 flex items-end justify-between gap-5">
                 <div class="min-w-0">
                   <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
-                  <h3 class="mt-1.5 font-display text-[20px] md:text-[22px] tracking-tight leading-[1.1]">
+                  <h3 class="mt-2 font-display text-[22px] md:text-[26px] tracking-tight leading-[1.05]">
                     Transformation <span class="italic font-serif font-normal">06</span>.
                   </h3>
                 </div>
-                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14px] text-white/70 max-w-[16ch] text-right leading-snug">
+                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14.5px] text-white/65 max-w-[16ch] text-right leading-snug">
                   "Coming soon."
                 </p>
               </div>
             </article>
 
             <!-- ===== PANEL 07 ===== -->
-            <article class="tpanel mx-auto max-w-[640px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="6">
+            <article class="tpanel relative mx-auto max-w-[680px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="6">
 
-              <!-- Portrait photo container - matches phone-photo aspect so faces stay in frame -->
+              <!-- Red gradient hairline along the top edge -->
+              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-10"></div>
+
+              <!-- Portrait photo container -->
               <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
                 <img src="transformation7.jpg"
                      alt="Client Transformation 07"
                      loading="lazy" decoding="async"
                      class="absolute inset-0 h-full w-full object-cover"
                      style="object-position: 50% 28%;" />
+
+                <!-- subtle top gradient so the chips above always have contrast -->
+                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-24 pointer-events-none"
+                     style="background: linear-gradient(to bottom, rgba(0,0,0,0.45), transparent);"></div>
 
                 <!-- Top-left identifier -->
                 <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
@@ -1119,30 +1182,37 @@
                 </div>
               </div>
 
-              <!-- Caption strip - lives BELOW the photo, doesn't crop it -->
-              <div class="p-5 md:p-6 border-t border-white/10 flex items-center justify-between gap-4">
+              <!-- Caption strip below the photo -->
+              <div class="p-6 md:p-7 border-t border-white/10 flex items-end justify-between gap-5">
                 <div class="min-w-0">
                   <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
-                  <h3 class="mt-1.5 font-display text-[20px] md:text-[22px] tracking-tight leading-[1.1]">
+                  <h3 class="mt-2 font-display text-[22px] md:text-[26px] tracking-tight leading-[1.05]">
                     Transformation <span class="italic font-serif font-normal">07</span>.
                   </h3>
                 </div>
-                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14px] text-white/70 max-w-[16ch] text-right leading-snug">
+                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14.5px] text-white/65 max-w-[16ch] text-right leading-snug">
                   "Coming soon."
                 </p>
               </div>
             </article>
 
             <!-- ===== PANEL 08 ===== -->
-            <article class="tpanel mx-auto max-w-[640px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="7">
+            <article class="tpanel relative mx-auto max-w-[680px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="7">
 
-              <!-- Portrait photo container - matches phone-photo aspect so faces stay in frame -->
+              <!-- Red gradient hairline along the top edge -->
+              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-10"></div>
+
+              <!-- Portrait photo container -->
               <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
                 <img src="transformation8.jpg"
                      alt="Client Transformation 08"
                      loading="lazy" decoding="async"
                      class="absolute inset-0 h-full w-full object-cover"
                      style="object-position: 50% 28%;" />
+
+                <!-- subtle top gradient so the chips above always have contrast -->
+                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-24 pointer-events-none"
+                     style="background: linear-gradient(to bottom, rgba(0,0,0,0.45), transparent);"></div>
 
                 <!-- Top-left identifier -->
                 <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
@@ -1156,30 +1226,37 @@
                 </div>
               </div>
 
-              <!-- Caption strip - lives BELOW the photo, doesn't crop it -->
-              <div class="p-5 md:p-6 border-t border-white/10 flex items-center justify-between gap-4">
+              <!-- Caption strip below the photo -->
+              <div class="p-6 md:p-7 border-t border-white/10 flex items-end justify-between gap-5">
                 <div class="min-w-0">
                   <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
-                  <h3 class="mt-1.5 font-display text-[20px] md:text-[22px] tracking-tight leading-[1.1]">
+                  <h3 class="mt-2 font-display text-[22px] md:text-[26px] tracking-tight leading-[1.05]">
                     Transformation <span class="italic font-serif font-normal">08</span>.
                   </h3>
                 </div>
-                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14px] text-white/70 max-w-[16ch] text-right leading-snug">
+                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14.5px] text-white/65 max-w-[16ch] text-right leading-snug">
                   "Coming soon."
                 </p>
               </div>
             </article>
 
             <!-- ===== PANEL 09 ===== -->
-            <article class="tpanel mx-auto max-w-[640px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="8">
+            <article class="tpanel relative mx-auto max-w-[680px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="8">
 
-              <!-- Portrait photo container - matches phone-photo aspect so faces stay in frame -->
+              <!-- Red gradient hairline along the top edge -->
+              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-10"></div>
+
+              <!-- Portrait photo container -->
               <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
                 <img src="transformation9.jpg"
                      alt="Client Transformation 09"
                      loading="lazy" decoding="async"
                      class="absolute inset-0 h-full w-full object-cover"
                      style="object-position: 50% 28%;" />
+
+                <!-- subtle top gradient so the chips above always have contrast -->
+                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-24 pointer-events-none"
+                     style="background: linear-gradient(to bottom, rgba(0,0,0,0.45), transparent);"></div>
 
                 <!-- Top-left identifier -->
                 <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
@@ -1193,30 +1270,37 @@
                 </div>
               </div>
 
-              <!-- Caption strip - lives BELOW the photo, doesn't crop it -->
-              <div class="p-5 md:p-6 border-t border-white/10 flex items-center justify-between gap-4">
+              <!-- Caption strip below the photo -->
+              <div class="p-6 md:p-7 border-t border-white/10 flex items-end justify-between gap-5">
                 <div class="min-w-0">
                   <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
-                  <h3 class="mt-1.5 font-display text-[20px] md:text-[22px] tracking-tight leading-[1.1]">
+                  <h3 class="mt-2 font-display text-[22px] md:text-[26px] tracking-tight leading-[1.05]">
                     Transformation <span class="italic font-serif font-normal">09</span>.
                   </h3>
                 </div>
-                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14px] text-white/70 max-w-[16ch] text-right leading-snug">
+                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14.5px] text-white/65 max-w-[16ch] text-right leading-snug">
                   "Coming soon."
                 </p>
               </div>
             </article>
 
             <!-- ===== PANEL 10 ===== -->
-            <article class="tpanel mx-auto max-w-[640px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="9">
+            <article class="tpanel relative mx-auto max-w-[680px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="9">
 
-              <!-- Portrait photo container - matches phone-photo aspect so faces stay in frame -->
+              <!-- Red gradient hairline along the top edge -->
+              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-10"></div>
+
+              <!-- Portrait photo container -->
               <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
                 <img src="transformation10.jpg"
                      alt="Client Transformation 10"
                      loading="lazy" decoding="async"
                      class="absolute inset-0 h-full w-full object-cover"
                      style="object-position: 50% 28%;" />
+
+                <!-- subtle top gradient so the chips above always have contrast -->
+                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-24 pointer-events-none"
+                     style="background: linear-gradient(to bottom, rgba(0,0,0,0.45), transparent);"></div>
 
                 <!-- Top-left identifier -->
                 <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
@@ -1230,15 +1314,15 @@
                 </div>
               </div>
 
-              <!-- Caption strip - lives BELOW the photo, doesn't crop it -->
-              <div class="p-5 md:p-6 border-t border-white/10 flex items-center justify-between gap-4">
+              <!-- Caption strip below the photo -->
+              <div class="p-6 md:p-7 border-t border-white/10 flex items-end justify-between gap-5">
                 <div class="min-w-0">
                   <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
-                  <h3 class="mt-1.5 font-display text-[20px] md:text-[22px] tracking-tight leading-[1.1]">
+                  <h3 class="mt-2 font-display text-[22px] md:text-[26px] tracking-tight leading-[1.05]">
                     Transformation <span class="italic font-serif font-normal">10</span>.
                   </h3>
                 </div>
-                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14px] text-white/70 max-w-[16ch] text-right leading-snug">
+                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14.5px] text-white/65 max-w-[16ch] text-right leading-snug">
                   "Coming soon."
                 </p>
               </div>
@@ -1485,9 +1569,10 @@
       p.setAttribute('aria-hidden', on ? 'false' : 'true');
     });
     dots.forEach((d, i) => {
-      const on = i === idx;
-      d.classList.toggle('active', on);
-      d.setAttribute('aria-selected', on ? 'true' : 'false');
+      d.classList.remove('active', 'done');
+      if (i < idx)       d.classList.add('done');
+      else if (i === idx) d.classList.add('active');
+      d.setAttribute('aria-selected', i === idx ? 'true' : 'false');
     });
     if (counter) counter.textContent = String(idx + 1).padStart(2, '0');
     active = idx;
