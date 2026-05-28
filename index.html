@@ -305,6 +305,28 @@
   .apply-root.open .apply-card { opacity: 1; transform: translate3d(0,0,0) scale(1); }
   .apply-input { caret-color: #E5283D; }
   .apply-input:-webkit-autofill { -webkit-text-fill-color: #fff; -webkit-box-shadow: 0 0 0 1000px #141416 inset; transition: background-color 9999s ease-in-out 0s; }
+
+  /* ============== Policy modal (Privacy + Terms) ============== */
+  .policy-root { display: none; }
+  .policy-root.open { display: block; }
+  .policy-backdrop { opacity: 0; transition: opacity .32s cubic-bezier(.4,0,.2,1); }
+  .policy-card { opacity: 0; transform: translate3d(0, 16px, 0) scale(.965); transition: opacity .42s cubic-bezier(.16,1,.3,1), transform .55s cubic-bezier(.16,1,.3,1); }
+  .policy-root.open .policy-backdrop { opacity: 1; }
+  .policy-root.open .policy-card { opacity: 1; transform: translate3d(0,0,0) scale(1); }
+  /* Editorial styling for injected policy content */
+  .policy-body h2 { font-family: 'Geist Mono', monospace; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: #E5283D; margin-top: 28px; margin-bottom: 10px; }
+  .policy-body h2:first-child { margin-top: 0; }
+  .policy-body h3 { font-family: 'Bricolage Grotesque', sans-serif; font-size: 19px; letter-spacing: -0.01em; color: #fff; font-weight: 500; margin-top: 24px; margin-bottom: 8px; line-height: 1.25; }
+  .policy-body p { margin-bottom: 12px; line-height: 1.7; color: rgba(255,255,255,0.78); }
+  .policy-body p strong, .policy-body strong { color: rgba(255,255,255,0.96); font-weight: 500; }
+  .policy-body ul { list-style: disc; padding-left: 20px; margin: 12px 0; color: rgba(255,255,255,0.78); }
+  .policy-body li { margin-bottom: 6px; line-height: 1.65; }
+  .policy-body hr { border: 0; border-top: 1px solid rgba(255,255,255,0.10); margin: 28px 0; }
+  .policy-body .policy-meta { font-family: 'Geist Mono', monospace; font-size: 10.5px; letter-spacing: .14em; text-transform: uppercase; color: rgba(255,255,255,0.55); margin-bottom: 22px; padding-bottom: 14px; border-bottom: 1px solid rgba(255,255,255,0.08); display: grid; grid-template-columns: max-content 1fr; gap: 4px 14px; }
+  .policy-body .policy-meta dt { color: rgba(255,255,255,0.4); }
+  .policy-body .policy-meta dd { margin: 0; color: rgba(255,255,255,0.85); }
+  .policy-body a { color: #E5283D; text-decoration: underline; text-underline-offset: 2px; }
+  .policy-body a:hover { color: #fff; }
   /* Native select arrow visible on dark bg */
   .apply-select { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>"); background-repeat: no-repeat; background-position: right 0 center; background-size: 12px; padding-right: 18px; appearance: none; -webkit-appearance: none; }
   /* Custom checkbox / radio, brand-styled */
@@ -1445,7 +1467,7 @@
       <div class="mt-12 flex flex-col md:flex-row md:items-center md:justify-between gap-3 border-t border-paper/10 pt-6 font-mono text-[11px] text-paper/45 tracking-widest uppercase">
         <div>© 2026 CubanTank Fitness LLC</div>
         <div class="flex items-center gap-4">
-          <span>Privacy</span><span>Terms</span><span>Imprint</span>
+          <button type="button" data-open-policy="privacy" class="cursor-pointer hover:text-paper transition-colors">Privacy</button><button type="button" data-open-policy="terms" class="cursor-pointer hover:text-paper transition-colors">Terms</button><span>Imprint</span>
           <span class="text-paper/30">v 4.2 · MAY 18</span>
         </div>
       </div>
@@ -1591,7 +1613,7 @@
             <label for="m_sms" class="flex items-start gap-3 cursor-pointer">
               <input id="m_sms" name="smsConsent" type="checkbox" class="apply-check shrink-0 mt-[3px]"/>
               <span class="text-[12px] text-white/70 leading-[1.55]">
-                I agree to receive text messages from Cuban Tank regarding my coaching application. Message &amp; data rates may apply. Reply STOP to opt out at any time. View our <a href="/privacy" class="text-lime underline underline-offset-2 hover:text-white">Privacy Policy</a> and <a href="/terms" class="text-lime underline underline-offset-2 hover:text-white">Terms &amp; Conditions</a>.
+                I agree to receive text messages from Cuban Tank regarding my coaching application. Message &amp; data rates may apply. Reply STOP to opt out at any time. View our <button type="button" data-open-policy="privacy" class="text-lime underline underline-offset-2 hover:text-white">Privacy Policy</button> and <button type="button" data-open-policy="terms" class="text-lime underline underline-offset-2 hover:text-white">Terms &amp; Conditions</button>.
               </span>
             </label>
             <p data-err="smsConsent" class="hidden text-[11.5px] text-rose-300 pl-7">You must agree to receive text messages to continue.</p>
@@ -1646,7 +1668,208 @@
   </div>
 </div>
 
+<!-- ============================ POLICY MODAL (Privacy + Terms) ============================ -->
+<div id="policyModal" class="policy-root fixed inset-0 z-[130]" role="dialog" aria-modal="true" aria-labelledby="policyTitle" aria-hidden="true">
+  <!-- backdrop -->
+  <div class="policy-backdrop absolute inset-0 bg-black/75 backdrop-blur-xl" data-close-policy></div>
+
+  <!-- centering wrapper -->
+  <div class="absolute inset-0 flex items-center justify-center px-4 py-6 md:p-8 overflow-y-auto">
+    <div class="policy-card relative w-full max-w-[760px] my-auto rounded-[28px] bg-ink2 border border-white/10 shadow-[0_40px_100px_-30px_rgba(0,0,0,0.85),inset_0_1px_0_rgba(255,255,255,0.06)] overflow-hidden flex flex-col max-h-[88vh]">
+
+      <!-- subtle red top accent -->
+      <div aria-hidden="true" class="pointer-events-none absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/60 to-transparent"></div>
+
+      <!-- Header bar: title + Copy + Close -->
+      <div class="flex items-center justify-between gap-3 px-6 md:px-8 py-4 md:py-5 border-b border-white/10 bg-ink2 sticky top-0 z-10">
+        <h2 id="policyTitle" class="font-display text-[19px] md:text-[22px] tracking-tight leading-none">Privacy Policy</h2>
+        <div class="flex items-center gap-2">
+          <button id="policyCopyBtn" type="button" aria-label="Copy policy text" class="inline-flex items-center gap-2 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/12 px-3 py-1.5 text-[12px] text-white/85 hover:text-white transition-colors">
+            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">
+              <rect x="8" y="8" width="13" height="13" rx="2"/>
+              <path d="M16 8V5a2 2 0 0 0-2-2H5a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h3"/>
+            </svg>
+            <span data-copy-label>Copy</span>
+          </button>
+          <button type="button" data-close-policy aria-label="Close" class="h-9 w-9 rounded-full bg-white/[0.06] hover:bg-white/[0.12] border border-white/12 flex items-center justify-center text-white/80 hover:text-white transition-colors">
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" aria-hidden="true">
+              <path d="M6 6l12 12M6 18 18 6"/>
+            </svg>
+          </button>
+        </div>
+      </div>
+
+      <!-- Body, scrollable -->
+      <div id="policyBody" class="policy-body overflow-y-auto px-6 md:px-8 py-6 md:py-8 text-[14.5px]">
+        <!-- content injected by JS -->
+      </div>
+
+    </div>
+  </div>
+</div>
+
 <script>
+/* ============================== POLICY MODAL (Privacy + Terms) ============================== */
+(function () {
+  const root      = document.getElementById('policyModal');
+  if (!root) return;
+  const titleEl   = root.querySelector('#policyTitle');
+  const bodyEl    = root.querySelector('#policyBody');
+  const copyBtn   = root.querySelector('#policyCopyBtn');
+  const copyLabel = copyBtn.querySelector('[data-copy-label]');
+
+  const META_HTML = `
+    <dl class="policy-meta">
+      <dt>Company</dt><dd>CubanTank Fitness LLC</dd>
+      <dt>Effective</dt><dd>May 2026</dd>
+      <dt>Site</dt><dd>cubantank.com</dd>
+    </dl>`;
+
+  const POLICIES = {
+    privacy: {
+      title: 'Privacy Policy',
+      html: META_HTML + `
+        <h2>Who We Are</h2>
+        <p>CubanTank Fitness LLC ("Cuban Tank", "we", "us") operates cubantank.com and provides 1-on-1 fitness and lifestyle coaching in Miami, Florida and online.</p>
+
+        <h2>Information We Collect</h2>
+        <p>When you submit our coaching application, we collect your name, email address, phone number, fitness goals, and SMS opt-in consent status.</p>
+
+        <h2>How We Use Your Information</h2>
+        <p>We use your information only to respond to your coaching inquiry, send coaching-related communications via email, phone, or SMS, onboard you as a client, and send appointment reminders and updates.</p>
+
+        <h2>SMS Messaging</h2>
+        <p>By checking the SMS consent box on our application form, you agree to receive text messages from Cuban Tank regarding your coaching application and services. Message frequency varies. Message and data rates may apply. Reply STOP to opt out at any time. Reply HELP for help. SMS opt-in data and consent are never shared with or sold to third parties.</p>
+
+        <h2>Data Sharing</h2>
+        <p>We do not sell, rent, or share your personal information with third parties for marketing purposes. Your data is used solely to provide our coaching services.</p>
+
+        <h2>Data Retention</h2>
+        <p>We retain your information as long as needed to provide services or as required by law. You may request deletion at any time by contacting us.</p>
+
+        <h2>Your Rights</h2>
+        <p>You have the right to access, correct, or delete your personal data, opt out of SMS by replying STOP, and opt out of emails via the unsubscribe link.</p>
+
+        <h2>Contact</h2>
+        <p>CubanTank Fitness LLC · Miami, Florida · cubantank.com · @cubantank</p>
+      `,
+    },
+    terms: {
+      title: 'Terms &amp; Conditions',
+      html: META_HTML + `
+        <h2>Acceptance</h2>
+        <p>By using cubantank.com or submitting a coaching application, you agree to these Terms. If you do not agree, do not use our site or services.</p>
+
+        <h2>Services</h2>
+        <p>Cuban Tank provides 1-on-1 personal fitness and lifestyle coaching including custom exercise programming, nutrition and meal planning, cardio, core and mobility planning, supplement guidance, and weekly check-ins. Services are delivered in-person at Paradise Gym in Miami and online.</p>
+
+        <h2>SMS Communications</h2>
+        <p>By opting in on our application form, you consent to receive text messages from Cuban Tank related to your coaching inquiry and services. Message frequency varies. Message and data rates may apply. Reply STOP to cancel at any time. Reply HELP for assistance. SMS opt-in data is never shared with third parties.</p>
+
+        <h2>No Guarantee of Results</h2>
+        <p>Fitness results vary by individual. Cuban Tank does not guarantee specific fitness, weight loss, or performance outcomes. Testimonials on this site represent individual experiences and are not typical or guaranteed results.</p>
+
+        <h2>Health Disclaimer</h2>
+        <p>Consult a physician before beginning any exercise or nutrition program, especially if you have pre-existing medical conditions. Cuban Tank is not a medical provider and does not offer medical advice.</p>
+
+        <h2>Client Responsibilities</h2>
+        <p>You agree to provide accurate health information, follow the coaching plan, notify your coach of any injuries or medical changes, and respect session and cancellation policies as communicated.</p>
+
+        <h2>Payments &amp; Refunds</h2>
+        <p>Payment terms and refund policies are communicated directly before enrollment. All sales are final unless otherwise agreed in writing.</p>
+
+        <h2>Governing Law</h2>
+        <p>These terms are governed by the laws of the State of Florida. Any disputes shall be resolved in Miami-Dade County, Florida.</p>
+
+        <h2>Contact</h2>
+        <p>CubanTank Fitness LLC · Miami, Florida · cubantank.com · @cubantank</p>
+      `,
+    },
+  };
+
+  let prevFocus = null;
+  let copyResetTimer = null;
+
+  function open(type) {
+    const p = POLICIES[type];
+    if (!p) return;
+    prevFocus = document.activeElement;
+    titleEl.innerHTML = p.title;
+    bodyEl.innerHTML = p.html;
+    bodyEl.scrollTop = 0;
+    root.classList.add('open');
+    root.setAttribute('aria-hidden', 'false');
+    document.body.classList.add('no-scroll');
+    requestAnimationFrame(() => {
+      // Move focus into the modal for keyboard users
+      const closeBtn = root.querySelector('[data-close-policy]:not(.policy-backdrop)');
+      if (closeBtn && closeBtn.focus) closeBtn.focus({ preventScroll: true });
+    });
+  }
+
+  function close() {
+    root.classList.remove('open');
+    root.setAttribute('aria-hidden', 'true');
+    // Only release the scroll lock if the apply modal isn't also open
+    const applyOpen = document.getElementById('applyModal')?.classList.contains('open');
+    if (!applyOpen) document.body.classList.remove('no-scroll');
+    setTimeout(() => {
+      if (prevFocus && typeof prevFocus.focus === 'function') {
+        try { prevFocus.focus({ preventScroll: true }); } catch (e) {}
+      }
+    }, 420);
+  }
+
+  // Wire all open triggers (footer + SMS consent links)
+  document.querySelectorAll('[data-open-policy]').forEach(btn => {
+    btn.addEventListener('click', e => {
+      e.preventDefault();
+      open(btn.getAttribute('data-open-policy'));
+    });
+  });
+
+  // Close triggers (X button + backdrop)
+  root.querySelectorAll('[data-close-policy]').forEach(el => {
+    el.addEventListener('click', e => { e.preventDefault(); close(); });
+  });
+
+  // ESC + focus trap
+  document.addEventListener('keydown', e => {
+    if (!root.classList.contains('open')) return;
+    if (e.key === 'Escape') { e.preventDefault(); close(); return; }
+    if (e.key === 'Tab') {
+      const focusable = root.querySelectorAll('button, [href], input, [tabindex]:not([tabindex="-1"])');
+      const visible = Array.from(focusable).filter(el => !el.disabled && el.offsetParent !== null);
+      if (!visible.length) return;
+      const first = visible[0], last = visible[visible.length - 1];
+      if (e.shiftKey && document.activeElement === first) { e.preventDefault(); last.focus(); }
+      else if (!e.shiftKey && document.activeElement === last) { e.preventDefault(); first.focus(); }
+    }
+  });
+
+  // Copy button — copies the visible policy text + restores label after 2s
+  copyBtn.addEventListener('click', async () => {
+    const text = (titleEl.innerText.trim() + '\n\n' + bodyEl.innerText.trim()).replace(/\n{3,}/g, '\n\n');
+    let ok = true;
+    try {
+      if (navigator.clipboard && window.isSecureContext) {
+        await navigator.clipboard.writeText(text);
+      } else {
+        // legacy fallback for older browsers / non-HTTPS
+        const ta = document.createElement('textarea');
+        ta.value = text;
+        ta.style.position = 'fixed'; ta.style.left = '-9999px';
+        document.body.appendChild(ta); ta.select();
+        ok = document.execCommand('copy');
+        document.body.removeChild(ta);
+      }
+    } catch (e) { ok = false; }
+    if (copyResetTimer) { clearTimeout(copyResetTimer); copyResetTimer = null; }
+    copyLabel.textContent = ok ? 'Copied!' : 'Copy failed';
+    copyResetTimer = setTimeout(() => { copyLabel.textContent = 'Copy'; }, 2000);
+  });
+})();
+
 /* ============================== TESTIMONIAL CAROUSEL ============================== */
 (function () {
   const carousel = document.getElementById('testimonialCarousel');
