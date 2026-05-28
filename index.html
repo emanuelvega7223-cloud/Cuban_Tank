@@ -874,35 +874,23 @@
           <!-- Stacked panels (CSS grid stacking) -->
           <div class="grid tcarousel-stack">
 
-            <!-- ===== PANEL 01 - FAT LOSS ===== -->
+            <!-- ===== PANEL 01 ===== -->
             <article class="tpanel active rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_30px_60px_-30px_rgba(0,0,0,0.6)]" data-panel="0">
               <div class="grid grid-cols-1 lg:grid-cols-12">
 
-                <!-- Before/After photo split -->
-                <div class="lg:col-span-7 grid grid-cols-2 aspect-[6/4] lg:aspect-auto border-b lg:border-b-0 lg:border-r border-white/[0.07]">
-                  <div class="relative overflow-hidden bg-[linear-gradient(160deg,#1A1A1D,#0F0F11_75%)] flex items-end p-5">
-                    <span aria-hidden="true" class="absolute right-4 bottom-3 font-display text-[120px] md:text-[160px] leading-none tracking-ultra text-white/[0.04] select-none">01</span>
-                    <div class="absolute top-4 left-5 inline-flex items-center gap-1.5">
-                      <span class="h-1.5 w-1.5 rounded-full bg-white/35"></span>
-                      <span class="font-mono text-[10px] tracking-widest uppercase text-white/55">Before</span>
-                    </div>
-                    <svg viewBox="0 0 100 130" class="relative w-[38%] text-white/10" fill="currentColor" aria-hidden="true">
-                      <ellipse cx="50" cy="22" rx="14" ry="16"/>
-                      <path d="M28 130 C 28 78 34 56 50 54 C 66 56 72 78 72 130 Z"/>
-                    </svg>
+                <!-- Transformation photo -->
+                <div class="lg:col-span-7 relative overflow-hidden aspect-[6/4] lg:aspect-auto lg:min-h-[440px] border-b lg:border-b-0 lg:border-r border-white/[0.07] bg-ink">
+                  <img src="transformation1.jpg"
+                       alt="Client Transformation 01"
+                       loading="lazy" decoding="async"
+                       class="absolute inset-0 h-full w-full object-cover" />
+                  <!-- top-left status pill, sits over the photo -->
+                  <div class="absolute top-4 left-5 inline-flex items-center gap-2 z-10 rounded-full bg-black/35 backdrop-blur px-3 py-1 border border-white/15">
+                    <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
+                    <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 01</span>
                   </div>
-                  <div class="relative overflow-hidden bg-[linear-gradient(160deg,#1A1A1D,#0F0F11_75%)] flex items-end p-5 border-l border-white/[0.07]">
-                    <div aria-hidden="true" class="absolute inset-0 bg-[radial-gradient(80%_60%_at_50%_120%,rgba(229,40,61,0.10),transparent_65%)]"></div>
-                    <span aria-hidden="true" class="absolute right-4 bottom-3 font-display text-[120px] md:text-[160px] leading-none tracking-ultra text-white/[0.04] select-none">01</span>
-                    <div class="absolute top-4 right-5 inline-flex items-center gap-1.5">
-                      <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
-                      <span class="font-mono text-[10px] tracking-widest uppercase text-lime">After</span>
-                    </div>
-                    <svg viewBox="0 0 100 130" class="relative w-[40%] text-white/15" fill="currentColor" aria-hidden="true">
-                      <ellipse cx="50" cy="20" rx="13" ry="15"/>
-                      <path d="M30 130 C 30 80 36 54 50 52 C 64 54 70 80 70 130 Z"/>
-                    </svg>
-                  </div>
+                  <!-- bottom gradient for image-to-card blend -->
+                  <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink2 via-ink2/40 to-transparent pointer-events-none lg:hidden"></div>
                 </div>
 
                 <!-- Content -->
@@ -910,21 +898,21 @@
                   <div>
                     <div class="flex items-center justify-between gap-3">
                       <span class="inline-flex items-center gap-1.5 text-[10.5px] font-mono tracking-widest uppercase text-lime border border-lime/30 bg-lime/[0.06] rounded-full px-2.5 py-1">
-                        <span class="h-1 w-1 rounded-full bg-lime"></span>Fat loss
+                        <span class="h-1 w-1 rounded-full bg-lime"></span>Transformation 01
                       </span>
-                      <span class="font-mono text-[10px] tracking-widest uppercase text-white/45">Client 01</span>
+                      <span class="font-mono text-[10px] tracking-widest uppercase text-white/45">1 / 10</span>
                     </div>
                     <h3 class="mt-5 font-display tracking-tight text-[26px] md:text-[30px] leading-[1.1]">
-                      Real progress. Built with <span class="italic font-serif font-normal">structure</span>.
+                      Client Transformation <span class="italic font-serif font-normal">01</span>.
                     </h3>
                     <blockquote class="mt-5 font-serif italic text-[15.5px] md:text-[16.5px] text-white/72 leading-[1.7]">
-                      "Client testimonial coming soon."
+                      "Coming soon."
                     </blockquote>
                   </div>
                   <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
                     <div class="flex items-center gap-2.5">
                       <span class="h-7 w-7 rounded-full bg-white/[0.04] border border-white/10 inline-flex items-center justify-center font-mono text-[11px] tab text-white/85">01</span>
-                      <span class="font-display text-[14.5px] tracking-tight">Client Transformation 01</span>
+                      <span class="font-display text-[14.5px] tracking-tight">Transformation 01</span>
                     </div>
                     <span class="font-mono text-[10px] tracking-widest uppercase text-white/55">Coming soon</span>
                   </div>
@@ -932,53 +920,45 @@
               </div>
             </article>
 
-            <!-- ===== PANEL 02 - MUSCLE BUILDING ===== -->
+            <!-- ===== PANEL 02 ===== -->
             <article class="tpanel rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_30px_60px_-30px_rgba(0,0,0,0.6)]" data-panel="1">
               <div class="grid grid-cols-1 lg:grid-cols-12">
-                <div class="lg:col-span-7 grid grid-cols-2 aspect-[6/4] lg:aspect-auto border-b lg:border-b-0 lg:border-r border-white/[0.07]">
-                  <div class="relative overflow-hidden bg-[linear-gradient(160deg,#1A1A1D,#0F0F11_75%)] flex items-end p-5">
-                    <span aria-hidden="true" class="absolute right-4 bottom-3 font-display text-[120px] md:text-[160px] leading-none tracking-ultra text-white/[0.04] select-none">02</span>
-                    <div class="absolute top-4 left-5 inline-flex items-center gap-1.5">
-                      <span class="h-1.5 w-1.5 rounded-full bg-white/35"></span>
-                      <span class="font-mono text-[10px] tracking-widest uppercase text-white/55">Before</span>
-                    </div>
-                    <svg viewBox="0 0 100 130" class="relative w-[40%] text-white/10" fill="currentColor" aria-hidden="true">
-                      <ellipse cx="50" cy="22" rx="13" ry="15"/>
-                      <path d="M32 130 C 32 78 38 56 50 54 C 62 56 68 78 68 130 Z"/>
-                    </svg>
+
+                <!-- Transformation photo -->
+                <div class="lg:col-span-7 relative overflow-hidden aspect-[6/4] lg:aspect-auto lg:min-h-[440px] border-b lg:border-b-0 lg:border-r border-white/[0.07] bg-ink">
+                  <img src="transformation2.jpg"
+                       alt="Client Transformation 02"
+                       loading="lazy" decoding="async"
+                       class="absolute inset-0 h-full w-full object-cover" />
+                  <!-- top-left status pill, sits over the photo -->
+                  <div class="absolute top-4 left-5 inline-flex items-center gap-2 z-10 rounded-full bg-black/35 backdrop-blur px-3 py-1 border border-white/15">
+                    <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
+                    <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 02</span>
                   </div>
-                  <div class="relative overflow-hidden bg-[linear-gradient(160deg,#1A1A1D,#0F0F11_75%)] flex items-end p-5 border-l border-white/[0.07]">
-                    <div aria-hidden="true" class="absolute inset-0 bg-[radial-gradient(80%_60%_at_50%_120%,rgba(229,40,61,0.10),transparent_65%)]"></div>
-                    <span aria-hidden="true" class="absolute right-4 bottom-3 font-display text-[120px] md:text-[160px] leading-none tracking-ultra text-white/[0.04] select-none">02</span>
-                    <div class="absolute top-4 right-5 inline-flex items-center gap-1.5">
-                      <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
-                      <span class="font-mono text-[10px] tracking-widest uppercase text-lime">After</span>
-                    </div>
-                    <svg viewBox="0 0 100 130" class="relative w-[44%] text-white/15" fill="currentColor" aria-hidden="true">
-                      <ellipse cx="50" cy="20" rx="14" ry="16"/>
-                      <path d="M26 130 C 26 78 32 54 50 52 C 68 54 74 78 74 130 Z"/>
-                    </svg>
-                  </div>
+                  <!-- bottom gradient for image-to-card blend -->
+                  <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink2 via-ink2/40 to-transparent pointer-events-none lg:hidden"></div>
                 </div>
+
+                <!-- Content -->
                 <div class="lg:col-span-5 p-7 md:p-10 flex flex-col justify-between">
                   <div>
                     <div class="flex items-center justify-between gap-3">
                       <span class="inline-flex items-center gap-1.5 text-[10.5px] font-mono tracking-widest uppercase text-lime border border-lime/30 bg-lime/[0.06] rounded-full px-2.5 py-1">
-                        <span class="h-1 w-1 rounded-full bg-lime"></span>Muscle building
+                        <span class="h-1 w-1 rounded-full bg-lime"></span>Transformation 02
                       </span>
-                      <span class="font-mono text-[10px] tracking-widest uppercase text-white/45">Client 02</span>
+                      <span class="font-mono text-[10px] tracking-widest uppercase text-white/45">2 / 10</span>
                     </div>
                     <h3 class="mt-5 font-display tracking-tight text-[26px] md:text-[30px] leading-[1.1]">
-                      Strength, consistency, and <span class="italic font-serif font-normal">confidence</span>.
+                      Client Transformation <span class="italic font-serif font-normal">02</span>.
                     </h3>
                     <blockquote class="mt-5 font-serif italic text-[15.5px] md:text-[16.5px] text-white/72 leading-[1.7]">
-                      "Client testimonial coming soon."
+                      "Coming soon."
                     </blockquote>
                   </div>
                   <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
                     <div class="flex items-center gap-2.5">
                       <span class="h-7 w-7 rounded-full bg-white/[0.04] border border-white/10 inline-flex items-center justify-center font-mono text-[11px] tab text-white/85">02</span>
-                      <span class="font-display text-[14.5px] tracking-tight">Client Transformation 02</span>
+                      <span class="font-display text-[14.5px] tracking-tight">Transformation 02</span>
                     </div>
                     <span class="font-mono text-[10px] tracking-widest uppercase text-white/55">Coming soon</span>
                   </div>
@@ -986,53 +966,45 @@
               </div>
             </article>
 
-            <!-- ===== PANEL 03 - STRENGTH & PERFORMANCE ===== -->
+            <!-- ===== PANEL 03 ===== -->
             <article class="tpanel rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_30px_60px_-30px_rgba(0,0,0,0.6)]" data-panel="2">
               <div class="grid grid-cols-1 lg:grid-cols-12">
-                <div class="lg:col-span-7 grid grid-cols-2 aspect-[6/4] lg:aspect-auto border-b lg:border-b-0 lg:border-r border-white/[0.07]">
-                  <div class="relative overflow-hidden bg-[linear-gradient(160deg,#1A1A1D,#0F0F11_75%)] flex items-end p-5">
-                    <span aria-hidden="true" class="absolute right-4 bottom-3 font-display text-[120px] md:text-[160px] leading-none tracking-ultra text-white/[0.04] select-none">03</span>
-                    <div class="absolute top-4 left-5 inline-flex items-center gap-1.5">
-                      <span class="h-1.5 w-1.5 rounded-full bg-white/35"></span>
-                      <span class="font-mono text-[10px] tracking-widest uppercase text-white/55">Before</span>
-                    </div>
-                    <svg viewBox="0 0 100 130" class="relative w-[40%] text-white/10" fill="currentColor" aria-hidden="true">
-                      <ellipse cx="50" cy="22" rx="14" ry="15"/>
-                      <path d="M30 130 C 30 80 36 56 50 54 C 64 56 70 80 70 130 Z"/>
-                    </svg>
+
+                <!-- Transformation photo -->
+                <div class="lg:col-span-7 relative overflow-hidden aspect-[6/4] lg:aspect-auto lg:min-h-[440px] border-b lg:border-b-0 lg:border-r border-white/[0.07] bg-ink">
+                  <img src="transformation3.jpg"
+                       alt="Client Transformation 03"
+                       loading="lazy" decoding="async"
+                       class="absolute inset-0 h-full w-full object-cover" />
+                  <!-- top-left status pill, sits over the photo -->
+                  <div class="absolute top-4 left-5 inline-flex items-center gap-2 z-10 rounded-full bg-black/35 backdrop-blur px-3 py-1 border border-white/15">
+                    <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
+                    <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 03</span>
                   </div>
-                  <div class="relative overflow-hidden bg-[linear-gradient(160deg,#1A1A1D,#0F0F11_75%)] flex items-end p-5 border-l border-white/[0.07]">
-                    <div aria-hidden="true" class="absolute inset-0 bg-[radial-gradient(80%_60%_at_50%_120%,rgba(229,40,61,0.10),transparent_65%)]"></div>
-                    <span aria-hidden="true" class="absolute right-4 bottom-3 font-display text-[120px] md:text-[160px] leading-none tracking-ultra text-white/[0.04] select-none">03</span>
-                    <div class="absolute top-4 right-5 inline-flex items-center gap-1.5">
-                      <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
-                      <span class="font-mono text-[10px] tracking-widest uppercase text-lime">After</span>
-                    </div>
-                    <svg viewBox="0 0 100 130" class="relative w-[42%] text-white/15" fill="currentColor" aria-hidden="true">
-                      <ellipse cx="50" cy="20" rx="13" ry="14"/>
-                      <path d="M30 130 C 30 80 36 56 50 54 C 64 56 70 80 70 130 Z"/>
-                    </svg>
-                  </div>
+                  <!-- bottom gradient for image-to-card blend -->
+                  <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink2 via-ink2/40 to-transparent pointer-events-none lg:hidden"></div>
                 </div>
+
+                <!-- Content -->
                 <div class="lg:col-span-5 p-7 md:p-10 flex flex-col justify-between">
                   <div>
                     <div class="flex items-center justify-between gap-3">
                       <span class="inline-flex items-center gap-1.5 text-[10.5px] font-mono tracking-widest uppercase text-lime border border-lime/30 bg-lime/[0.06] rounded-full px-2.5 py-1">
-                        <span class="h-1 w-1 rounded-full bg-lime"></span>Strength &amp; performance
+                        <span class="h-1 w-1 rounded-full bg-lime"></span>Transformation 03
                       </span>
-                      <span class="font-mono text-[10px] tracking-widest uppercase text-white/45">Client 03</span>
+                      <span class="font-mono text-[10px] tracking-widest uppercase text-white/45">3 / 10</span>
                     </div>
                     <h3 class="mt-5 font-display tracking-tight text-[26px] md:text-[30px] leading-[1.1]">
-                      Stronger. Sharper. <span class="italic font-serif font-normal">On purpose</span>.
+                      Client Transformation <span class="italic font-serif font-normal">03</span>.
                     </h3>
                     <blockquote class="mt-5 font-serif italic text-[15.5px] md:text-[16.5px] text-white/72 leading-[1.7]">
-                      "Client testimonial coming soon."
+                      "Coming soon."
                     </blockquote>
                   </div>
                   <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
                     <div class="flex items-center gap-2.5">
                       <span class="h-7 w-7 rounded-full bg-white/[0.04] border border-white/10 inline-flex items-center justify-center font-mono text-[11px] tab text-white/85">03</span>
-                      <span class="font-display text-[14.5px] tracking-tight">Client Transformation 03</span>
+                      <span class="font-display text-[14.5px] tracking-tight">Transformation 03</span>
                     </div>
                     <span class="font-mono text-[10px] tracking-widest uppercase text-white/55">Coming soon</span>
                   </div>
@@ -1040,53 +1012,45 @@
               </div>
             </article>
 
-            <!-- ===== PANEL 04 - LIFESTYLE TRANSFORMATION ===== -->
+            <!-- ===== PANEL 04 ===== -->
             <article class="tpanel rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_30px_60px_-30px_rgba(0,0,0,0.6)]" data-panel="3">
               <div class="grid grid-cols-1 lg:grid-cols-12">
-                <div class="lg:col-span-7 grid grid-cols-2 aspect-[6/4] lg:aspect-auto border-b lg:border-b-0 lg:border-r border-white/[0.07]">
-                  <div class="relative overflow-hidden bg-[linear-gradient(160deg,#1A1A1D,#0F0F11_75%)] flex items-end p-5">
-                    <span aria-hidden="true" class="absolute right-4 bottom-3 font-display text-[120px] md:text-[160px] leading-none tracking-ultra text-white/[0.04] select-none">04</span>
-                    <div class="absolute top-4 left-5 inline-flex items-center gap-1.5">
-                      <span class="h-1.5 w-1.5 rounded-full bg-white/35"></span>
-                      <span class="font-mono text-[10px] tracking-widest uppercase text-white/55">Before</span>
-                    </div>
-                    <svg viewBox="0 0 100 130" class="relative w-[40%] text-white/10" fill="currentColor" aria-hidden="true">
-                      <ellipse cx="50" cy="22" rx="13" ry="15"/>
-                      <path d="M30 130 C 30 78 36 56 50 54 C 64 56 70 78 70 130 Z"/>
-                    </svg>
+
+                <!-- Transformation photo -->
+                <div class="lg:col-span-7 relative overflow-hidden aspect-[6/4] lg:aspect-auto lg:min-h-[440px] border-b lg:border-b-0 lg:border-r border-white/[0.07] bg-ink">
+                  <img src="transformation4.jpg"
+                       alt="Client Transformation 04"
+                       loading="lazy" decoding="async"
+                       class="absolute inset-0 h-full w-full object-cover" />
+                  <!-- top-left status pill, sits over the photo -->
+                  <div class="absolute top-4 left-5 inline-flex items-center gap-2 z-10 rounded-full bg-black/35 backdrop-blur px-3 py-1 border border-white/15">
+                    <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
+                    <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 04</span>
                   </div>
-                  <div class="relative overflow-hidden bg-[linear-gradient(160deg,#1A1A1D,#0F0F11_75%)] flex items-end p-5 border-l border-white/[0.07]">
-                    <div aria-hidden="true" class="absolute inset-0 bg-[radial-gradient(80%_60%_at_50%_120%,rgba(229,40,61,0.10),transparent_65%)]"></div>
-                    <span aria-hidden="true" class="absolute right-4 bottom-3 font-display text-[120px] md:text-[160px] leading-none tracking-ultra text-white/[0.04] select-none">04</span>
-                    <div class="absolute top-4 right-5 inline-flex items-center gap-1.5">
-                      <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
-                      <span class="font-mono text-[10px] tracking-widest uppercase text-lime">After</span>
-                    </div>
-                    <svg viewBox="0 0 100 130" class="relative w-[40%] text-white/15" fill="currentColor" aria-hidden="true">
-                      <ellipse cx="50" cy="20" rx="13" ry="14"/>
-                      <path d="M32 130 C 32 80 38 56 50 54 C 62 56 68 80 68 130 Z"/>
-                    </svg>
-                  </div>
+                  <!-- bottom gradient for image-to-card blend -->
+                  <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink2 via-ink2/40 to-transparent pointer-events-none lg:hidden"></div>
                 </div>
+
+                <!-- Content -->
                 <div class="lg:col-span-5 p-7 md:p-10 flex flex-col justify-between">
                   <div>
                     <div class="flex items-center justify-between gap-3">
                       <span class="inline-flex items-center gap-1.5 text-[10.5px] font-mono tracking-widest uppercase text-lime border border-lime/30 bg-lime/[0.06] rounded-full px-2.5 py-1">
-                        <span class="h-1 w-1 rounded-full bg-lime"></span>Lifestyle transformation
+                        <span class="h-1 w-1 rounded-full bg-lime"></span>Transformation 04
                       </span>
-                      <span class="font-mono text-[10px] tracking-widest uppercase text-white/45">Client 04</span>
+                      <span class="font-mono text-[10px] tracking-widest uppercase text-white/45">4 / 10</span>
                     </div>
                     <h3 class="mt-5 font-display tracking-tight text-[26px] md:text-[30px] leading-[1.1]">
-                      Better habits. Better <span class="italic font-serif font-normal">execution</span>.
+                      Client Transformation <span class="italic font-serif font-normal">04</span>.
                     </h3>
                     <blockquote class="mt-5 font-serif italic text-[15.5px] md:text-[16.5px] text-white/72 leading-[1.7]">
-                      "Client testimonial coming soon."
+                      "Coming soon."
                     </blockquote>
                   </div>
                   <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
                     <div class="flex items-center gap-2.5">
                       <span class="h-7 w-7 rounded-full bg-white/[0.04] border border-white/10 inline-flex items-center justify-center font-mono text-[11px] tab text-white/85">04</span>
-                      <span class="font-display text-[14.5px] tracking-tight">Client Transformation 04</span>
+                      <span class="font-display text-[14.5px] tracking-tight">Transformation 04</span>
                     </div>
                     <span class="font-mono text-[10px] tracking-widest uppercase text-white/55">Coming soon</span>
                   </div>
@@ -1094,53 +1058,275 @@
               </div>
             </article>
 
-            <!-- ===== PANEL 05 - HABIT BUILDING ===== -->
+            <!-- ===== PANEL 05 ===== -->
             <article class="tpanel rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_30px_60px_-30px_rgba(0,0,0,0.6)]" data-panel="4">
               <div class="grid grid-cols-1 lg:grid-cols-12">
-                <div class="lg:col-span-7 grid grid-cols-2 aspect-[6/4] lg:aspect-auto border-b lg:border-b-0 lg:border-r border-white/[0.07]">
-                  <div class="relative overflow-hidden bg-[linear-gradient(160deg,#1A1A1D,#0F0F11_75%)] flex items-end p-5">
-                    <span aria-hidden="true" class="absolute right-4 bottom-3 font-display text-[120px] md:text-[160px] leading-none tracking-ultra text-white/[0.04] select-none">05</span>
-                    <div class="absolute top-4 left-5 inline-flex items-center gap-1.5">
-                      <span class="h-1.5 w-1.5 rounded-full bg-white/35"></span>
-                      <span class="font-mono text-[10px] tracking-widest uppercase text-white/55">Before</span>
-                    </div>
-                    <svg viewBox="0 0 100 130" class="relative w-[40%] text-white/10" fill="currentColor" aria-hidden="true">
-                      <ellipse cx="50" cy="22" rx="14" ry="15"/>
-                      <path d="M30 130 C 30 80 36 56 50 54 C 64 56 70 80 70 130 Z"/>
-                    </svg>
+
+                <!-- Transformation photo -->
+                <div class="lg:col-span-7 relative overflow-hidden aspect-[6/4] lg:aspect-auto lg:min-h-[440px] border-b lg:border-b-0 lg:border-r border-white/[0.07] bg-ink">
+                  <img src="transformation5.jpg"
+                       alt="Client Transformation 05"
+                       loading="lazy" decoding="async"
+                       class="absolute inset-0 h-full w-full object-cover" />
+                  <!-- top-left status pill, sits over the photo -->
+                  <div class="absolute top-4 left-5 inline-flex items-center gap-2 z-10 rounded-full bg-black/35 backdrop-blur px-3 py-1 border border-white/15">
+                    <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
+                    <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 05</span>
                   </div>
-                  <div class="relative overflow-hidden bg-[linear-gradient(160deg,#1A1A1D,#0F0F11_75%)] flex items-end p-5 border-l border-white/[0.07]">
-                    <div aria-hidden="true" class="absolute inset-0 bg-[radial-gradient(80%_60%_at_50%_120%,rgba(229,40,61,0.10),transparent_65%)]"></div>
-                    <span aria-hidden="true" class="absolute right-4 bottom-3 font-display text-[120px] md:text-[160px] leading-none tracking-ultra text-white/[0.04] select-none">05</span>
-                    <div class="absolute top-4 right-5 inline-flex items-center gap-1.5">
-                      <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
-                      <span class="font-mono text-[10px] tracking-widest uppercase text-lime">After</span>
-                    </div>
-                    <svg viewBox="0 0 100 130" class="relative w-[42%] text-white/15" fill="currentColor" aria-hidden="true">
-                      <ellipse cx="50" cy="20" rx="14" ry="15"/>
-                      <path d="M28 130 C 28 78 34 54 50 52 C 66 54 72 78 72 130 Z"/>
-                    </svg>
-                  </div>
+                  <!-- bottom gradient for image-to-card blend -->
+                  <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink2 via-ink2/40 to-transparent pointer-events-none lg:hidden"></div>
                 </div>
+
+                <!-- Content -->
                 <div class="lg:col-span-5 p-7 md:p-10 flex flex-col justify-between">
                   <div>
                     <div class="flex items-center justify-between gap-3">
                       <span class="inline-flex items-center gap-1.5 text-[10.5px] font-mono tracking-widest uppercase text-lime border border-lime/30 bg-lime/[0.06] rounded-full px-2.5 py-1">
-                        <span class="h-1 w-1 rounded-full bg-lime"></span>Habit building
+                        <span class="h-1 w-1 rounded-full bg-lime"></span>Transformation 05
                       </span>
-                      <span class="font-mono text-[10px] tracking-widest uppercase text-white/45">Client 05</span>
+                      <span class="font-mono text-[10px] tracking-widest uppercase text-white/45">5 / 10</span>
                     </div>
                     <h3 class="mt-5 font-display tracking-tight text-[26px] md:text-[30px] leading-[1.1]">
-                      A real plan and <span class="italic font-serif font-normal">real follow-through</span>.
+                      Client Transformation <span class="italic font-serif font-normal">05</span>.
                     </h3>
                     <blockquote class="mt-5 font-serif italic text-[15.5px] md:text-[16.5px] text-white/72 leading-[1.7]">
-                      "Client testimonial coming soon."
+                      "Coming soon."
                     </blockquote>
                   </div>
                   <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
                     <div class="flex items-center gap-2.5">
                       <span class="h-7 w-7 rounded-full bg-white/[0.04] border border-white/10 inline-flex items-center justify-center font-mono text-[11px] tab text-white/85">05</span>
-                      <span class="font-display text-[14.5px] tracking-tight">Client Transformation 05</span>
+                      <span class="font-display text-[14.5px] tracking-tight">Transformation 05</span>
+                    </div>
+                    <span class="font-mono text-[10px] tracking-widest uppercase text-white/55">Coming soon</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- ===== PANEL 06 ===== -->
+            <article class="tpanel rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_30px_60px_-30px_rgba(0,0,0,0.6)]" data-panel="5">
+              <div class="grid grid-cols-1 lg:grid-cols-12">
+
+                <!-- Transformation photo -->
+                <div class="lg:col-span-7 relative overflow-hidden aspect-[6/4] lg:aspect-auto lg:min-h-[440px] border-b lg:border-b-0 lg:border-r border-white/[0.07] bg-ink">
+                  <img src="transformation6.jpg"
+                       alt="Client Transformation 06"
+                       loading="lazy" decoding="async"
+                       class="absolute inset-0 h-full w-full object-cover" />
+                  <!-- top-left status pill, sits over the photo -->
+                  <div class="absolute top-4 left-5 inline-flex items-center gap-2 z-10 rounded-full bg-black/35 backdrop-blur px-3 py-1 border border-white/15">
+                    <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
+                    <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 06</span>
+                  </div>
+                  <!-- bottom gradient for image-to-card blend -->
+                  <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink2 via-ink2/40 to-transparent pointer-events-none lg:hidden"></div>
+                </div>
+
+                <!-- Content -->
+                <div class="lg:col-span-5 p-7 md:p-10 flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between gap-3">
+                      <span class="inline-flex items-center gap-1.5 text-[10.5px] font-mono tracking-widest uppercase text-lime border border-lime/30 bg-lime/[0.06] rounded-full px-2.5 py-1">
+                        <span class="h-1 w-1 rounded-full bg-lime"></span>Transformation 06
+                      </span>
+                      <span class="font-mono text-[10px] tracking-widest uppercase text-white/45">6 / 10</span>
+                    </div>
+                    <h3 class="mt-5 font-display tracking-tight text-[26px] md:text-[30px] leading-[1.1]">
+                      Client Transformation <span class="italic font-serif font-normal">06</span>.
+                    </h3>
+                    <blockquote class="mt-5 font-serif italic text-[15.5px] md:text-[16.5px] text-white/72 leading-[1.7]">
+                      "Coming soon."
+                    </blockquote>
+                  </div>
+                  <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+                    <div class="flex items-center gap-2.5">
+                      <span class="h-7 w-7 rounded-full bg-white/[0.04] border border-white/10 inline-flex items-center justify-center font-mono text-[11px] tab text-white/85">06</span>
+                      <span class="font-display text-[14.5px] tracking-tight">Transformation 06</span>
+                    </div>
+                    <span class="font-mono text-[10px] tracking-widest uppercase text-white/55">Coming soon</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- ===== PANEL 07 ===== -->
+            <article class="tpanel rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_30px_60px_-30px_rgba(0,0,0,0.6)]" data-panel="6">
+              <div class="grid grid-cols-1 lg:grid-cols-12">
+
+                <!-- Transformation photo -->
+                <div class="lg:col-span-7 relative overflow-hidden aspect-[6/4] lg:aspect-auto lg:min-h-[440px] border-b lg:border-b-0 lg:border-r border-white/[0.07] bg-ink">
+                  <img src="transformation7.jpg"
+                       alt="Client Transformation 07"
+                       loading="lazy" decoding="async"
+                       class="absolute inset-0 h-full w-full object-cover" />
+                  <!-- top-left status pill, sits over the photo -->
+                  <div class="absolute top-4 left-5 inline-flex items-center gap-2 z-10 rounded-full bg-black/35 backdrop-blur px-3 py-1 border border-white/15">
+                    <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
+                    <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 07</span>
+                  </div>
+                  <!-- bottom gradient for image-to-card blend -->
+                  <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink2 via-ink2/40 to-transparent pointer-events-none lg:hidden"></div>
+                </div>
+
+                <!-- Content -->
+                <div class="lg:col-span-5 p-7 md:p-10 flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between gap-3">
+                      <span class="inline-flex items-center gap-1.5 text-[10.5px] font-mono tracking-widest uppercase text-lime border border-lime/30 bg-lime/[0.06] rounded-full px-2.5 py-1">
+                        <span class="h-1 w-1 rounded-full bg-lime"></span>Transformation 07
+                      </span>
+                      <span class="font-mono text-[10px] tracking-widest uppercase text-white/45">7 / 10</span>
+                    </div>
+                    <h3 class="mt-5 font-display tracking-tight text-[26px] md:text-[30px] leading-[1.1]">
+                      Client Transformation <span class="italic font-serif font-normal">07</span>.
+                    </h3>
+                    <blockquote class="mt-5 font-serif italic text-[15.5px] md:text-[16.5px] text-white/72 leading-[1.7]">
+                      "Coming soon."
+                    </blockquote>
+                  </div>
+                  <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+                    <div class="flex items-center gap-2.5">
+                      <span class="h-7 w-7 rounded-full bg-white/[0.04] border border-white/10 inline-flex items-center justify-center font-mono text-[11px] tab text-white/85">07</span>
+                      <span class="font-display text-[14.5px] tracking-tight">Transformation 07</span>
+                    </div>
+                    <span class="font-mono text-[10px] tracking-widest uppercase text-white/55">Coming soon</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- ===== PANEL 08 ===== -->
+            <article class="tpanel rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_30px_60px_-30px_rgba(0,0,0,0.6)]" data-panel="7">
+              <div class="grid grid-cols-1 lg:grid-cols-12">
+
+                <!-- Transformation photo -->
+                <div class="lg:col-span-7 relative overflow-hidden aspect-[6/4] lg:aspect-auto lg:min-h-[440px] border-b lg:border-b-0 lg:border-r border-white/[0.07] bg-ink">
+                  <img src="transformation8.jpg"
+                       alt="Client Transformation 08"
+                       loading="lazy" decoding="async"
+                       class="absolute inset-0 h-full w-full object-cover" />
+                  <!-- top-left status pill, sits over the photo -->
+                  <div class="absolute top-4 left-5 inline-flex items-center gap-2 z-10 rounded-full bg-black/35 backdrop-blur px-3 py-1 border border-white/15">
+                    <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
+                    <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 08</span>
+                  </div>
+                  <!-- bottom gradient for image-to-card blend -->
+                  <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink2 via-ink2/40 to-transparent pointer-events-none lg:hidden"></div>
+                </div>
+
+                <!-- Content -->
+                <div class="lg:col-span-5 p-7 md:p-10 flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between gap-3">
+                      <span class="inline-flex items-center gap-1.5 text-[10.5px] font-mono tracking-widest uppercase text-lime border border-lime/30 bg-lime/[0.06] rounded-full px-2.5 py-1">
+                        <span class="h-1 w-1 rounded-full bg-lime"></span>Transformation 08
+                      </span>
+                      <span class="font-mono text-[10px] tracking-widest uppercase text-white/45">8 / 10</span>
+                    </div>
+                    <h3 class="mt-5 font-display tracking-tight text-[26px] md:text-[30px] leading-[1.1]">
+                      Client Transformation <span class="italic font-serif font-normal">08</span>.
+                    </h3>
+                    <blockquote class="mt-5 font-serif italic text-[15.5px] md:text-[16.5px] text-white/72 leading-[1.7]">
+                      "Coming soon."
+                    </blockquote>
+                  </div>
+                  <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+                    <div class="flex items-center gap-2.5">
+                      <span class="h-7 w-7 rounded-full bg-white/[0.04] border border-white/10 inline-flex items-center justify-center font-mono text-[11px] tab text-white/85">08</span>
+                      <span class="font-display text-[14.5px] tracking-tight">Transformation 08</span>
+                    </div>
+                    <span class="font-mono text-[10px] tracking-widest uppercase text-white/55">Coming soon</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- ===== PANEL 09 ===== -->
+            <article class="tpanel rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_30px_60px_-30px_rgba(0,0,0,0.6)]" data-panel="8">
+              <div class="grid grid-cols-1 lg:grid-cols-12">
+
+                <!-- Transformation photo -->
+                <div class="lg:col-span-7 relative overflow-hidden aspect-[6/4] lg:aspect-auto lg:min-h-[440px] border-b lg:border-b-0 lg:border-r border-white/[0.07] bg-ink">
+                  <img src="transformation9.jpg"
+                       alt="Client Transformation 09"
+                       loading="lazy" decoding="async"
+                       class="absolute inset-0 h-full w-full object-cover" />
+                  <!-- top-left status pill, sits over the photo -->
+                  <div class="absolute top-4 left-5 inline-flex items-center gap-2 z-10 rounded-full bg-black/35 backdrop-blur px-3 py-1 border border-white/15">
+                    <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
+                    <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 09</span>
+                  </div>
+                  <!-- bottom gradient for image-to-card blend -->
+                  <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink2 via-ink2/40 to-transparent pointer-events-none lg:hidden"></div>
+                </div>
+
+                <!-- Content -->
+                <div class="lg:col-span-5 p-7 md:p-10 flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between gap-3">
+                      <span class="inline-flex items-center gap-1.5 text-[10.5px] font-mono tracking-widest uppercase text-lime border border-lime/30 bg-lime/[0.06] rounded-full px-2.5 py-1">
+                        <span class="h-1 w-1 rounded-full bg-lime"></span>Transformation 09
+                      </span>
+                      <span class="font-mono text-[10px] tracking-widest uppercase text-white/45">9 / 10</span>
+                    </div>
+                    <h3 class="mt-5 font-display tracking-tight text-[26px] md:text-[30px] leading-[1.1]">
+                      Client Transformation <span class="italic font-serif font-normal">09</span>.
+                    </h3>
+                    <blockquote class="mt-5 font-serif italic text-[15.5px] md:text-[16.5px] text-white/72 leading-[1.7]">
+                      "Coming soon."
+                    </blockquote>
+                  </div>
+                  <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+                    <div class="flex items-center gap-2.5">
+                      <span class="h-7 w-7 rounded-full bg-white/[0.04] border border-white/10 inline-flex items-center justify-center font-mono text-[11px] tab text-white/85">09</span>
+                      <span class="font-display text-[14.5px] tracking-tight">Transformation 09</span>
+                    </div>
+                    <span class="font-mono text-[10px] tracking-widest uppercase text-white/55">Coming soon</span>
+                  </div>
+                </div>
+              </div>
+            </article>
+
+            <!-- ===== PANEL 10 ===== -->
+            <article class="tpanel rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_30px_60px_-30px_rgba(0,0,0,0.6)]" data-panel="9">
+              <div class="grid grid-cols-1 lg:grid-cols-12">
+
+                <!-- Transformation photo -->
+                <div class="lg:col-span-7 relative overflow-hidden aspect-[6/4] lg:aspect-auto lg:min-h-[440px] border-b lg:border-b-0 lg:border-r border-white/[0.07] bg-ink">
+                  <img src="transformation10.jpg"
+                       alt="Client Transformation 10"
+                       loading="lazy" decoding="async"
+                       class="absolute inset-0 h-full w-full object-cover" />
+                  <!-- top-left status pill, sits over the photo -->
+                  <div class="absolute top-4 left-5 inline-flex items-center gap-2 z-10 rounded-full bg-black/35 backdrop-blur px-3 py-1 border border-white/15">
+                    <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
+                    <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 10</span>
+                  </div>
+                  <!-- bottom gradient for image-to-card blend -->
+                  <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-32 bg-gradient-to-t from-ink2 via-ink2/40 to-transparent pointer-events-none lg:hidden"></div>
+                </div>
+
+                <!-- Content -->
+                <div class="lg:col-span-5 p-7 md:p-10 flex flex-col justify-between">
+                  <div>
+                    <div class="flex items-center justify-between gap-3">
+                      <span class="inline-flex items-center gap-1.5 text-[10.5px] font-mono tracking-widest uppercase text-lime border border-lime/30 bg-lime/[0.06] rounded-full px-2.5 py-1">
+                        <span class="h-1 w-1 rounded-full bg-lime"></span>Transformation 10
+                      </span>
+                      <span class="font-mono text-[10px] tracking-widest uppercase text-white/45">10 / 10</span>
+                    </div>
+                    <h3 class="mt-5 font-display tracking-tight text-[26px] md:text-[30px] leading-[1.1]">
+                      Client Transformation <span class="italic font-serif font-normal">10</span>.
+                    </h3>
+                    <blockquote class="mt-5 font-serif italic text-[15.5px] md:text-[16.5px] text-white/72 leading-[1.7]">
+                      "Coming soon."
+                    </blockquote>
+                  </div>
+                  <div class="mt-6 pt-4 border-t border-white/10 flex items-center justify-between">
+                    <div class="flex items-center gap-2.5">
+                      <span class="h-7 w-7 rounded-full bg-white/[0.04] border border-white/10 inline-flex items-center justify-center font-mono text-[11px] tab text-white/85">10</span>
+                      <span class="font-display text-[14.5px] tracking-tight">Transformation 10</span>
                     </div>
                     <span class="font-mono text-[10px] tracking-widest uppercase text-white/55">Coming soon</span>
                   </div>
@@ -1158,15 +1344,20 @@
             </div>
 
             <div class="flex items-center gap-2" role="tablist" aria-label="Testimonial panels">
-              <button type="button" data-go="0" aria-label="Show testimonial 1" class="tdot active"></button>
-              <button type="button" data-go="1" aria-label="Show testimonial 2" class="tdot"></button>
-              <button type="button" data-go="2" aria-label="Show testimonial 3" class="tdot"></button>
-              <button type="button" data-go="3" aria-label="Show testimonial 4" class="tdot"></button>
-              <button type="button" data-go="4" aria-label="Show testimonial 5" class="tdot"></button>
+              <button type="button" data-go="0" aria-label="Show transformation 1" class="tdot active"></button>
+              <button type="button" data-go="1" aria-label="Show transformation 2" class="tdot"></button>
+              <button type="button" data-go="2" aria-label="Show transformation 3" class="tdot"></button>
+              <button type="button" data-go="3" aria-label="Show transformation 4" class="tdot"></button>
+              <button type="button" data-go="4" aria-label="Show transformation 5" class="tdot"></button>
+              <button type="button" data-go="5" aria-label="Show transformation 6" class="tdot"></button>
+              <button type="button" data-go="6" aria-label="Show transformation 7" class="tdot"></button>
+              <button type="button" data-go="7" aria-label="Show transformation 8" class="tdot"></button>
+              <button type="button" data-go="8" aria-label="Show transformation 9" class="tdot"></button>
+              <button type="button" data-go="9" aria-label="Show transformation 10" class="tdot"></button>
             </div>
 
             <div class="font-mono text-[10px] tracking-widest uppercase text-white/40 tab">
-              <span data-current>01</span> <span class="text-white/25">/ 05</span>
+              <span data-current>01</span> <span class="text-white/25">/ 10</span>
             </div>
           </div>
 
@@ -1400,22 +1591,23 @@
     dot.addEventListener('click', () => { show(i); start(); });
   });
 
-  // Pause on hover (desktop), keep rotating on touch devices
-  const isCoarse = window.matchMedia && window.matchMedia('(pointer: coarse)').matches;
-  if (!isCoarse) {
-    carousel.addEventListener('mouseenter', stop);
-    carousel.addEventListener('mouseleave', start);
-  }
-
-  // Pause when off-screen to save cycles
+  // Never pause on hover - the user wants this loop running continuously.
+  // Only pause when scrolled fully off-screen to save CPU; resume the moment
+  // the section is anywhere near the viewport so the user never lands on a stalled tile.
   if ('IntersectionObserver' in window) {
     const io = new IntersectionObserver(entries => {
       entries.forEach(en => { en.isIntersecting ? start() : stop(); });
-    }, { threshold: 0.25 });
+    }, { threshold: 0, rootMargin: '300px 0px 300px 0px' });
     io.observe(carousel);
   } else {
     start();
   }
+
+  // If the tab is backgrounded then refocused, restart the interval so the
+  // user doesn't land on a panel that was about to advance and got stuck.
+  document.addEventListener('visibilitychange', () => {
+    if (!document.hidden && timer === null) start();
+  });
 })();
 
 /* ============================== APPLY MODAL ============================== */
