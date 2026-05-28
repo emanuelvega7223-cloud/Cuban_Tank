@@ -305,6 +305,18 @@
   .apply-root.open .apply-card { opacity: 1; transform: translate3d(0,0,0) scale(1); }
   .apply-input { caret-color: #E5283D; }
   .apply-input:-webkit-autofill { -webkit-text-fill-color: #fff; -webkit-box-shadow: 0 0 0 1000px #141416 inset; transition: background-color 9999s ease-in-out 0s; }
+  /* Native select arrow visible on dark bg */
+  .apply-select { background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 24 24' fill='none' stroke='%23ffffff' stroke-width='1.5' stroke-linecap='round' stroke-linejoin='round'><polyline points='6 9 12 15 18 9'/></svg>"); background-repeat: no-repeat; background-position: right 0 center; background-size: 12px; padding-right: 18px; appearance: none; -webkit-appearance: none; }
+  /* Custom checkbox / radio, brand-styled */
+  .apply-check, .apply-radio { appearance: none; -webkit-appearance: none; flex-shrink: 0; width: 16px; height: 16px; background: transparent; border: 1px solid rgba(255,255,255,0.30); border-radius: 3px; position: relative; cursor: pointer; transition: border-color .18s, background .18s; }
+  .apply-radio { border-radius: 9999px; }
+  .apply-check:hover, .apply-radio:hover { border-color: rgba(255,255,255,0.55); }
+  .apply-check:checked, .apply-radio:checked { background: #E5283D; border-color: #E5283D; }
+  .apply-check:checked::after { content: ''; position: absolute; left: 4px; top: 1px; width: 5px; height: 9px; border: solid #fff; border-width: 0 1.5px 1.5px 0; transform: rotate(45deg); }
+  .apply-radio:checked::after { content: ''; position: absolute; inset: 4px; background: #fff; border-radius: 9999px; }
+  .apply-opt { display: inline-flex; align-items: center; gap: .55rem; cursor: pointer; user-select: none; padding: .25rem 0; }
+  .apply-opt > span { color: rgba(255,255,255,0.85); font-size: 14px; line-height: 1.3; }
+  .apply-opt:hover > span { color: rgba(255,255,255,1); }
 </style>
 </head>
 <body class="bg-ink text-white antialiased selection:bg-lime selection:text-white">
@@ -1472,6 +1484,7 @@
 
         <form id="applyModalForm" novalidate class="mt-7 grid grid-cols-2 gap-x-5 gap-y-5">
 
+          <!-- First name -->
           <div class="col-span-2 sm:col-span-1 flex flex-col gap-2">
             <label for="m_first" class="font-mono text-[10.5px] uppercase tracking-widest text-white/55">First name <span class="text-lime">*</span></label>
             <input id="m_first" name="first" type="text" required autocomplete="given-name"
@@ -1479,6 +1492,7 @@
             <p data-err="first" class="hidden text-[11.5px] text-rose-300">First name is required.</p>
           </div>
 
+          <!-- Last name -->
           <div class="col-span-2 sm:col-span-1 flex flex-col gap-2">
             <label for="m_last" class="font-mono text-[10.5px] uppercase tracking-widest text-white/55">Last name <span class="text-lime">*</span></label>
             <input id="m_last" name="last" type="text" required autocomplete="family-name"
@@ -1486,6 +1500,7 @@
             <p data-err="last" class="hidden text-[11.5px] text-rose-300">Last name is required.</p>
           </div>
 
+          <!-- Email -->
           <div class="col-span-2 flex flex-col gap-2">
             <label for="m_email" class="font-mono text-[10.5px] uppercase tracking-widest text-white/55">Email address <span class="text-lime">*</span></label>
             <input id="m_email" name="email" type="email" required autocomplete="email" placeholder="you@email.com"
@@ -1493,6 +1508,7 @@
             <p data-err="email" class="hidden text-[11.5px] text-rose-300">Please enter a valid email.</p>
           </div>
 
+          <!-- Phone -->
           <div class="col-span-2 flex flex-col gap-2">
             <label for="m_phone" class="font-mono text-[10.5px] uppercase tracking-widest text-white/55">Phone number <span class="text-lime">*</span></label>
             <input id="m_phone" name="phone" type="tel" required autocomplete="tel" placeholder="+1 (305) 000 0000"
@@ -1500,6 +1516,88 @@
             <p data-err="phone" class="hidden text-[11.5px] text-rose-300">Please enter a valid phone number.</p>
           </div>
 
+          <!-- Fitness Goal (checkboxes) -->
+          <fieldset class="col-span-2 flex flex-col gap-2 m-0 p-0 border-0">
+            <legend class="font-mono text-[10.5px] uppercase tracking-widest text-white/55 p-0">Fitness goal <span class="text-lime">*</span></legend>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5 mt-1">
+              <label class="apply-opt"><input type="checkbox" name="goal" value="Lose Weight" class="apply-check"/><span>Lose Weight</span></label>
+              <label class="apply-opt"><input type="checkbox" name="goal" value="Build Muscle" class="apply-check"/><span>Build Muscle</span></label>
+              <label class="apply-opt"><input type="checkbox" name="goal" value="Improve Endurance" class="apply-check"/><span>Improve Endurance</span></label>
+              <label class="apply-opt"><input type="checkbox" name="goal" value="General Fitness" class="apply-check"/><span>General Fitness</span></label>
+              <label class="apply-opt sm:col-span-2"><input type="checkbox" name="goal" value="Sport-Specific Training" class="apply-check"/><span>Sport-Specific Training</span></label>
+            </div>
+            <p data-err="goal" class="hidden text-[11.5px] text-rose-300">Please select at least one fitness goal.</p>
+          </fieldset>
+
+          <!-- Fitness Level -->
+          <div class="col-span-2 sm:col-span-1 flex flex-col gap-2">
+            <label for="m_level" class="font-mono text-[10.5px] uppercase tracking-widest text-white/55">Fitness level <span class="text-lime">*</span></label>
+            <select id="m_level" name="level" required
+                    class="apply-input apply-select bg-transparent border-0 border-b border-white/15 focus:border-lime focus:ring-0 px-0 py-2 text-white text-[15px]">
+              <option class="text-ink" value="">Select…</option>
+              <option class="text-ink" value="Beginner">Beginner</option>
+              <option class="text-ink" value="Intermediate">Intermediate</option>
+              <option class="text-ink" value="Advanced">Advanced</option>
+            </select>
+            <p data-err="level" class="hidden text-[11.5px] text-rose-300">Please pick your fitness level.</p>
+          </div>
+
+          <!-- Age Range (optional) -->
+          <div class="col-span-2 sm:col-span-1 flex flex-col gap-2">
+            <label for="m_age" class="font-mono text-[10.5px] uppercase tracking-widest text-white/55">Age range <span class="text-white/35">(optional)</span></label>
+            <select id="m_age" name="ageRange"
+                    class="apply-input apply-select bg-transparent border-0 border-b border-white/15 focus:border-lime focus:ring-0 px-0 py-2 text-white text-[15px]">
+              <option class="text-ink" value="">Select…</option>
+              <option class="text-ink" value="Under 18">Under 18</option>
+              <option class="text-ink" value="18–29">18–29</option>
+              <option class="text-ink" value="30–39">30–39</option>
+              <option class="text-ink" value="40–49">40–49</option>
+              <option class="text-ink" value="50–59">50–59</option>
+              <option class="text-ink" value="60+">60+</option>
+            </select>
+          </div>
+
+          <!-- Preferred Contact Method (radio) -->
+          <fieldset class="col-span-2 flex flex-col gap-2 m-0 p-0 border-0">
+            <legend class="font-mono text-[10.5px] uppercase tracking-widest text-white/55 p-0">Preferred contact method <span class="text-lime">*</span></legend>
+            <div class="flex flex-wrap gap-x-6 gap-y-1 mt-1">
+              <label class="apply-opt"><input type="radio" name="contactMethod" value="Email" class="apply-radio"/><span>Email</span></label>
+              <label class="apply-opt"><input type="radio" name="contactMethod" value="Phone" class="apply-radio"/><span>Phone</span></label>
+              <label class="apply-opt"><input type="radio" name="contactMethod" value="Text" class="apply-radio"/><span>Text</span></label>
+            </div>
+            <p data-err="contactMethod" class="hidden text-[11.5px] text-rose-300">Please pick a contact method.</p>
+          </fieldset>
+
+          <!-- Availability (optional checkboxes) -->
+          <fieldset class="col-span-2 flex flex-col gap-2 m-0 p-0 border-0">
+            <legend class="font-mono text-[10.5px] uppercase tracking-widest text-white/55 p-0">Availability <span class="text-white/35">(optional)</span></legend>
+            <div class="grid grid-cols-2 gap-x-4 gap-y-1.5 mt-1">
+              <label class="apply-opt"><input type="checkbox" name="availability" value="Mornings" class="apply-check"/><span>Mornings</span></label>
+              <label class="apply-opt"><input type="checkbox" name="availability" value="Afternoons" class="apply-check"/><span>Afternoons</span></label>
+              <label class="apply-opt"><input type="checkbox" name="availability" value="Evenings" class="apply-check"/><span>Evenings</span></label>
+              <label class="apply-opt"><input type="checkbox" name="availability" value="Weekends" class="apply-check"/><span>Weekends</span></label>
+            </div>
+          </fieldset>
+
+          <!-- Instagram Handle (optional) -->
+          <div class="col-span-2 flex flex-col gap-2">
+            <label for="m_ig" class="font-mono text-[10.5px] uppercase tracking-widest text-white/55">Instagram handle <span class="text-white/35">(optional)</span></label>
+            <input id="m_ig" name="instagram" type="text" autocomplete="off" placeholder="@yourhandle"
+                   class="apply-input bg-transparent border-0 border-b border-white/15 focus:border-lime focus:ring-0 px-0 py-2 text-white placeholder:text-white/25 text-[15px]"/>
+          </div>
+
+          <!-- SMS Consent -->
+          <div class="col-span-2 mt-3 flex flex-col gap-2">
+            <label for="m_sms" class="flex items-start gap-3 cursor-pointer">
+              <input id="m_sms" name="smsConsent" type="checkbox" class="apply-check shrink-0 mt-[3px]"/>
+              <span class="text-[12px] text-white/70 leading-[1.55]">
+                I agree to receive text messages from Cuban Tank regarding my coaching application. Message &amp; data rates may apply. Reply STOP to opt out at any time. View our <a href="/privacy" class="text-lime underline underline-offset-2 hover:text-white">Privacy Policy</a> and <a href="/terms" class="text-lime underline underline-offset-2 hover:text-white">Terms &amp; Conditions</a>.
+              </span>
+            </label>
+            <p data-err="smsConsent" class="hidden text-[11.5px] text-rose-300 pl-7">You must agree to receive text messages to continue.</p>
+          </div>
+
+          <!-- Submit -->
           <div class="col-span-2 mt-3 flex flex-col-reverse sm:flex-row sm:items-center sm:justify-between gap-4">
             <p class="text-[11.5px] text-white/40 leading-relaxed max-w-[34ch]">
               Your details stay private. No spam, no broadcast emails.
@@ -1685,25 +1783,45 @@
   // Cuban Tank lead capture: POSTs to n8n which fires SMS to client + owner.
   const N8N_WEBHOOK_URL = 'https://empirevortex.app.n8n.cloud/webhook/apply';
 
+  function collectChecked(name) {
+    return Array.from(form.querySelectorAll(`input[name="${name}"]:checked`)).map(el => el.value);
+  }
+  function radioValue(name) {
+    const r = form.querySelector(`input[name="${name}"]:checked`);
+    return r ? r.value : '';
+  }
+
   form.addEventListener('submit', async e => {
     e.preventDefault();
     const data = {
-      first: form.first.value.trim(),
-      last:  form.last.value.trim(),
-      email: form.email.value.trim(),
-      phone: form.phone.value.trim(),
+      first:         form.first.value.trim(),
+      last:          form.last.value.trim(),
+      email:         form.email.value.trim(),
+      phone:         form.phone.value.trim(),
+      goals:         collectChecked('goal'),
+      level:         form.level.value,
+      contactMethod: radioValue('contactMethod'),
+      availability:  collectChecked('availability'),
+      ageRange:      form.ageRange.value,
+      instagram:     form.instagram.value.trim(),
+      smsConsent:    form.smsConsent.checked,
     };
     const errs = {
-      first: !data.first,
-      last:  !data.last,
-      email: !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email),
-      phone: data.phone.replace(/\D/g, '').length < 7,
+      first:         !data.first,
+      last:          !data.last,
+      email:         !/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email),
+      phone:         data.phone.replace(/\D/g, '').length < 7,
+      goal:          data.goals.length === 0,
+      level:         !data.level,
+      contactMethod: !data.contactMethod,
+      smsConsent:    !data.smsConsent,
     };
     Object.entries(errs).forEach(([k, v]) => showErr(k, v));
     if (Object.values(errs).some(Boolean)) {
+      // focus the first invalid field
       const firstBad = Object.keys(errs).find(k => errs[k]);
-      const el = form.querySelector(`[name="${firstBad}"]`);
-      if (el) el.focus();
+      const inputEl = form.querySelector(`[name="${firstBad === 'goal' ? 'goal' : firstBad}"]`);
+      if (inputEl && inputEl.focus) inputEl.focus();
       return;
     }
 
@@ -1714,15 +1832,22 @@
     const reference = 'CT-2026-' + String(140 + Math.floor(Math.random() * 9)).padStart(4, '0');
 
     const payload = {
-      firstName: data.first,
-      lastName:  data.last,
-      fullName:  `${data.first} ${data.last}`.trim(),
-      email:     data.email,
-      phone:     data.phone,
+      firstName:     data.first,
+      lastName:      data.last,
+      fullName:      `${data.first} ${data.last}`.trim(),
+      email:         data.email,
+      phone:         data.phone,
+      goals:         data.goals,
+      level:         data.level,
+      contactMethod: data.contactMethod,
+      availability:  data.availability,
+      ageRange:      data.ageRange,
+      instagram:     data.instagram,
+      smsConsent:    data.smsConsent,
       reference,
-      source:    'cubantank.coach',
-      submittedAt: new Date().toISOString(),
-      userAgent:   navigator.userAgent,
+      source:        'cubantank.coach',
+      submittedAt:   new Date().toISOString(),
+      userAgent:     navigator.userAgent,
     };
 
     function showSuccess() {
@@ -1766,11 +1891,23 @@
     }
   });
 
-  // clear individual errors as user types
-  ['first','last','email','phone'].forEach(name => {
+  // Clear individual errors as the user fills each field
+  ['first','last','email','phone','instagram','ageRange'].forEach(name => {
     const el = form.querySelector(`[name="${name}"]`);
     if (el) el.addEventListener('input', () => showErr(name, false));
   });
+  // Select dropdowns fire 'change' not 'input'
+  const levelEl = form.querySelector('[name="level"]');
+  if (levelEl) levelEl.addEventListener('change', () => showErr('level', false));
+  // Checkbox/radio groups
+  form.querySelectorAll('input[name="goal"]').forEach(el =>
+    el.addEventListener('change', () => showErr('goal', false))
+  );
+  form.querySelectorAll('input[name="contactMethod"]').forEach(el =>
+    el.addEventListener('change', () => showErr('contactMethod', false))
+  );
+  const smsEl = form.querySelector('[name="smsConsent"]');
+  if (smsEl) smsEl.addEventListener('change', () => showErr('smsConsent', false));
 })();
 
 /* ============================== HERO VIDEO - 5-CLIP CROSSFADE ROTATION ============================== */
