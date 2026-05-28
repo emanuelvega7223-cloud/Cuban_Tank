@@ -875,412 +875,372 @@
           <div class="grid tcarousel-stack">
 
             <!-- ===== PANEL 01 ===== -->
-            <article class="tpanel active rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_30px_60px_-30px_rgba(0,0,0,0.6)]" data-panel="0">
-              <div class="relative w-full aspect-[4/5] sm:aspect-[3/4] lg:aspect-[16/10] bg-ink">
+            <article class="tpanel active mx-auto max-w-[640px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="0">
+
+              <!-- Portrait photo container - matches phone-photo aspect so faces stay in frame -->
+              <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
                 <img src="transformation1.jpg"
                      alt="Client Transformation 01"
                      loading="lazy" decoding="async"
-                     class="absolute inset-0 h-full w-full object-cover object-center" />
+                     class="absolute inset-0 h-full w-full object-cover"
+                     style="object-position: 50% 28%;" />
 
-                <!-- Top-left identifier pill (glass over photo) -->
-                <div class="absolute top-4 left-4 md:top-5 md:left-5 inline-flex items-center gap-2 rounded-full bg-black/45 backdrop-blur px-3 py-1.5 border border-white/20 z-10">
+                <!-- Top-left identifier -->
+                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
                   <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
-                  <span class="font-mono text-[10px] md:text-[10.5px] tracking-widest uppercase text-white">Transformation 01</span>
+                  <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 01</span>
                 </div>
 
-                <!-- Top-right position counter -->
-                <div class="absolute top-4 right-4 md:top-5 md:right-5 rounded-full bg-black/45 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
-                  <span class="font-mono text-[10px] md:text-[10.5px] tracking-widest uppercase text-white/85 tab">01 / 10</span>
+                <!-- Top-right counter -->
+                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
+                  <span class="font-mono text-[10px] tracking-widest uppercase text-white/90 tab">01 / 10</span>
                 </div>
+              </div>
 
-                <!-- Bottom gradient + content overlay -->
-                <div class="absolute inset-x-0 bottom-0 p-5 md:p-8 lg:p-9 z-10 pointer-events-none"
-                     style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 45%, transparent 100%);">
-                  <div class="flex items-end justify-between gap-4 md:gap-6">
-                    <div class="min-w-0">
-                      <div class="font-mono text-[9.5px] md:text-[10.5px] tracking-widest uppercase text-lime">Client Result</div>
-                      <h3 class="mt-1.5 md:mt-2 font-display text-[22px] sm:text-[26px] md:text-[32px] tracking-tight leading-[1.05] text-white">
-                        Transformation <span class="italic font-serif font-normal">01</span>.
-                      </h3>
-                    </div>
-                    <p class="hidden sm:block shrink-0 font-serif italic text-[13.5px] md:text-[15px] text-white/75 max-w-[18ch] text-right leading-snug">
-                      "Coming soon."
-                    </p>
-                  </div>
-                  <!-- mobile quote (sits below headline) -->
-                  <p class="sm:hidden mt-2 font-serif italic text-[13.5px] text-white/75">
-                    "Coming soon."
-                  </p>
+              <!-- Caption strip - lives BELOW the photo, doesn't crop it -->
+              <div class="p-5 md:p-6 border-t border-white/10 flex items-center justify-between gap-4">
+                <div class="min-w-0">
+                  <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
+                  <h3 class="mt-1.5 font-display text-[20px] md:text-[22px] tracking-tight leading-[1.1]">
+                    Transformation <span class="italic font-serif font-normal">01</span>.
+                  </h3>
                 </div>
+                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14px] text-white/70 max-w-[16ch] text-right leading-snug">
+                  "Coming soon."
+                </p>
               </div>
             </article>
 
             <!-- ===== PANEL 02 ===== -->
-            <article class="tpanel rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_30px_60px_-30px_rgba(0,0,0,0.6)]" data-panel="1">
-              <div class="relative w-full aspect-[4/5] sm:aspect-[3/4] lg:aspect-[16/10] bg-ink">
+            <article class="tpanel mx-auto max-w-[640px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="1">
+
+              <!-- Portrait photo container - matches phone-photo aspect so faces stay in frame -->
+              <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
                 <img src="transformation2.jpg"
                      alt="Client Transformation 02"
                      loading="lazy" decoding="async"
-                     class="absolute inset-0 h-full w-full object-cover object-center" />
+                     class="absolute inset-0 h-full w-full object-cover"
+                     style="object-position: 50% 28%;" />
 
-                <!-- Top-left identifier pill (glass over photo) -->
-                <div class="absolute top-4 left-4 md:top-5 md:left-5 inline-flex items-center gap-2 rounded-full bg-black/45 backdrop-blur px-3 py-1.5 border border-white/20 z-10">
+                <!-- Top-left identifier -->
+                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
                   <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
-                  <span class="font-mono text-[10px] md:text-[10.5px] tracking-widest uppercase text-white">Transformation 02</span>
+                  <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 02</span>
                 </div>
 
-                <!-- Top-right position counter -->
-                <div class="absolute top-4 right-4 md:top-5 md:right-5 rounded-full bg-black/45 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
-                  <span class="font-mono text-[10px] md:text-[10.5px] tracking-widest uppercase text-white/85 tab">02 / 10</span>
+                <!-- Top-right counter -->
+                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
+                  <span class="font-mono text-[10px] tracking-widest uppercase text-white/90 tab">02 / 10</span>
                 </div>
+              </div>
 
-                <!-- Bottom gradient + content overlay -->
-                <div class="absolute inset-x-0 bottom-0 p-5 md:p-8 lg:p-9 z-10 pointer-events-none"
-                     style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 45%, transparent 100%);">
-                  <div class="flex items-end justify-between gap-4 md:gap-6">
-                    <div class="min-w-0">
-                      <div class="font-mono text-[9.5px] md:text-[10.5px] tracking-widest uppercase text-lime">Client Result</div>
-                      <h3 class="mt-1.5 md:mt-2 font-display text-[22px] sm:text-[26px] md:text-[32px] tracking-tight leading-[1.05] text-white">
-                        Transformation <span class="italic font-serif font-normal">02</span>.
-                      </h3>
-                    </div>
-                    <p class="hidden sm:block shrink-0 font-serif italic text-[13.5px] md:text-[15px] text-white/75 max-w-[18ch] text-right leading-snug">
-                      "Coming soon."
-                    </p>
-                  </div>
-                  <!-- mobile quote (sits below headline) -->
-                  <p class="sm:hidden mt-2 font-serif italic text-[13.5px] text-white/75">
-                    "Coming soon."
-                  </p>
+              <!-- Caption strip - lives BELOW the photo, doesn't crop it -->
+              <div class="p-5 md:p-6 border-t border-white/10 flex items-center justify-between gap-4">
+                <div class="min-w-0">
+                  <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
+                  <h3 class="mt-1.5 font-display text-[20px] md:text-[22px] tracking-tight leading-[1.1]">
+                    Transformation <span class="italic font-serif font-normal">02</span>.
+                  </h3>
                 </div>
+                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14px] text-white/70 max-w-[16ch] text-right leading-snug">
+                  "Coming soon."
+                </p>
               </div>
             </article>
 
             <!-- ===== PANEL 03 ===== -->
-            <article class="tpanel rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_30px_60px_-30px_rgba(0,0,0,0.6)]" data-panel="2">
-              <div class="relative w-full aspect-[4/5] sm:aspect-[3/4] lg:aspect-[16/10] bg-ink">
+            <article class="tpanel mx-auto max-w-[640px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="2">
+
+              <!-- Portrait photo container - matches phone-photo aspect so faces stay in frame -->
+              <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
                 <img src="transformation3.jpg"
                      alt="Client Transformation 03"
                      loading="lazy" decoding="async"
-                     class="absolute inset-0 h-full w-full object-cover object-center" />
+                     class="absolute inset-0 h-full w-full object-cover"
+                     style="object-position: 50% 28%;" />
 
-                <!-- Top-left identifier pill (glass over photo) -->
-                <div class="absolute top-4 left-4 md:top-5 md:left-5 inline-flex items-center gap-2 rounded-full bg-black/45 backdrop-blur px-3 py-1.5 border border-white/20 z-10">
+                <!-- Top-left identifier -->
+                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
                   <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
-                  <span class="font-mono text-[10px] md:text-[10.5px] tracking-widest uppercase text-white">Transformation 03</span>
+                  <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 03</span>
                 </div>
 
-                <!-- Top-right position counter -->
-                <div class="absolute top-4 right-4 md:top-5 md:right-5 rounded-full bg-black/45 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
-                  <span class="font-mono text-[10px] md:text-[10.5px] tracking-widest uppercase text-white/85 tab">03 / 10</span>
+                <!-- Top-right counter -->
+                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
+                  <span class="font-mono text-[10px] tracking-widest uppercase text-white/90 tab">03 / 10</span>
                 </div>
+              </div>
 
-                <!-- Bottom gradient + content overlay -->
-                <div class="absolute inset-x-0 bottom-0 p-5 md:p-8 lg:p-9 z-10 pointer-events-none"
-                     style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 45%, transparent 100%);">
-                  <div class="flex items-end justify-between gap-4 md:gap-6">
-                    <div class="min-w-0">
-                      <div class="font-mono text-[9.5px] md:text-[10.5px] tracking-widest uppercase text-lime">Client Result</div>
-                      <h3 class="mt-1.5 md:mt-2 font-display text-[22px] sm:text-[26px] md:text-[32px] tracking-tight leading-[1.05] text-white">
-                        Transformation <span class="italic font-serif font-normal">03</span>.
-                      </h3>
-                    </div>
-                    <p class="hidden sm:block shrink-0 font-serif italic text-[13.5px] md:text-[15px] text-white/75 max-w-[18ch] text-right leading-snug">
-                      "Coming soon."
-                    </p>
-                  </div>
-                  <!-- mobile quote (sits below headline) -->
-                  <p class="sm:hidden mt-2 font-serif italic text-[13.5px] text-white/75">
-                    "Coming soon."
-                  </p>
+              <!-- Caption strip - lives BELOW the photo, doesn't crop it -->
+              <div class="p-5 md:p-6 border-t border-white/10 flex items-center justify-between gap-4">
+                <div class="min-w-0">
+                  <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
+                  <h3 class="mt-1.5 font-display text-[20px] md:text-[22px] tracking-tight leading-[1.1]">
+                    Transformation <span class="italic font-serif font-normal">03</span>.
+                  </h3>
                 </div>
+                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14px] text-white/70 max-w-[16ch] text-right leading-snug">
+                  "Coming soon."
+                </p>
               </div>
             </article>
 
             <!-- ===== PANEL 04 ===== -->
-            <article class="tpanel rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_30px_60px_-30px_rgba(0,0,0,0.6)]" data-panel="3">
-              <div class="relative w-full aspect-[4/5] sm:aspect-[3/4] lg:aspect-[16/10] bg-ink">
+            <article class="tpanel mx-auto max-w-[640px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="3">
+
+              <!-- Portrait photo container - matches phone-photo aspect so faces stay in frame -->
+              <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
                 <img src="transformation4.jpg"
                      alt="Client Transformation 04"
                      loading="lazy" decoding="async"
-                     class="absolute inset-0 h-full w-full object-cover object-center" />
+                     class="absolute inset-0 h-full w-full object-cover"
+                     style="object-position: 50% 28%;" />
 
-                <!-- Top-left identifier pill (glass over photo) -->
-                <div class="absolute top-4 left-4 md:top-5 md:left-5 inline-flex items-center gap-2 rounded-full bg-black/45 backdrop-blur px-3 py-1.5 border border-white/20 z-10">
+                <!-- Top-left identifier -->
+                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
                   <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
-                  <span class="font-mono text-[10px] md:text-[10.5px] tracking-widest uppercase text-white">Transformation 04</span>
+                  <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 04</span>
                 </div>
 
-                <!-- Top-right position counter -->
-                <div class="absolute top-4 right-4 md:top-5 md:right-5 rounded-full bg-black/45 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
-                  <span class="font-mono text-[10px] md:text-[10.5px] tracking-widest uppercase text-white/85 tab">04 / 10</span>
+                <!-- Top-right counter -->
+                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
+                  <span class="font-mono text-[10px] tracking-widest uppercase text-white/90 tab">04 / 10</span>
                 </div>
+              </div>
 
-                <!-- Bottom gradient + content overlay -->
-                <div class="absolute inset-x-0 bottom-0 p-5 md:p-8 lg:p-9 z-10 pointer-events-none"
-                     style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 45%, transparent 100%);">
-                  <div class="flex items-end justify-between gap-4 md:gap-6">
-                    <div class="min-w-0">
-                      <div class="font-mono text-[9.5px] md:text-[10.5px] tracking-widest uppercase text-lime">Client Result</div>
-                      <h3 class="mt-1.5 md:mt-2 font-display text-[22px] sm:text-[26px] md:text-[32px] tracking-tight leading-[1.05] text-white">
-                        Transformation <span class="italic font-serif font-normal">04</span>.
-                      </h3>
-                    </div>
-                    <p class="hidden sm:block shrink-0 font-serif italic text-[13.5px] md:text-[15px] text-white/75 max-w-[18ch] text-right leading-snug">
-                      "Coming soon."
-                    </p>
-                  </div>
-                  <!-- mobile quote (sits below headline) -->
-                  <p class="sm:hidden mt-2 font-serif italic text-[13.5px] text-white/75">
-                    "Coming soon."
-                  </p>
+              <!-- Caption strip - lives BELOW the photo, doesn't crop it -->
+              <div class="p-5 md:p-6 border-t border-white/10 flex items-center justify-between gap-4">
+                <div class="min-w-0">
+                  <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
+                  <h3 class="mt-1.5 font-display text-[20px] md:text-[22px] tracking-tight leading-[1.1]">
+                    Transformation <span class="italic font-serif font-normal">04</span>.
+                  </h3>
                 </div>
+                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14px] text-white/70 max-w-[16ch] text-right leading-snug">
+                  "Coming soon."
+                </p>
               </div>
             </article>
 
             <!-- ===== PANEL 05 ===== -->
-            <article class="tpanel rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_30px_60px_-30px_rgba(0,0,0,0.6)]" data-panel="4">
-              <div class="relative w-full aspect-[4/5] sm:aspect-[3/4] lg:aspect-[16/10] bg-ink">
+            <article class="tpanel mx-auto max-w-[640px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="4">
+
+              <!-- Portrait photo container - matches phone-photo aspect so faces stay in frame -->
+              <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
                 <img src="transformation5.jpg"
                      alt="Client Transformation 05"
                      loading="lazy" decoding="async"
-                     class="absolute inset-0 h-full w-full object-cover object-center" />
+                     class="absolute inset-0 h-full w-full object-cover"
+                     style="object-position: 50% 28%;" />
 
-                <!-- Top-left identifier pill (glass over photo) -->
-                <div class="absolute top-4 left-4 md:top-5 md:left-5 inline-flex items-center gap-2 rounded-full bg-black/45 backdrop-blur px-3 py-1.5 border border-white/20 z-10">
+                <!-- Top-left identifier -->
+                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
                   <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
-                  <span class="font-mono text-[10px] md:text-[10.5px] tracking-widest uppercase text-white">Transformation 05</span>
+                  <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 05</span>
                 </div>
 
-                <!-- Top-right position counter -->
-                <div class="absolute top-4 right-4 md:top-5 md:right-5 rounded-full bg-black/45 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
-                  <span class="font-mono text-[10px] md:text-[10.5px] tracking-widest uppercase text-white/85 tab">05 / 10</span>
+                <!-- Top-right counter -->
+                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
+                  <span class="font-mono text-[10px] tracking-widest uppercase text-white/90 tab">05 / 10</span>
                 </div>
+              </div>
 
-                <!-- Bottom gradient + content overlay -->
-                <div class="absolute inset-x-0 bottom-0 p-5 md:p-8 lg:p-9 z-10 pointer-events-none"
-                     style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 45%, transparent 100%);">
-                  <div class="flex items-end justify-between gap-4 md:gap-6">
-                    <div class="min-w-0">
-                      <div class="font-mono text-[9.5px] md:text-[10.5px] tracking-widest uppercase text-lime">Client Result</div>
-                      <h3 class="mt-1.5 md:mt-2 font-display text-[22px] sm:text-[26px] md:text-[32px] tracking-tight leading-[1.05] text-white">
-                        Transformation <span class="italic font-serif font-normal">05</span>.
-                      </h3>
-                    </div>
-                    <p class="hidden sm:block shrink-0 font-serif italic text-[13.5px] md:text-[15px] text-white/75 max-w-[18ch] text-right leading-snug">
-                      "Coming soon."
-                    </p>
-                  </div>
-                  <!-- mobile quote (sits below headline) -->
-                  <p class="sm:hidden mt-2 font-serif italic text-[13.5px] text-white/75">
-                    "Coming soon."
-                  </p>
+              <!-- Caption strip - lives BELOW the photo, doesn't crop it -->
+              <div class="p-5 md:p-6 border-t border-white/10 flex items-center justify-between gap-4">
+                <div class="min-w-0">
+                  <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
+                  <h3 class="mt-1.5 font-display text-[20px] md:text-[22px] tracking-tight leading-[1.1]">
+                    Transformation <span class="italic font-serif font-normal">05</span>.
+                  </h3>
                 </div>
+                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14px] text-white/70 max-w-[16ch] text-right leading-snug">
+                  "Coming soon."
+                </p>
               </div>
             </article>
 
             <!-- ===== PANEL 06 ===== -->
-            <article class="tpanel rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_30px_60px_-30px_rgba(0,0,0,0.6)]" data-panel="5">
-              <div class="relative w-full aspect-[4/5] sm:aspect-[3/4] lg:aspect-[16/10] bg-ink">
+            <article class="tpanel mx-auto max-w-[640px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="5">
+
+              <!-- Portrait photo container - matches phone-photo aspect so faces stay in frame -->
+              <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
                 <img src="transformation6.jpg"
                      alt="Client Transformation 06"
                      loading="lazy" decoding="async"
-                     class="absolute inset-0 h-full w-full object-cover object-center" />
+                     class="absolute inset-0 h-full w-full object-cover"
+                     style="object-position: 50% 28%;" />
 
-                <!-- Top-left identifier pill (glass over photo) -->
-                <div class="absolute top-4 left-4 md:top-5 md:left-5 inline-flex items-center gap-2 rounded-full bg-black/45 backdrop-blur px-3 py-1.5 border border-white/20 z-10">
+                <!-- Top-left identifier -->
+                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
                   <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
-                  <span class="font-mono text-[10px] md:text-[10.5px] tracking-widest uppercase text-white">Transformation 06</span>
+                  <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 06</span>
                 </div>
 
-                <!-- Top-right position counter -->
-                <div class="absolute top-4 right-4 md:top-5 md:right-5 rounded-full bg-black/45 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
-                  <span class="font-mono text-[10px] md:text-[10.5px] tracking-widest uppercase text-white/85 tab">06 / 10</span>
+                <!-- Top-right counter -->
+                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
+                  <span class="font-mono text-[10px] tracking-widest uppercase text-white/90 tab">06 / 10</span>
                 </div>
+              </div>
 
-                <!-- Bottom gradient + content overlay -->
-                <div class="absolute inset-x-0 bottom-0 p-5 md:p-8 lg:p-9 z-10 pointer-events-none"
-                     style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 45%, transparent 100%);">
-                  <div class="flex items-end justify-between gap-4 md:gap-6">
-                    <div class="min-w-0">
-                      <div class="font-mono text-[9.5px] md:text-[10.5px] tracking-widest uppercase text-lime">Client Result</div>
-                      <h3 class="mt-1.5 md:mt-2 font-display text-[22px] sm:text-[26px] md:text-[32px] tracking-tight leading-[1.05] text-white">
-                        Transformation <span class="italic font-serif font-normal">06</span>.
-                      </h3>
-                    </div>
-                    <p class="hidden sm:block shrink-0 font-serif italic text-[13.5px] md:text-[15px] text-white/75 max-w-[18ch] text-right leading-snug">
-                      "Coming soon."
-                    </p>
-                  </div>
-                  <!-- mobile quote (sits below headline) -->
-                  <p class="sm:hidden mt-2 font-serif italic text-[13.5px] text-white/75">
-                    "Coming soon."
-                  </p>
+              <!-- Caption strip - lives BELOW the photo, doesn't crop it -->
+              <div class="p-5 md:p-6 border-t border-white/10 flex items-center justify-between gap-4">
+                <div class="min-w-0">
+                  <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
+                  <h3 class="mt-1.5 font-display text-[20px] md:text-[22px] tracking-tight leading-[1.1]">
+                    Transformation <span class="italic font-serif font-normal">06</span>.
+                  </h3>
                 </div>
+                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14px] text-white/70 max-w-[16ch] text-right leading-snug">
+                  "Coming soon."
+                </p>
               </div>
             </article>
 
             <!-- ===== PANEL 07 ===== -->
-            <article class="tpanel rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_30px_60px_-30px_rgba(0,0,0,0.6)]" data-panel="6">
-              <div class="relative w-full aspect-[4/5] sm:aspect-[3/4] lg:aspect-[16/10] bg-ink">
+            <article class="tpanel mx-auto max-w-[640px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="6">
+
+              <!-- Portrait photo container - matches phone-photo aspect so faces stay in frame -->
+              <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
                 <img src="transformation7.jpg"
                      alt="Client Transformation 07"
                      loading="lazy" decoding="async"
-                     class="absolute inset-0 h-full w-full object-cover object-center" />
+                     class="absolute inset-0 h-full w-full object-cover"
+                     style="object-position: 50% 28%;" />
 
-                <!-- Top-left identifier pill (glass over photo) -->
-                <div class="absolute top-4 left-4 md:top-5 md:left-5 inline-flex items-center gap-2 rounded-full bg-black/45 backdrop-blur px-3 py-1.5 border border-white/20 z-10">
+                <!-- Top-left identifier -->
+                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
                   <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
-                  <span class="font-mono text-[10px] md:text-[10.5px] tracking-widest uppercase text-white">Transformation 07</span>
+                  <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 07</span>
                 </div>
 
-                <!-- Top-right position counter -->
-                <div class="absolute top-4 right-4 md:top-5 md:right-5 rounded-full bg-black/45 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
-                  <span class="font-mono text-[10px] md:text-[10.5px] tracking-widest uppercase text-white/85 tab">07 / 10</span>
+                <!-- Top-right counter -->
+                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
+                  <span class="font-mono text-[10px] tracking-widest uppercase text-white/90 tab">07 / 10</span>
                 </div>
+              </div>
 
-                <!-- Bottom gradient + content overlay -->
-                <div class="absolute inset-x-0 bottom-0 p-5 md:p-8 lg:p-9 z-10 pointer-events-none"
-                     style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 45%, transparent 100%);">
-                  <div class="flex items-end justify-between gap-4 md:gap-6">
-                    <div class="min-w-0">
-                      <div class="font-mono text-[9.5px] md:text-[10.5px] tracking-widest uppercase text-lime">Client Result</div>
-                      <h3 class="mt-1.5 md:mt-2 font-display text-[22px] sm:text-[26px] md:text-[32px] tracking-tight leading-[1.05] text-white">
-                        Transformation <span class="italic font-serif font-normal">07</span>.
-                      </h3>
-                    </div>
-                    <p class="hidden sm:block shrink-0 font-serif italic text-[13.5px] md:text-[15px] text-white/75 max-w-[18ch] text-right leading-snug">
-                      "Coming soon."
-                    </p>
-                  </div>
-                  <!-- mobile quote (sits below headline) -->
-                  <p class="sm:hidden mt-2 font-serif italic text-[13.5px] text-white/75">
-                    "Coming soon."
-                  </p>
+              <!-- Caption strip - lives BELOW the photo, doesn't crop it -->
+              <div class="p-5 md:p-6 border-t border-white/10 flex items-center justify-between gap-4">
+                <div class="min-w-0">
+                  <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
+                  <h3 class="mt-1.5 font-display text-[20px] md:text-[22px] tracking-tight leading-[1.1]">
+                    Transformation <span class="italic font-serif font-normal">07</span>.
+                  </h3>
                 </div>
+                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14px] text-white/70 max-w-[16ch] text-right leading-snug">
+                  "Coming soon."
+                </p>
               </div>
             </article>
 
             <!-- ===== PANEL 08 ===== -->
-            <article class="tpanel rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_30px_60px_-30px_rgba(0,0,0,0.6)]" data-panel="7">
-              <div class="relative w-full aspect-[4/5] sm:aspect-[3/4] lg:aspect-[16/10] bg-ink">
+            <article class="tpanel mx-auto max-w-[640px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="7">
+
+              <!-- Portrait photo container - matches phone-photo aspect so faces stay in frame -->
+              <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
                 <img src="transformation8.jpg"
                      alt="Client Transformation 08"
                      loading="lazy" decoding="async"
-                     class="absolute inset-0 h-full w-full object-cover object-center" />
+                     class="absolute inset-0 h-full w-full object-cover"
+                     style="object-position: 50% 28%;" />
 
-                <!-- Top-left identifier pill (glass over photo) -->
-                <div class="absolute top-4 left-4 md:top-5 md:left-5 inline-flex items-center gap-2 rounded-full bg-black/45 backdrop-blur px-3 py-1.5 border border-white/20 z-10">
+                <!-- Top-left identifier -->
+                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
                   <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
-                  <span class="font-mono text-[10px] md:text-[10.5px] tracking-widest uppercase text-white">Transformation 08</span>
+                  <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 08</span>
                 </div>
 
-                <!-- Top-right position counter -->
-                <div class="absolute top-4 right-4 md:top-5 md:right-5 rounded-full bg-black/45 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
-                  <span class="font-mono text-[10px] md:text-[10.5px] tracking-widest uppercase text-white/85 tab">08 / 10</span>
+                <!-- Top-right counter -->
+                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
+                  <span class="font-mono text-[10px] tracking-widest uppercase text-white/90 tab">08 / 10</span>
                 </div>
+              </div>
 
-                <!-- Bottom gradient + content overlay -->
-                <div class="absolute inset-x-0 bottom-0 p-5 md:p-8 lg:p-9 z-10 pointer-events-none"
-                     style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 45%, transparent 100%);">
-                  <div class="flex items-end justify-between gap-4 md:gap-6">
-                    <div class="min-w-0">
-                      <div class="font-mono text-[9.5px] md:text-[10.5px] tracking-widest uppercase text-lime">Client Result</div>
-                      <h3 class="mt-1.5 md:mt-2 font-display text-[22px] sm:text-[26px] md:text-[32px] tracking-tight leading-[1.05] text-white">
-                        Transformation <span class="italic font-serif font-normal">08</span>.
-                      </h3>
-                    </div>
-                    <p class="hidden sm:block shrink-0 font-serif italic text-[13.5px] md:text-[15px] text-white/75 max-w-[18ch] text-right leading-snug">
-                      "Coming soon."
-                    </p>
-                  </div>
-                  <!-- mobile quote (sits below headline) -->
-                  <p class="sm:hidden mt-2 font-serif italic text-[13.5px] text-white/75">
-                    "Coming soon."
-                  </p>
+              <!-- Caption strip - lives BELOW the photo, doesn't crop it -->
+              <div class="p-5 md:p-6 border-t border-white/10 flex items-center justify-between gap-4">
+                <div class="min-w-0">
+                  <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
+                  <h3 class="mt-1.5 font-display text-[20px] md:text-[22px] tracking-tight leading-[1.1]">
+                    Transformation <span class="italic font-serif font-normal">08</span>.
+                  </h3>
                 </div>
+                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14px] text-white/70 max-w-[16ch] text-right leading-snug">
+                  "Coming soon."
+                </p>
               </div>
             </article>
 
             <!-- ===== PANEL 09 ===== -->
-            <article class="tpanel rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_30px_60px_-30px_rgba(0,0,0,0.6)]" data-panel="8">
-              <div class="relative w-full aspect-[4/5] sm:aspect-[3/4] lg:aspect-[16/10] bg-ink">
+            <article class="tpanel mx-auto max-w-[640px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="8">
+
+              <!-- Portrait photo container - matches phone-photo aspect so faces stay in frame -->
+              <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
                 <img src="transformation9.jpg"
                      alt="Client Transformation 09"
                      loading="lazy" decoding="async"
-                     class="absolute inset-0 h-full w-full object-cover object-center" />
+                     class="absolute inset-0 h-full w-full object-cover"
+                     style="object-position: 50% 28%;" />
 
-                <!-- Top-left identifier pill (glass over photo) -->
-                <div class="absolute top-4 left-4 md:top-5 md:left-5 inline-flex items-center gap-2 rounded-full bg-black/45 backdrop-blur px-3 py-1.5 border border-white/20 z-10">
+                <!-- Top-left identifier -->
+                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
                   <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
-                  <span class="font-mono text-[10px] md:text-[10.5px] tracking-widest uppercase text-white">Transformation 09</span>
+                  <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 09</span>
                 </div>
 
-                <!-- Top-right position counter -->
-                <div class="absolute top-4 right-4 md:top-5 md:right-5 rounded-full bg-black/45 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
-                  <span class="font-mono text-[10px] md:text-[10.5px] tracking-widest uppercase text-white/85 tab">09 / 10</span>
+                <!-- Top-right counter -->
+                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
+                  <span class="font-mono text-[10px] tracking-widest uppercase text-white/90 tab">09 / 10</span>
                 </div>
+              </div>
 
-                <!-- Bottom gradient + content overlay -->
-                <div class="absolute inset-x-0 bottom-0 p-5 md:p-8 lg:p-9 z-10 pointer-events-none"
-                     style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 45%, transparent 100%);">
-                  <div class="flex items-end justify-between gap-4 md:gap-6">
-                    <div class="min-w-0">
-                      <div class="font-mono text-[9.5px] md:text-[10.5px] tracking-widest uppercase text-lime">Client Result</div>
-                      <h3 class="mt-1.5 md:mt-2 font-display text-[22px] sm:text-[26px] md:text-[32px] tracking-tight leading-[1.05] text-white">
-                        Transformation <span class="italic font-serif font-normal">09</span>.
-                      </h3>
-                    </div>
-                    <p class="hidden sm:block shrink-0 font-serif italic text-[13.5px] md:text-[15px] text-white/75 max-w-[18ch] text-right leading-snug">
-                      "Coming soon."
-                    </p>
-                  </div>
-                  <!-- mobile quote (sits below headline) -->
-                  <p class="sm:hidden mt-2 font-serif italic text-[13.5px] text-white/75">
-                    "Coming soon."
-                  </p>
+              <!-- Caption strip - lives BELOW the photo, doesn't crop it -->
+              <div class="p-5 md:p-6 border-t border-white/10 flex items-center justify-between gap-4">
+                <div class="min-w-0">
+                  <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
+                  <h3 class="mt-1.5 font-display text-[20px] md:text-[22px] tracking-tight leading-[1.1]">
+                    Transformation <span class="italic font-serif font-normal">09</span>.
+                  </h3>
                 </div>
+                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14px] text-white/70 max-w-[16ch] text-right leading-snug">
+                  "Coming soon."
+                </p>
               </div>
             </article>
 
             <!-- ===== PANEL 10 ===== -->
-            <article class="tpanel rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[inset_0_1px_0_rgba(255,255,255,0.05),0_30px_60px_-30px_rgba(0,0,0,0.6)]" data-panel="9">
-              <div class="relative w-full aspect-[4/5] sm:aspect-[3/4] lg:aspect-[16/10] bg-ink">
+            <article class="tpanel mx-auto max-w-[640px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="9">
+
+              <!-- Portrait photo container - matches phone-photo aspect so faces stay in frame -->
+              <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
                 <img src="transformation10.jpg"
                      alt="Client Transformation 10"
                      loading="lazy" decoding="async"
-                     class="absolute inset-0 h-full w-full object-cover object-center" />
+                     class="absolute inset-0 h-full w-full object-cover"
+                     style="object-position: 50% 28%;" />
 
-                <!-- Top-left identifier pill (glass over photo) -->
-                <div class="absolute top-4 left-4 md:top-5 md:left-5 inline-flex items-center gap-2 rounded-full bg-black/45 backdrop-blur px-3 py-1.5 border border-white/20 z-10">
+                <!-- Top-left identifier -->
+                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
                   <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
-                  <span class="font-mono text-[10px] md:text-[10.5px] tracking-widest uppercase text-white">Transformation 10</span>
+                  <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 10</span>
                 </div>
 
-                <!-- Top-right position counter -->
-                <div class="absolute top-4 right-4 md:top-5 md:right-5 rounded-full bg-black/45 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
-                  <span class="font-mono text-[10px] md:text-[10.5px] tracking-widest uppercase text-white/85 tab">10 / 10</span>
+                <!-- Top-right counter -->
+                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
+                  <span class="font-mono text-[10px] tracking-widest uppercase text-white/90 tab">10 / 10</span>
                 </div>
+              </div>
 
-                <!-- Bottom gradient + content overlay -->
-                <div class="absolute inset-x-0 bottom-0 p-5 md:p-8 lg:p-9 z-10 pointer-events-none"
-                     style="background: linear-gradient(to top, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0.55) 45%, transparent 100%);">
-                  <div class="flex items-end justify-between gap-4 md:gap-6">
-                    <div class="min-w-0">
-                      <div class="font-mono text-[9.5px] md:text-[10.5px] tracking-widest uppercase text-lime">Client Result</div>
-                      <h3 class="mt-1.5 md:mt-2 font-display text-[22px] sm:text-[26px] md:text-[32px] tracking-tight leading-[1.05] text-white">
-                        Transformation <span class="italic font-serif font-normal">10</span>.
-                      </h3>
-                    </div>
-                    <p class="hidden sm:block shrink-0 font-serif italic text-[13.5px] md:text-[15px] text-white/75 max-w-[18ch] text-right leading-snug">
-                      "Coming soon."
-                    </p>
-                  </div>
-                  <!-- mobile quote (sits below headline) -->
-                  <p class="sm:hidden mt-2 font-serif italic text-[13.5px] text-white/75">
-                    "Coming soon."
-                  </p>
+              <!-- Caption strip - lives BELOW the photo, doesn't crop it -->
+              <div class="p-5 md:p-6 border-t border-white/10 flex items-center justify-between gap-4">
+                <div class="min-w-0">
+                  <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
+                  <h3 class="mt-1.5 font-display text-[20px] md:text-[22px] tracking-tight leading-[1.1]">
+                    Transformation <span class="italic font-serif font-normal">10</span>.
+                  </h3>
                 </div>
+                <p class="shrink-0 font-serif italic text-[13.5px] md:text-[14px] text-white/70 max-w-[16ch] text-right leading-snug">
+                  "Coming soon."
+                </p>
               </div>
             </article>
 
