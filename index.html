@@ -646,33 +646,65 @@
             <article class="tpanel active relative mx-auto max-w-[680px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="0">
 
               <!-- Red gradient hairline along the top edge -->
-              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-10"></div>
+              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-30"></div>
 
-              <!-- Portrait photo container -->
-              <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
-                <picture class="absolute inset-0 block h-full w-full"><source srcset="transformation1.avif" type="image/avif" /><img src="transformation1.jpg"
-                     alt="Client Transformation 01"
-                     width="1600" height="1600" loading="lazy" decoding="async"
-                     class="absolute inset-0 h-full w-full object-cover"
-                     style="object-position: 50% 28%;" /></picture>
+              <!-- Photo area: square panel, split into Before + After columns -->
+              <div class="relative w-full aspect-square bg-ink overflow-hidden">
 
-                <!-- subtle top gradient so the chips above always have contrast -->
-                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-24 pointer-events-none"
-                     style="background: linear-gradient(to bottom, rgba(0,0,0,0.45), transparent);"></div>
+                <!-- Before / After columns -->
+                <div class="grid grid-cols-2 h-full">
 
-                <!-- Top-left identifier -->
-                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
+                  <!-- BEFORE (left) -->
+                  <div class="relative overflow-hidden">
+                    <picture class="absolute inset-0 block h-full w-full">
+                      <source srcset="bf1.avif" type="image/avif" />
+                      <img src="bf1.jpg" alt="Client Transformation 01 - Before"
+                           width="800" height="1600" loading="lazy" decoding="async"
+                           class="absolute inset-0 h-full w-full object-cover" />
+                    </picture>
+                    <!-- subtle bottom gradient so the Before label always reads -->
+                    <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-24 pointer-events-none bg-gradient-to-t from-black/65 to-transparent"></div>
+                    <!-- Before label -->
+                    <div class="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15">
+                      <span class="h-1 w-1 rounded-full bg-white/65"></span>
+                      <span class="font-mono text-[9.5px] tracking-widest uppercase text-white/85">Before</span>
+                    </div>
+                  </div>
+
+                  <!-- Divider line between halves -->
+                  <!-- AFTER (right) -->
+                  <div class="relative overflow-hidden border-l border-white/15">
+                    <picture class="absolute inset-0 block h-full w-full">
+                      <source srcset="af1.avif" type="image/avif" />
+                      <img src="af1.jpg" alt="Client Transformation 01 - After"
+                           width="800" height="1600" loading="lazy" decoding="async"
+                           class="absolute inset-0 h-full w-full object-cover" />
+                    </picture>
+                    <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-24 pointer-events-none bg-gradient-to-t from-black/65 to-transparent"></div>
+                    <!-- After label (red accent) -->
+                    <div class="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-lime/40">
+                      <span class="relative inline-flex h-1 w-1 rounded-full bg-lime breathe"></span>
+                      <span class="font-mono text-[9.5px] tracking-widest uppercase text-lime">After</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- subtle top gradient + chips overlay -->
+                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-20 pointer-events-none bg-gradient-to-b from-black/55 to-transparent z-10"></div>
+
+                <!-- Top-left identifier (over both columns) -->
+                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-20">
                   <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
                   <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 01</span>
                 </div>
 
                 <!-- Top-right counter -->
-                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
+                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-20">
                   <span class="font-mono text-[10px] tracking-widest uppercase text-white/90 tab">01 / 10</span>
                 </div>
               </div>
 
-              <!-- Caption strip below the photo -->
+              <!-- Caption strip below the photos -->
               <div class="p-6 md:p-7 border-t border-white/10 flex items-end justify-between gap-5">
                 <div class="min-w-0">
                   <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
@@ -690,33 +722,65 @@
             <article class="tpanel relative mx-auto max-w-[680px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="1">
 
               <!-- Red gradient hairline along the top edge -->
-              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-10"></div>
+              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-30"></div>
 
-              <!-- Portrait photo container -->
-              <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
-                <picture class="absolute inset-0 block h-full w-full"><source srcset="transformation2.avif" type="image/avif" /><img src="transformation2.jpg"
-                     alt="Client Transformation 02"
-                     width="1600" height="1600" loading="lazy" decoding="async"
-                     class="absolute inset-0 h-full w-full object-cover"
-                     style="object-position: 50% 28%;" /></picture>
+              <!-- Photo area: square panel, split into Before + After columns -->
+              <div class="relative w-full aspect-square bg-ink overflow-hidden">
 
-                <!-- subtle top gradient so the chips above always have contrast -->
-                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-24 pointer-events-none"
-                     style="background: linear-gradient(to bottom, rgba(0,0,0,0.45), transparent);"></div>
+                <!-- Before / After columns -->
+                <div class="grid grid-cols-2 h-full">
 
-                <!-- Top-left identifier -->
-                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
+                  <!-- BEFORE (left) -->
+                  <div class="relative overflow-hidden">
+                    <picture class="absolute inset-0 block h-full w-full">
+                      <source srcset="bf2.avif" type="image/avif" />
+                      <img src="bf2.jpg" alt="Client Transformation 02 - Before"
+                           width="800" height="1600" loading="lazy" decoding="async"
+                           class="absolute inset-0 h-full w-full object-cover" />
+                    </picture>
+                    <!-- subtle bottom gradient so the Before label always reads -->
+                    <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-24 pointer-events-none bg-gradient-to-t from-black/65 to-transparent"></div>
+                    <!-- Before label -->
+                    <div class="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15">
+                      <span class="h-1 w-1 rounded-full bg-white/65"></span>
+                      <span class="font-mono text-[9.5px] tracking-widest uppercase text-white/85">Before</span>
+                    </div>
+                  </div>
+
+                  <!-- Divider line between halves -->
+                  <!-- AFTER (right) -->
+                  <div class="relative overflow-hidden border-l border-white/15">
+                    <picture class="absolute inset-0 block h-full w-full">
+                      <source srcset="af2.avif" type="image/avif" />
+                      <img src="af2.jpg" alt="Client Transformation 02 - After"
+                           width="800" height="1600" loading="lazy" decoding="async"
+                           class="absolute inset-0 h-full w-full object-cover" />
+                    </picture>
+                    <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-24 pointer-events-none bg-gradient-to-t from-black/65 to-transparent"></div>
+                    <!-- After label (red accent) -->
+                    <div class="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-lime/40">
+                      <span class="relative inline-flex h-1 w-1 rounded-full bg-lime breathe"></span>
+                      <span class="font-mono text-[9.5px] tracking-widest uppercase text-lime">After</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- subtle top gradient + chips overlay -->
+                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-20 pointer-events-none bg-gradient-to-b from-black/55 to-transparent z-10"></div>
+
+                <!-- Top-left identifier (over both columns) -->
+                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-20">
                   <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
                   <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 02</span>
                 </div>
 
                 <!-- Top-right counter -->
-                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
+                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-20">
                   <span class="font-mono text-[10px] tracking-widest uppercase text-white/90 tab">02 / 10</span>
                 </div>
               </div>
 
-              <!-- Caption strip below the photo -->
+              <!-- Caption strip below the photos -->
               <div class="p-6 md:p-7 border-t border-white/10 flex items-end justify-between gap-5">
                 <div class="min-w-0">
                   <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
@@ -734,33 +798,65 @@
             <article class="tpanel relative mx-auto max-w-[680px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="2">
 
               <!-- Red gradient hairline along the top edge -->
-              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-10"></div>
+              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-30"></div>
 
-              <!-- Portrait photo container -->
-              <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
-                <picture class="absolute inset-0 block h-full w-full"><source srcset="transformation3.avif" type="image/avif" /><img src="transformation3.jpg"
-                     alt="Client Transformation 03"
-                     width="1600" height="1600" loading="lazy" decoding="async"
-                     class="absolute inset-0 h-full w-full object-cover"
-                     style="object-position: 50% 28%;" /></picture>
+              <!-- Photo area: square panel, split into Before + After columns -->
+              <div class="relative w-full aspect-square bg-ink overflow-hidden">
 
-                <!-- subtle top gradient so the chips above always have contrast -->
-                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-24 pointer-events-none"
-                     style="background: linear-gradient(to bottom, rgba(0,0,0,0.45), transparent);"></div>
+                <!-- Before / After columns -->
+                <div class="grid grid-cols-2 h-full">
 
-                <!-- Top-left identifier -->
-                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
+                  <!-- BEFORE (left) -->
+                  <div class="relative overflow-hidden">
+                    <picture class="absolute inset-0 block h-full w-full">
+                      <source srcset="bf3.avif" type="image/avif" />
+                      <img src="bf3.jpg" alt="Client Transformation 03 - Before"
+                           width="800" height="1600" loading="lazy" decoding="async"
+                           class="absolute inset-0 h-full w-full object-cover" />
+                    </picture>
+                    <!-- subtle bottom gradient so the Before label always reads -->
+                    <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-24 pointer-events-none bg-gradient-to-t from-black/65 to-transparent"></div>
+                    <!-- Before label -->
+                    <div class="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15">
+                      <span class="h-1 w-1 rounded-full bg-white/65"></span>
+                      <span class="font-mono text-[9.5px] tracking-widest uppercase text-white/85">Before</span>
+                    </div>
+                  </div>
+
+                  <!-- Divider line between halves -->
+                  <!-- AFTER (right) -->
+                  <div class="relative overflow-hidden border-l border-white/15">
+                    <picture class="absolute inset-0 block h-full w-full">
+                      <source srcset="af3.avif" type="image/avif" />
+                      <img src="af3.jpg" alt="Client Transformation 03 - After"
+                           width="800" height="1600" loading="lazy" decoding="async"
+                           class="absolute inset-0 h-full w-full object-cover" />
+                    </picture>
+                    <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-24 pointer-events-none bg-gradient-to-t from-black/65 to-transparent"></div>
+                    <!-- After label (red accent) -->
+                    <div class="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-lime/40">
+                      <span class="relative inline-flex h-1 w-1 rounded-full bg-lime breathe"></span>
+                      <span class="font-mono text-[9.5px] tracking-widest uppercase text-lime">After</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- subtle top gradient + chips overlay -->
+                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-20 pointer-events-none bg-gradient-to-b from-black/55 to-transparent z-10"></div>
+
+                <!-- Top-left identifier (over both columns) -->
+                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-20">
                   <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
                   <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 03</span>
                 </div>
 
                 <!-- Top-right counter -->
-                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
+                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-20">
                   <span class="font-mono text-[10px] tracking-widest uppercase text-white/90 tab">03 / 10</span>
                 </div>
               </div>
 
-              <!-- Caption strip below the photo -->
+              <!-- Caption strip below the photos -->
               <div class="p-6 md:p-7 border-t border-white/10 flex items-end justify-between gap-5">
                 <div class="min-w-0">
                   <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
@@ -778,33 +874,65 @@
             <article class="tpanel relative mx-auto max-w-[680px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="3">
 
               <!-- Red gradient hairline along the top edge -->
-              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-10"></div>
+              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-30"></div>
 
-              <!-- Portrait photo container -->
-              <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
-                <picture class="absolute inset-0 block h-full w-full"><source srcset="transformation4.avif" type="image/avif" /><img src="transformation4.jpg"
-                     alt="Client Transformation 04"
-                     width="1600" height="1600" loading="lazy" decoding="async"
-                     class="absolute inset-0 h-full w-full object-cover"
-                     style="object-position: 50% 28%;" /></picture>
+              <!-- Photo area: square panel, split into Before + After columns -->
+              <div class="relative w-full aspect-square bg-ink overflow-hidden">
 
-                <!-- subtle top gradient so the chips above always have contrast -->
-                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-24 pointer-events-none"
-                     style="background: linear-gradient(to bottom, rgba(0,0,0,0.45), transparent);"></div>
+                <!-- Before / After columns -->
+                <div class="grid grid-cols-2 h-full">
 
-                <!-- Top-left identifier -->
-                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
+                  <!-- BEFORE (left) -->
+                  <div class="relative overflow-hidden">
+                    <picture class="absolute inset-0 block h-full w-full">
+                      <source srcset="bf4.avif" type="image/avif" />
+                      <img src="bf4.jpg" alt="Client Transformation 04 - Before"
+                           width="800" height="1600" loading="lazy" decoding="async"
+                           class="absolute inset-0 h-full w-full object-cover" />
+                    </picture>
+                    <!-- subtle bottom gradient so the Before label always reads -->
+                    <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-24 pointer-events-none bg-gradient-to-t from-black/65 to-transparent"></div>
+                    <!-- Before label -->
+                    <div class="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15">
+                      <span class="h-1 w-1 rounded-full bg-white/65"></span>
+                      <span class="font-mono text-[9.5px] tracking-widest uppercase text-white/85">Before</span>
+                    </div>
+                  </div>
+
+                  <!-- Divider line between halves -->
+                  <!-- AFTER (right) -->
+                  <div class="relative overflow-hidden border-l border-white/15">
+                    <picture class="absolute inset-0 block h-full w-full">
+                      <source srcset="af4.avif" type="image/avif" />
+                      <img src="af4.jpg" alt="Client Transformation 04 - After"
+                           width="800" height="1600" loading="lazy" decoding="async"
+                           class="absolute inset-0 h-full w-full object-cover" />
+                    </picture>
+                    <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-24 pointer-events-none bg-gradient-to-t from-black/65 to-transparent"></div>
+                    <!-- After label (red accent) -->
+                    <div class="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-lime/40">
+                      <span class="relative inline-flex h-1 w-1 rounded-full bg-lime breathe"></span>
+                      <span class="font-mono text-[9.5px] tracking-widest uppercase text-lime">After</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- subtle top gradient + chips overlay -->
+                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-20 pointer-events-none bg-gradient-to-b from-black/55 to-transparent z-10"></div>
+
+                <!-- Top-left identifier (over both columns) -->
+                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-20">
                   <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
                   <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 04</span>
                 </div>
 
                 <!-- Top-right counter -->
-                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
+                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-20">
                   <span class="font-mono text-[10px] tracking-widest uppercase text-white/90 tab">04 / 10</span>
                 </div>
               </div>
 
-              <!-- Caption strip below the photo -->
+              <!-- Caption strip below the photos -->
               <div class="p-6 md:p-7 border-t border-white/10 flex items-end justify-between gap-5">
                 <div class="min-w-0">
                   <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
@@ -822,33 +950,65 @@
             <article class="tpanel relative mx-auto max-w-[680px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="4">
 
               <!-- Red gradient hairline along the top edge -->
-              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-10"></div>
+              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-30"></div>
 
-              <!-- Portrait photo container -->
-              <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
-                <picture class="absolute inset-0 block h-full w-full"><source srcset="transformation5.avif" type="image/avif" /><img src="transformation5.jpg"
-                     alt="Client Transformation 05"
-                     width="1600" height="1600" loading="lazy" decoding="async"
-                     class="absolute inset-0 h-full w-full object-cover"
-                     style="object-position: 50% 28%;" /></picture>
+              <!-- Photo area: square panel, split into Before + After columns -->
+              <div class="relative w-full aspect-square bg-ink overflow-hidden">
 
-                <!-- subtle top gradient so the chips above always have contrast -->
-                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-24 pointer-events-none"
-                     style="background: linear-gradient(to bottom, rgba(0,0,0,0.45), transparent);"></div>
+                <!-- Before / After columns -->
+                <div class="grid grid-cols-2 h-full">
 
-                <!-- Top-left identifier -->
-                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
+                  <!-- BEFORE (left) -->
+                  <div class="relative overflow-hidden">
+                    <picture class="absolute inset-0 block h-full w-full">
+                      <source srcset="bf5.avif" type="image/avif" />
+                      <img src="bf5.jpg" alt="Client Transformation 05 - Before"
+                           width="800" height="1600" loading="lazy" decoding="async"
+                           class="absolute inset-0 h-full w-full object-cover" />
+                    </picture>
+                    <!-- subtle bottom gradient so the Before label always reads -->
+                    <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-24 pointer-events-none bg-gradient-to-t from-black/65 to-transparent"></div>
+                    <!-- Before label -->
+                    <div class="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15">
+                      <span class="h-1 w-1 rounded-full bg-white/65"></span>
+                      <span class="font-mono text-[9.5px] tracking-widest uppercase text-white/85">Before</span>
+                    </div>
+                  </div>
+
+                  <!-- Divider line between halves -->
+                  <!-- AFTER (right) -->
+                  <div class="relative overflow-hidden border-l border-white/15">
+                    <picture class="absolute inset-0 block h-full w-full">
+                      <source srcset="af5.avif" type="image/avif" />
+                      <img src="af5.jpg" alt="Client Transformation 05 - After"
+                           width="800" height="1600" loading="lazy" decoding="async"
+                           class="absolute inset-0 h-full w-full object-cover" />
+                    </picture>
+                    <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-24 pointer-events-none bg-gradient-to-t from-black/65 to-transparent"></div>
+                    <!-- After label (red accent) -->
+                    <div class="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-lime/40">
+                      <span class="relative inline-flex h-1 w-1 rounded-full bg-lime breathe"></span>
+                      <span class="font-mono text-[9.5px] tracking-widest uppercase text-lime">After</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- subtle top gradient + chips overlay -->
+                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-20 pointer-events-none bg-gradient-to-b from-black/55 to-transparent z-10"></div>
+
+                <!-- Top-left identifier (over both columns) -->
+                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-20">
                   <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
                   <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 05</span>
                 </div>
 
                 <!-- Top-right counter -->
-                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
+                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-20">
                   <span class="font-mono text-[10px] tracking-widest uppercase text-white/90 tab">05 / 10</span>
                 </div>
               </div>
 
-              <!-- Caption strip below the photo -->
+              <!-- Caption strip below the photos -->
               <div class="p-6 md:p-7 border-t border-white/10 flex items-end justify-between gap-5">
                 <div class="min-w-0">
                   <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
@@ -866,33 +1026,65 @@
             <article class="tpanel relative mx-auto max-w-[680px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="5">
 
               <!-- Red gradient hairline along the top edge -->
-              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-10"></div>
+              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-30"></div>
 
-              <!-- Portrait photo container -->
-              <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
-                <picture class="absolute inset-0 block h-full w-full"><source srcset="transformation6.avif" type="image/avif" /><img src="transformation6.jpg"
-                     alt="Client Transformation 06"
-                     width="1600" height="1600" loading="lazy" decoding="async"
-                     class="absolute inset-0 h-full w-full object-cover"
-                     style="object-position: 50% 28%;" /></picture>
+              <!-- Photo area: square panel, split into Before + After columns -->
+              <div class="relative w-full aspect-square bg-ink overflow-hidden">
 
-                <!-- subtle top gradient so the chips above always have contrast -->
-                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-24 pointer-events-none"
-                     style="background: linear-gradient(to bottom, rgba(0,0,0,0.45), transparent);"></div>
+                <!-- Before / After columns -->
+                <div class="grid grid-cols-2 h-full">
 
-                <!-- Top-left identifier -->
-                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
+                  <!-- BEFORE (left) -->
+                  <div class="relative overflow-hidden">
+                    <picture class="absolute inset-0 block h-full w-full">
+                      <source srcset="bf6.avif" type="image/avif" />
+                      <img src="bf6.jpg" alt="Client Transformation 06 - Before"
+                           width="800" height="1600" loading="lazy" decoding="async"
+                           class="absolute inset-0 h-full w-full object-cover" />
+                    </picture>
+                    <!-- subtle bottom gradient so the Before label always reads -->
+                    <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-24 pointer-events-none bg-gradient-to-t from-black/65 to-transparent"></div>
+                    <!-- Before label -->
+                    <div class="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15">
+                      <span class="h-1 w-1 rounded-full bg-white/65"></span>
+                      <span class="font-mono text-[9.5px] tracking-widest uppercase text-white/85">Before</span>
+                    </div>
+                  </div>
+
+                  <!-- Divider line between halves -->
+                  <!-- AFTER (right) -->
+                  <div class="relative overflow-hidden border-l border-white/15">
+                    <picture class="absolute inset-0 block h-full w-full">
+                      <source srcset="af6.avif" type="image/avif" />
+                      <img src="af6.jpg" alt="Client Transformation 06 - After"
+                           width="800" height="1600" loading="lazy" decoding="async"
+                           class="absolute inset-0 h-full w-full object-cover" />
+                    </picture>
+                    <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-24 pointer-events-none bg-gradient-to-t from-black/65 to-transparent"></div>
+                    <!-- After label (red accent) -->
+                    <div class="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-lime/40">
+                      <span class="relative inline-flex h-1 w-1 rounded-full bg-lime breathe"></span>
+                      <span class="font-mono text-[9.5px] tracking-widest uppercase text-lime">After</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- subtle top gradient + chips overlay -->
+                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-20 pointer-events-none bg-gradient-to-b from-black/55 to-transparent z-10"></div>
+
+                <!-- Top-left identifier (over both columns) -->
+                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-20">
                   <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
                   <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 06</span>
                 </div>
 
                 <!-- Top-right counter -->
-                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
+                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-20">
                   <span class="font-mono text-[10px] tracking-widest uppercase text-white/90 tab">06 / 10</span>
                 </div>
               </div>
 
-              <!-- Caption strip below the photo -->
+              <!-- Caption strip below the photos -->
               <div class="p-6 md:p-7 border-t border-white/10 flex items-end justify-between gap-5">
                 <div class="min-w-0">
                   <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
@@ -910,33 +1102,65 @@
             <article class="tpanel relative mx-auto max-w-[680px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="6">
 
               <!-- Red gradient hairline along the top edge -->
-              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-10"></div>
+              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-30"></div>
 
-              <!-- Portrait photo container -->
-              <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
-                <picture class="absolute inset-0 block h-full w-full"><source srcset="transformation7.avif" type="image/avif" /><img src="transformation7.jpg"
-                     alt="Client Transformation 07"
-                     width="1600" height="1600" loading="lazy" decoding="async"
-                     class="absolute inset-0 h-full w-full object-cover"
-                     style="object-position: 50% 28%;" /></picture>
+              <!-- Photo area: square panel, split into Before + After columns -->
+              <div class="relative w-full aspect-square bg-ink overflow-hidden">
 
-                <!-- subtle top gradient so the chips above always have contrast -->
-                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-24 pointer-events-none"
-                     style="background: linear-gradient(to bottom, rgba(0,0,0,0.45), transparent);"></div>
+                <!-- Before / After columns -->
+                <div class="grid grid-cols-2 h-full">
 
-                <!-- Top-left identifier -->
-                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
+                  <!-- BEFORE (left) -->
+                  <div class="relative overflow-hidden">
+                    <picture class="absolute inset-0 block h-full w-full">
+                      <source srcset="bf7.avif" type="image/avif" />
+                      <img src="bf7.jpg" alt="Client Transformation 07 - Before"
+                           width="800" height="1600" loading="lazy" decoding="async"
+                           class="absolute inset-0 h-full w-full object-cover" />
+                    </picture>
+                    <!-- subtle bottom gradient so the Before label always reads -->
+                    <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-24 pointer-events-none bg-gradient-to-t from-black/65 to-transparent"></div>
+                    <!-- Before label -->
+                    <div class="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15">
+                      <span class="h-1 w-1 rounded-full bg-white/65"></span>
+                      <span class="font-mono text-[9.5px] tracking-widest uppercase text-white/85">Before</span>
+                    </div>
+                  </div>
+
+                  <!-- Divider line between halves -->
+                  <!-- AFTER (right) -->
+                  <div class="relative overflow-hidden border-l border-white/15">
+                    <picture class="absolute inset-0 block h-full w-full">
+                      <source srcset="af7.avif" type="image/avif" />
+                      <img src="af7.jpg" alt="Client Transformation 07 - After"
+                           width="800" height="1600" loading="lazy" decoding="async"
+                           class="absolute inset-0 h-full w-full object-cover" />
+                    </picture>
+                    <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-24 pointer-events-none bg-gradient-to-t from-black/65 to-transparent"></div>
+                    <!-- After label (red accent) -->
+                    <div class="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-lime/40">
+                      <span class="relative inline-flex h-1 w-1 rounded-full bg-lime breathe"></span>
+                      <span class="font-mono text-[9.5px] tracking-widest uppercase text-lime">After</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- subtle top gradient + chips overlay -->
+                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-20 pointer-events-none bg-gradient-to-b from-black/55 to-transparent z-10"></div>
+
+                <!-- Top-left identifier (over both columns) -->
+                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-20">
                   <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
                   <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 07</span>
                 </div>
 
                 <!-- Top-right counter -->
-                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
+                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-20">
                   <span class="font-mono text-[10px] tracking-widest uppercase text-white/90 tab">07 / 10</span>
                 </div>
               </div>
 
-              <!-- Caption strip below the photo -->
+              <!-- Caption strip below the photos -->
               <div class="p-6 md:p-7 border-t border-white/10 flex items-end justify-between gap-5">
                 <div class="min-w-0">
                   <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
@@ -954,33 +1178,65 @@
             <article class="tpanel relative mx-auto max-w-[680px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="7">
 
               <!-- Red gradient hairline along the top edge -->
-              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-10"></div>
+              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-30"></div>
 
-              <!-- Portrait photo container -->
-              <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
-                <picture class="absolute inset-0 block h-full w-full"><source srcset="transformation8.avif" type="image/avif" /><img src="transformation8.jpg"
-                     alt="Client Transformation 08"
-                     width="1600" height="1600" loading="lazy" decoding="async"
-                     class="absolute inset-0 h-full w-full object-cover"
-                     style="object-position: 50% 28%;" /></picture>
+              <!-- Photo area: square panel, split into Before + After columns -->
+              <div class="relative w-full aspect-square bg-ink overflow-hidden">
 
-                <!-- subtle top gradient so the chips above always have contrast -->
-                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-24 pointer-events-none"
-                     style="background: linear-gradient(to bottom, rgba(0,0,0,0.45), transparent);"></div>
+                <!-- Before / After columns -->
+                <div class="grid grid-cols-2 h-full">
 
-                <!-- Top-left identifier -->
-                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
+                  <!-- BEFORE (left) -->
+                  <div class="relative overflow-hidden">
+                    <picture class="absolute inset-0 block h-full w-full">
+                      <source srcset="bf8.avif" type="image/avif" />
+                      <img src="bf8.jpg" alt="Client Transformation 08 - Before"
+                           width="800" height="1600" loading="lazy" decoding="async"
+                           class="absolute inset-0 h-full w-full object-cover" />
+                    </picture>
+                    <!-- subtle bottom gradient so the Before label always reads -->
+                    <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-24 pointer-events-none bg-gradient-to-t from-black/65 to-transparent"></div>
+                    <!-- Before label -->
+                    <div class="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15">
+                      <span class="h-1 w-1 rounded-full bg-white/65"></span>
+                      <span class="font-mono text-[9.5px] tracking-widest uppercase text-white/85">Before</span>
+                    </div>
+                  </div>
+
+                  <!-- Divider line between halves -->
+                  <!-- AFTER (right) -->
+                  <div class="relative overflow-hidden border-l border-white/15">
+                    <picture class="absolute inset-0 block h-full w-full">
+                      <source srcset="af8.avif" type="image/avif" />
+                      <img src="af8.jpg" alt="Client Transformation 08 - After"
+                           width="800" height="1600" loading="lazy" decoding="async"
+                           class="absolute inset-0 h-full w-full object-cover" />
+                    </picture>
+                    <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-24 pointer-events-none bg-gradient-to-t from-black/65 to-transparent"></div>
+                    <!-- After label (red accent) -->
+                    <div class="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-lime/40">
+                      <span class="relative inline-flex h-1 w-1 rounded-full bg-lime breathe"></span>
+                      <span class="font-mono text-[9.5px] tracking-widest uppercase text-lime">After</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- subtle top gradient + chips overlay -->
+                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-20 pointer-events-none bg-gradient-to-b from-black/55 to-transparent z-10"></div>
+
+                <!-- Top-left identifier (over both columns) -->
+                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-20">
                   <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
                   <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 08</span>
                 </div>
 
                 <!-- Top-right counter -->
-                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
+                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-20">
                   <span class="font-mono text-[10px] tracking-widest uppercase text-white/90 tab">08 / 10</span>
                 </div>
               </div>
 
-              <!-- Caption strip below the photo -->
+              <!-- Caption strip below the photos -->
               <div class="p-6 md:p-7 border-t border-white/10 flex items-end justify-between gap-5">
                 <div class="min-w-0">
                   <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
@@ -998,33 +1254,65 @@
             <article class="tpanel relative mx-auto max-w-[680px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="8">
 
               <!-- Red gradient hairline along the top edge -->
-              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-10"></div>
+              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-30"></div>
 
-              <!-- Portrait photo container -->
-              <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
-                <picture class="absolute inset-0 block h-full w-full"><source srcset="transformation9.avif" type="image/avif" /><img src="transformation9.jpg"
-                     alt="Client Transformation 09"
-                     width="1600" height="1600" loading="lazy" decoding="async"
-                     class="absolute inset-0 h-full w-full object-cover"
-                     style="object-position: 50% 28%;" /></picture>
+              <!-- Photo area: square panel, split into Before + After columns -->
+              <div class="relative w-full aspect-square bg-ink overflow-hidden">
 
-                <!-- subtle top gradient so the chips above always have contrast -->
-                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-24 pointer-events-none"
-                     style="background: linear-gradient(to bottom, rgba(0,0,0,0.45), transparent);"></div>
+                <!-- Before / After columns -->
+                <div class="grid grid-cols-2 h-full">
 
-                <!-- Top-left identifier -->
-                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
+                  <!-- BEFORE (left) -->
+                  <div class="relative overflow-hidden">
+                    <picture class="absolute inset-0 block h-full w-full">
+                      <source srcset="bf9.avif" type="image/avif" />
+                      <img src="bf9.jpg" alt="Client Transformation 09 - Before"
+                           width="800" height="1600" loading="lazy" decoding="async"
+                           class="absolute inset-0 h-full w-full object-cover" />
+                    </picture>
+                    <!-- subtle bottom gradient so the Before label always reads -->
+                    <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-24 pointer-events-none bg-gradient-to-t from-black/65 to-transparent"></div>
+                    <!-- Before label -->
+                    <div class="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15">
+                      <span class="h-1 w-1 rounded-full bg-white/65"></span>
+                      <span class="font-mono text-[9.5px] tracking-widest uppercase text-white/85">Before</span>
+                    </div>
+                  </div>
+
+                  <!-- Divider line between halves -->
+                  <!-- AFTER (right) -->
+                  <div class="relative overflow-hidden border-l border-white/15">
+                    <picture class="absolute inset-0 block h-full w-full">
+                      <source srcset="af9.avif" type="image/avif" />
+                      <img src="af9.jpg" alt="Client Transformation 09 - After"
+                           width="800" height="1600" loading="lazy" decoding="async"
+                           class="absolute inset-0 h-full w-full object-cover" />
+                    </picture>
+                    <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-24 pointer-events-none bg-gradient-to-t from-black/65 to-transparent"></div>
+                    <!-- After label (red accent) -->
+                    <div class="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-lime/40">
+                      <span class="relative inline-flex h-1 w-1 rounded-full bg-lime breathe"></span>
+                      <span class="font-mono text-[9.5px] tracking-widest uppercase text-lime">After</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- subtle top gradient + chips overlay -->
+                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-20 pointer-events-none bg-gradient-to-b from-black/55 to-transparent z-10"></div>
+
+                <!-- Top-left identifier (over both columns) -->
+                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-20">
                   <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
                   <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 09</span>
                 </div>
 
                 <!-- Top-right counter -->
-                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
+                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-20">
                   <span class="font-mono text-[10px] tracking-widest uppercase text-white/90 tab">09 / 10</span>
                 </div>
               </div>
 
-              <!-- Caption strip below the photo -->
+              <!-- Caption strip below the photos -->
               <div class="p-6 md:p-7 border-t border-white/10 flex items-end justify-between gap-5">
                 <div class="min-w-0">
                   <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
@@ -1042,33 +1330,65 @@
             <article class="tpanel relative mx-auto max-w-[680px] w-full rounded-[28px] overflow-hidden bg-ink2 border border-white/10 shadow-[0_30px_60px_-30px_rgba(0,0,0,0.6),inset_0_1px_0_rgba(255,255,255,0.05)]" data-panel="9">
 
               <!-- Red gradient hairline along the top edge -->
-              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-10"></div>
+              <div aria-hidden="true" class="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-lime/55 to-transparent z-30"></div>
 
-              <!-- Portrait photo container -->
-              <div class="relative w-full aspect-[4/5] bg-ink overflow-hidden">
-                <picture class="absolute inset-0 block h-full w-full"><source srcset="transformation10.avif" type="image/avif" /><img src="transformation10.jpg"
-                     alt="Client Transformation 10"
-                     width="1600" height="1600" loading="lazy" decoding="async"
-                     class="absolute inset-0 h-full w-full object-cover"
-                     style="object-position: 50% 28%;" /></picture>
+              <!-- Photo area: square panel, split into Before + After columns -->
+              <div class="relative w-full aspect-square bg-ink overflow-hidden">
 
-                <!-- subtle top gradient so the chips above always have contrast -->
-                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-24 pointer-events-none"
-                     style="background: linear-gradient(to bottom, rgba(0,0,0,0.45), transparent);"></div>
+                <!-- Before / After columns -->
+                <div class="grid grid-cols-2 h-full">
 
-                <!-- Top-left identifier -->
-                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-10">
+                  <!-- BEFORE (left) -->
+                  <div class="relative overflow-hidden">
+                    <picture class="absolute inset-0 block h-full w-full">
+                      <source srcset="bf10.avif" type="image/avif" />
+                      <img src="bf10.jpg" alt="Client Transformation 10 - Before"
+                           width="800" height="1600" loading="lazy" decoding="async"
+                           class="absolute inset-0 h-full w-full object-cover" />
+                    </picture>
+                    <!-- subtle bottom gradient so the Before label always reads -->
+                    <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-24 pointer-events-none bg-gradient-to-t from-black/65 to-transparent"></div>
+                    <!-- Before label -->
+                    <div class="absolute bottom-3 left-3 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15">
+                      <span class="h-1 w-1 rounded-full bg-white/65"></span>
+                      <span class="font-mono text-[9.5px] tracking-widest uppercase text-white/85">Before</span>
+                    </div>
+                  </div>
+
+                  <!-- Divider line between halves -->
+                  <!-- AFTER (right) -->
+                  <div class="relative overflow-hidden border-l border-white/15">
+                    <picture class="absolute inset-0 block h-full w-full">
+                      <source srcset="af10.avif" type="image/avif" />
+                      <img src="af10.jpg" alt="Client Transformation 10 - After"
+                           width="800" height="1600" loading="lazy" decoding="async"
+                           class="absolute inset-0 h-full w-full object-cover" />
+                    </picture>
+                    <div aria-hidden="true" class="absolute inset-x-0 bottom-0 h-24 pointer-events-none bg-gradient-to-t from-black/65 to-transparent"></div>
+                    <!-- After label (red accent) -->
+                    <div class="absolute bottom-3 right-3 inline-flex items-center gap-1.5 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-lime/40">
+                      <span class="relative inline-flex h-1 w-1 rounded-full bg-lime breathe"></span>
+                      <span class="font-mono text-[9.5px] tracking-widest uppercase text-lime">After</span>
+                    </div>
+                  </div>
+                </div>
+
+                <!-- subtle top gradient + chips overlay -->
+                <div aria-hidden="true" class="absolute inset-x-0 top-0 h-20 pointer-events-none bg-gradient-to-b from-black/55 to-transparent z-10"></div>
+
+                <!-- Top-left identifier (over both columns) -->
+                <div class="absolute top-4 left-4 inline-flex items-center gap-2 rounded-full bg-black/55 backdrop-blur px-3 py-1.5 border border-white/15 z-20">
                   <span class="relative inline-flex h-1.5 w-1.5 rounded-full bg-lime breathe"></span>
                   <span class="font-mono text-[10px] tracking-widest uppercase text-white">Transformation 10</span>
                 </div>
 
                 <!-- Top-right counter -->
-                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-10">
+                <div class="absolute top-4 right-4 rounded-full bg-black/55 backdrop-blur px-2.5 py-1 border border-white/15 z-20">
                   <span class="font-mono text-[10px] tracking-widest uppercase text-white/90 tab">10 / 10</span>
                 </div>
               </div>
 
-              <!-- Caption strip below the photo -->
+              <!-- Caption strip below the photos -->
               <div class="p-6 md:p-7 border-t border-white/10 flex items-end justify-between gap-5">
                 <div class="min-w-0">
                   <div class="font-mono text-[9.5px] tracking-widest uppercase text-lime">Client Result</div>
@@ -1328,15 +1648,11 @@
                    class="apply-input bg-transparent border-0 border-b border-white/15 focus:border-lime focus:ring-0 px-0 py-2 text-white placeholder:text-white/25 text-[15px]"/>
           </div>
 
-          <!-- SMS Consent -->
-          <div class="col-span-2 mt-3 flex flex-col gap-2">
-            <label for="m_sms" class="flex items-start gap-3 cursor-pointer">
-              <input id="m_sms" name="smsConsent" type="checkbox" class="apply-check shrink-0 mt-[3px]"/>
-              <span class="text-[12px] text-white/70 leading-[1.55]">
-                I agree to receive text messages from Cuban Tank regarding my coaching application. Message &amp; data rates may apply. Reply STOP to opt out at any time. View our <button type="button" data-open-policy="privacy" class="text-lime underline underline-offset-2 hover:text-white">Privacy Policy</button> and <button type="button" data-open-policy="terms" class="text-lime underline underline-offset-2 hover:text-white">Terms &amp; Conditions</button>.
-              </span>
-            </label>
-            <p data-err="smsConsent" class="hidden text-[11.5px] text-rose-300 pl-7">You must agree to receive text messages to continue.</p>
+          <!-- SMS disclosure (informational - submitting implies awareness; no checkbox) -->
+          <div class="col-span-2 mt-3">
+            <p class="text-[12px] text-white/70 leading-[1.55]">
+              By submitting, you may receive text messages from Cuban Tank regarding your coaching application. Message &amp; data rates may apply. Reply STOP to opt out at any time. View our <button type="button" data-open-policy="privacy" class="text-lime underline underline-offset-2 hover:text-white">Privacy Policy</button> and <button type="button" data-open-policy="terms" class="text-lime underline underline-offset-2 hover:text-white">Terms &amp; Conditions</button>.
+            </p>
           </div>
 
           <!-- Submit -->
@@ -1746,8 +2062,7 @@
       contactMethod: radioValue('contactMethod'),
       availability:  collectChecked('availability'),
       ageRange:      form.ageRange.value,
-      instagram:     form.instagram.value.trim(),
-      smsConsent:    form.smsConsent.checked,
+      instagram:     form.instagram.value.trim()
     };
     const errs = {
       first:         !data.first,
@@ -1756,8 +2071,7 @@
       phone:         data.phone.replace(/\D/g, '').length < 7,
       goal:          data.goals.length === 0,
       level:         !data.level,
-      contactMethod: !data.contactMethod,
-      smsConsent:    !data.smsConsent,
+      contactMethod: !data.contactMethod
     };
     Object.entries(errs).forEach(([k, v]) => showErr(k, v));
     if (Object.values(errs).some(Boolean)) {
@@ -1786,7 +2100,6 @@
       availability:  data.availability,
       ageRange:      data.ageRange,
       instagram:     data.instagram,
-      smsConsent:    data.smsConsent,
       reference,
       source:        'cubantank.coach',
       submittedAt:   new Date().toISOString(),
@@ -1849,8 +2162,6 @@
   form.querySelectorAll('input[name="contactMethod"]').forEach(el =>
     el.addEventListener('change', () => showErr('contactMethod', false))
   );
-  const smsEl = form.querySelector('[name="smsConsent"]');
-  if (smsEl) smsEl.addEventListener('change', () => showErr('smsConsent', false));
 })();
 
 /* ============================== HERO VIDEO - 5-CLIP CROSSFADE ROTATION ============================== */
