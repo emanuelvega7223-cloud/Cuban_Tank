@@ -1628,11 +1628,15 @@
                    class="apply-input bg-transparent border-0 border-b border-white/15 focus:border-lime focus:ring-0 px-0 py-2 text-white placeholder:text-white/25 text-[15px]"/>
           </div>
 
-          <!-- SMS disclosure (informational - submitting implies awareness; no checkbox) -->
-          <div class="col-span-2 mt-3">
-            <p class="text-[12px] text-white/70 leading-[1.55]">
-              By submitting, you may receive text messages from Cuban Tank regarding your coaching application. Message &amp; data rates may apply. Reply STOP to opt out at any time. View our <button type="button" data-open-policy="privacy" class="text-lime underline underline-offset-2 hover:text-white">Privacy Policy</button> and <button type="button" data-open-policy="terms" class="text-lime underline underline-offset-2 hover:text-white">Terms &amp; Conditions</button>.
-            </p>
+          <!-- SMS consent (required, explicit opt-in for A2P 10DLC) -->
+          <div class="col-span-2 mt-3 flex flex-col gap-2">
+            <label for="m_sms" class="flex items-start gap-3 cursor-pointer">
+              <input id="m_sms" name="smsConsent" type="checkbox" required class="apply-check shrink-0 mt-[3px]" />
+              <span class="text-[12px] text-white/70 leading-[1.55]">
+                By checking this box, I agree to receive text messages from Cuban Tank regarding my coaching application. Message &amp; data rates may apply. Reply STOP to opt out at any time. View our <button type="button" data-open-policy="privacy" class="text-lime underline underline-offset-2 hover:text-white">Privacy Policy</button> and <button type="button" data-open-policy="terms" class="text-lime underline underline-offset-2 hover:text-white">Terms &amp; Conditions</button>.
+              </span>
+            </label>
+            <p data-err="smsConsent" class="hidden text-[11.5px] text-rose-300 pl-7">You must agree to receive text messages to continue.</p>
           </div>
 
           <!-- Submit -->
@@ -2042,7 +2046,8 @@
       contactMethod: radioValue('contactMethod'),
       availability:  collectChecked('availability'),
       ageRange:      form.ageRange.value,
-      instagram:     form.instagram.value.trim()
+      instagram:     form.instagram.value.trim(),
+      smsConsent:    form.smsConsent.checked
     };
     const errs = {
       first:         !data.first,
@@ -2051,7 +2056,8 @@
       phone:         data.phone.replace(/\D/g, '').length < 7,
       goal:          data.goals.length === 0,
       level:         !data.level,
-      contactMethod: !data.contactMethod
+      contactMethod: !data.contactMethod,
+      smsConsent:    !data.smsConsent
     };
     Object.entries(errs).forEach(([k, v]) => showErr(k, v));
     if (Object.values(errs).some(Boolean)) {
@@ -2080,6 +2086,8 @@
       availability:  data.availability,
       ageRange:      data.ageRange,
       instagram:     data.instagram,
+      smsConsent:    data.smsConsent,
+      smsConsentTimestamp: new Date().toISOString(),
       reference,
       source:        'cubantank.coach',
       submittedAt:   new Date().toISOString(),
@@ -2142,6 +2150,8 @@
   form.querySelectorAll('input[name="contactMethod"]').forEach(el =>
     el.addEventListener('change', () => showErr('contactMethod', false))
   );
+  const smsEl = form.querySelector('[name="smsConsent"]');
+  if (smsEl) smsEl.addEventListener('change', () => showErr('smsConsent', smsEl.checked === false));
 })();
 
 /* ============================== HERO VIDEO - 5-CLIP CROSSFADE ROTATION ============================== */
