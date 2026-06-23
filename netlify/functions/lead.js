@@ -219,14 +219,30 @@ async function writeAirtable(pat, baseId, tableName, data, reference) {
 // ─────────────────────────────────────────────────────────────────
 
 function ownerEmailHtml(d, reference, siteUrl) {
-  const safe = (s) => String(s || '—').replace(/[<>]/g, '');
-  const row = (label, value) => `
+  // HTML-escape for display text (prevents injection from user-controlled fields).
+  const esc = (s) => String(s == null || s === '' ? '—' : s)
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/"/g, '&quot;')
+    .replace(/'/g, '&#39;');
+  // URL-encode for href values.
+  const urlEnc = (s) => encodeURIComponent(String(s || ''));
+  // Strip whitespace + non-digits from phone for tel: hrefs.
+  const telDigits = (s) => String(s || '').replace(/[^0-9+]/g, '');
+  // row() takes ALREADY-built HTML for the value side, so callers can pass
+  // anchor tags etc. without them being stripped.
+  const row = (label, valueHtml) => `
     <tr>
-      <td style="padding:8px 0;color:rgba(255,255,255,0.45);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-family:Geist Mono,Menlo,monospace;width:140px;vertical-align:top;">${label}</td>
-      <td style="padding:8px 0 8px 18px;color:#fff;font-size:14.5px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial,sans-serif;border-bottom:1px solid rgba(255,255,255,0.06);">${safe(value)}</td>
+      <td style="padding:8px 0;color:rgba(255,255,255,0.45);font-size:11px;letter-spacing:.14em;text-transform:uppercase;font-family:Geist Mono,Menlo,monospace;width:140px;vertical-align:top;">${esc(label)}</td>
+      <td style="padding:8px 0 8px 18px;color:#fff;font-size:14.5px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial,sans-serif;border-bottom:1px solid rgba(255,255,255,0.06);word-break:break-word;">${valueHtml}</td>
     </tr>`;
-  const goals = (d.goals || []).join(', ');
+
+  const goals        = (d.goals || []).join(', ');
   const availability = (d.availability || []).join(', ');
+  const emailLink    = `<a href="mailto:${urlEnc(d.email)}" style="color:#E5283D;text-decoration:none;">${esc(d.email)}</a>`;
+  const phoneLink    = `<a href="tel:${urlEnc(telDigits(d.phone))}" style="color:#E5283D;text-decoration:none;">${esc(d.phone)}</a>`;
+
   return `<!doctype html>
 <html><body style="margin:0;padding:0;background:#0B0B0C;">
   <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="background:#0B0B0C;padding:32px 16px;font-family:-apple-system,BlinkMacSystemFont,Segoe UI,Roboto,Arial,sans-serif;">
@@ -236,25 +252,25 @@ function ownerEmailHtml(d, reference, siteUrl) {
         <tr><td style="height:1px;background:linear-gradient(90deg,transparent,#E5283D,transparent);font-size:0;line-height:0;">&nbsp;</td></tr>
         <tr><td style="padding:28px 32px 24px 32px;">
           <div style="font-family:Geist Mono,Menlo,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:#E5283D;">New lead · Cuban Tank</div>
-          <h1 style="margin:10px 0 0 0;font-size:26px;letter-spacing:-0.02em;font-weight:600;color:#fff;line-height:1.15;">${safe(d.firstName)} ${safe(d.lastName)}</h1>
-          <div style="margin-top:6px;font-family:Geist Mono,Menlo,monospace;font-size:11px;color:rgba(255,255,255,0.50);">Ref · ${safe(reference)}</div>
+          <h1 style="margin:10px 0 0 0;font-size:26px;letter-spacing:-0.02em;font-weight:600;color:#fff;line-height:1.15;">${esc(d.firstName)} ${esc(d.lastName)}</h1>
+          <div style="margin-top:6px;font-family:Geist Mono,Menlo,monospace;font-size:11px;color:rgba(255,255,255,0.50);">Ref · ${esc(reference)}</div>
         </td></tr>
         <tr><td style="padding:0 32px 24px 32px;">
           <table role="presentation" cellpadding="0" cellspacing="0" border="0" width="100%" style="border-top:1px solid rgba(255,255,255,0.10);">
-            ${row('Email',         `<a href="mailto:${safe(d.email)}" style="color:#E5283D;text-decoration:none;">${safe(d.email)}</a>`)}
-            ${row('Phone',         `<a href="tel:${safe(d.phone)}" style="color:#E5283D;text-decoration:none;">${safe(d.phone)}</a>`)}
-            ${row('Goals',         goals || '—')}
-            ${row('Level',         d.level)}
-            ${row('Contact via',   d.contactMethod)}
-            ${row('Availability',  availability || '—')}
-            ${row('Age range',     d.ageRange)}
-            ${row('Instagram',     d.instagram)}
+            ${row('Email',         emailLink)}
+            ${row('Phone',         phoneLink)}
+            ${row('Goals',         esc(goals || '—'))}
+            ${row('Level',         esc(d.level))}
+            ${row('Contact via',   esc(d.contactMethod))}
+            ${row('Availability',  esc(availability || '—'))}
+            ${row('Age range',     esc(d.ageRange))}
+            ${row('Instagram',     esc(d.instagram))}
             ${row('SMS consent',   d.smsConsent ? 'YES' : 'NO')}
-            ${row('Submitted at',  d.submittedAt)}
+            ${row('Submitted at',  esc(d.submittedAt))}
           </table>
         </td></tr>
         <tr><td style="padding:20px 32px 28px 32px;border-top:1px solid rgba(255,255,255,0.06);">
-          <a href="mailto:${safe(d.email)}" style="display:inline-block;background:#E5283D;color:#fff;text-decoration:none;font-weight:600;font-size:14px;padding:10px 18px;border-radius:9999px;">Reply to ${safe(d.firstName)}</a>
+          <a href="mailto:${urlEnc(d.email)}" style="display:inline-block;background:#E5283D;color:#fff;text-decoration:none;font-weight:600;font-size:14px;padding:10px 18px;border-radius:9999px;">Reply to ${esc(d.firstName)}</a>
         </td></tr>
       </table>
       <div style="margin-top:18px;font-family:Geist Mono,Menlo,monospace;font-size:11px;letter-spacing:.14em;text-transform:uppercase;color:rgba(255,255,255,0.35);">CubanTank Fitness LLC · Miami</div>
