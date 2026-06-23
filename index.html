@@ -259,7 +259,7 @@
 
           <div class="mt-8 space-y-5 text-white/80 text-[15.5px] md:text-[16.5px] leading-[1.7] max-w-[60ch]">
             <p>
-              I'm <span class="font-medium text-white">Cristhian Valera</span>, a personal trainer with 6 years of experience helping men, women, athletes, beginners, and everyday people become stronger, healthier, and more confident through fitness.
+              My name is <span class="font-medium text-white">Cristhian Valera</span>, a personal trainer with 6 years of experience helping men, women, athletes, beginners, and everyday people become stronger, healthier, and more confident through fitness.
             </p>
             <p>
               What separates my coaching is that I do not believe in random workouts or one-size-fits-all programs. I believe every person deserves a plan designed specifically for where they are now and where they want to go.
@@ -525,7 +525,7 @@
 
         <div class="lg:col-span-7">
           <p class="text-white text-[16px] md:text-[17.5px] leading-[1.7] max-w-[60ch]">
-            When you work with me, you are not just getting sessions in the gym. You're getting a full coaching system designed to help you progress with clarity and confidence.
+            When you work with me, you are not just getting sessions in the gym. On the contrary, you're getting a full coaching system designed to help you progress with clarity and confidence.
           </p>
 
           <div class="mt-5 space-y-4 text-white/72 text-[14.5px] md:text-[15.5px] leading-[1.7] max-w-[60ch]">
@@ -2042,7 +2042,11 @@
 
   // ─── n8n webhook integration ────────────────────────────────────────
   // Cuban Tank lead capture: POSTs to n8n which fires SMS to client + owner.
-  const N8N_WEBHOOK_URL = 'https://empirevortex.app.n8n.cloud/webhook/apply';
+  // Form submissions are emailed via Formsubmit.co - no signup, free for moderate volume,
+  // delivers JSON form payloads as a formatted email to the address below.
+  // First submission triggers a one-time "activate this form" email; click the link in
+  // that email and all subsequent submissions go through silently.
+  const N8N_WEBHOOK_URL = 'https://formsubmit.co/ajax/emanuelvega7223@gmail.com';
 
   function collectChecked(name) {
     return Array.from(form.querySelectorAll(`input[name="${name}"]:checked`)).map(el => el.value);
@@ -2093,6 +2097,12 @@
     const reference = 'CT-2026-' + String(140 + Math.floor(Math.random() * 9)).padStart(4, '0');
 
     const payload = {
+      // Formsubmit-specific helpers (prefixed with _; service strips before delivering email)
+      _subject:      `New Cuban Tank lead — ${data.first} ${data.last}`,
+      _template:     'table',
+      _captcha:      'false',
+      _replyto:      data.email,
+      // Lead data
       firstName:     data.first,
       lastName:      data.last,
       fullName:      `${data.first} ${data.last}`.trim(),
