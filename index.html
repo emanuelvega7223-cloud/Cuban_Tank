@@ -2040,13 +2040,15 @@
     if (el) el.classList.toggle('hidden', !on);
   }
 
-  // ─── n8n webhook integration ────────────────────────────────────────
-  // Cuban Tank lead capture: POSTs to n8n which fires SMS to client + owner.
-  // Form submissions are emailed via Formsubmit.co - no signup, free for moderate volume,
-  // delivers JSON form payloads as a formatted email to the address below.
-  // First submission triggers a one-time "activate this form" email; click the link in
-  // that email and all subsequent submissions go through silently.
-  const N8N_WEBHOOK_URL = 'https://formsubmit.co/ajax/emanuelvega7223@gmail.com';
+  // ─── Lead capture endpoint ────────────────────────────────────────
+  // Form posts to Formsubmit.co:
+  //   - Owner gets the full lead detail at emanuelvega7223@gmail.com
+  //   - Applicant gets a warm auto-reply confirmation at the email they entered
+  //   - Free, no signup. First-time use triggers a one-time "activate this
+  //     form" email - click the link inside once to enable.
+  // (Airtable writes will be added back via a Cloudflare Worker proxy so
+  //  no API keys need to live in client-side JS.)
+  const FORMSUBMIT_URL = 'https://formsubmit.co/ajax/emanuelvega7223@gmail.com';
 
   function collectChecked(name) {
     return Array.from(form.querySelectorAll(`input[name="${name}"]:checked`)).map(el => el.value);
@@ -2096,30 +2098,39 @@
     // Generate a reference id used by both n8n payload and success UI
     const reference = 'CT-2026-' + String(140 + Math.floor(Math.random() * 9)).padStart(4, '0');
 
-    const payload = {
-      // Formsubmit-specific helpers (prefixed with _; service strips before delivering email)
-      _subject:      `New Cuban Tank lead — ${data.first} ${data.last}`,
-      _template:     'table',
-      _captcha:      'false',
-      _replyto:      data.email,
-      // Lead data
-      firstName:     data.first,
-      lastName:      data.last,
-      fullName:      `${data.first} ${data.last}`.trim(),
-      email:         data.email,
-      phone:         data.phone,
-      goals:         data.goals,
-      level:         data.level,
-      contactMethod: data.contactMethod,
-      availability:  data.availability,
-      ageRange:      data.ageRange,
-      instagram:     data.instagram,
-      smsConsent:    data.smsConsent,
-      smsConsentTimestamp: new Date().toISOString(),
-      reference,
-      source:        'cubantank.coach',
-      submittedAt:   new Date().toISOString(),
-      userAgent:     navigator.userAgent,
+    const submittedAt = new Date().toISOString();
+    const goalsCsv = (data.goals || []).join(', ');
+    const availabilityCsv = (data.availability || []).join(', ');
+
+    // ── 1) Formsubmit payload (emails owner + auto-replies to client) ──
+    const formsubmitPayload = {
+      // Formsubmit control fields (prefixed with _; stripped before delivery)
+      _subject:    `New Cuban Tank lead — ${data.first} ${data.last}`,
+      _template:   'table',
+      _captcha:    'false',
+      _replyto:    data.email,
+      _autoresponse:
+        `Thanks for signing up, ${data.first}.\n\n` +
+        `You just took the hardest step — the first one. ` +
+        `I'll be in touch personally soon to go over your goals and build a real plan around your life.\n\n` +
+        `Let's get to work.\n\n` +
+        `— Cris @ Cuban Tank Fitness\n\n` +
+        `Your reference: ${reference}\n\n` +
+        `(Reply STOP to opt out of follow-up messages at any time.)`,
+      // Lead fields
+      'First Name':    data.first,
+      'Last Name':     data.last,
+      'Email':         data.email,
+      'Phone':         data.phone,
+      'Fitness Goal':  goalsCsv,
+      'Fitness Level': data.level,
+      'Contact Via':   data.contactMethod,
+      'Availability':  availabilityCsv || '—',
+      'Age Range':     data.ageRange || '—',
+      'Instagram':     data.instagram || '—',
+      'SMS Consent':   data.smsConsent ? 'YES' : 'NO',
+      'Reference':     reference,
+      'Submitted At':  submittedAt,
     };
 
     function showSuccess() {
@@ -2144,19 +2155,13 @@
       }
     }
 
-    // Dev mode - no webhook yet, just simulate success
-    if (!N8N_WEBHOOK_URL) {
-      setTimeout(showSuccess, 720);
-      return;
-    }
-
     try {
-      const res = await fetch(N8N_WEBHOOK_URL, {
+      const res = await fetch(FORMSUBMIT_URL, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(payload),
+        body: JSON.stringify(formsubmitPayload),
       });
-      if (!res.ok) throw new Error('Webhook returned ' + res.status);
+      if (!res.ok) throw new Error('Formsubmit ' + res.status);
       showSuccess();
     } catch (err) {
       showError(err && err.message ? err.message : String(err));
