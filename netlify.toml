@@ -1,0 +1,28 @@
+# Netlify configuration for cubantank.com
+#
+# Site is a static HTML site (no build step); functions live in
+# netlify/functions/. After deploy, the form posts to /api/lead
+# (proxied to /.netlify/functions/lead via the redirect below).
+
+[build]
+  publish     = "."
+  # No build command - everything is pre-built / static
+
+[functions]
+  directory   = "netlify/functions"
+  node_bundler = "esbuild"
+
+# Friendly URL alias for the form endpoint
+[[redirects]]
+  from   = "/api/lead"
+  to     = "/.netlify/functions/lead"
+  status = 200
+
+# Default security headers on every response
+[[headers]]
+  for = "/*"
+  [headers.values]
+    X-Frame-Options        = "DENY"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy        = "strict-origin-when-cross-origin"
+    Permissions-Policy     = "interest-cohort=()"
