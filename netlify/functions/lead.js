@@ -58,7 +58,10 @@ exports.handler = async (event) => {
   const AIRTABLE_PAT   = env('AIRTABLE_PAT');
   const AIRTABLE_BASE  = env('AIRTABLE_BASE_ID', 'appQrm45DFtBdVaXr');
   const AIRTABLE_TABLE = env('AIRTABLE_TABLE', 'Table 1');
-  const OWNER_EMAIL    = env('OWNER_EMAIL', 'emanuelvega7223@gmail.com');
+  // Owner notification address. If the OWNER_EMAIL env var is set in Netlify,
+  // it overrides this default. To change permanently: update or delete the
+  // env var in Netlify Dashboard → Site settings → Environment variables.
+  const OWNER_EMAIL    = env('OWNER_EMAIL', 'cubantank2026@yahoo.com');
   const FROM_ADDRESS   = env('FROM_ADDRESS', 'Cris @ Cuban Tank <cris@cubantank.com>');
   const SITE_URL       = env('SITE_URL', 'https://cubantank.com');
 
@@ -76,7 +79,7 @@ exports.handler = async (event) => {
         reply_to: data.email,
         subject:  `New Cuban Tank lead — ${data.firstName} ${data.lastName}`,
         html:     ownerEmailHtml(data, reference, SITE_URL),
-      }).then(r => ({ channel: 'owner_email', ...r }))
+      }).then(r => ({ channel: 'owner_email', to: OWNER_EMAIL, ...r }))
     );
 
     // 2. Client confirmation email via Resend
